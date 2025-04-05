@@ -1,9 +1,12 @@
 <script lang="ts">
+	import RangeInput from '$lib/input/RangeInput.svelte';
 	import Step from '$lib/stepper/Step.svelte';
 	import Stepper from '$lib/stepper/Stepper.svelte';
 	import Stack from '$lib/stack/Stack.svelte';
 
 	let current = $state(1);
+
+	let sliderValue = $state(40);
 
 	const cardEntries = ['Card 1', 'Card 2', 'Card 3'];
 
@@ -20,7 +23,9 @@
 	};
 </script>
 
-<div class="flex flex-col p-4">
+<div class="flex flex-col gap-4 p-4">
+	<RangeInput label="Slider" bind:value={sliderValue} min={10} max={200} unit="Joule" />
+
 	<Stepper
 		bind:currentStep={current}
 		onnext={handleNextStep}
