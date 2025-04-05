@@ -30,11 +30,11 @@
 		onback = () => {},
 		onfinish = () => {},
 		...restProps
-	} = $props();
+	}: Props = $props();
 
 	let steps = $derived(Object.values(restProps).filter((f) => typeof f === 'function'));
 
-	let first = steps ? 1 : 0,
+	let first = 1,
 		last = $derived(Object.values(restProps).length);
 
 	const move = (inc: number) => {

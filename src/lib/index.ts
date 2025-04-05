@@ -5,4 +5,4 @@ import Stepper from './stepper/Stepper.svelte';
 
 import Stack from './stack/Stack.svelte';
 
-export { Stepper, Step, Stack };
+export { RangeInput, Stepper, Step, Stack };
