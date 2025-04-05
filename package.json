@@ -1,20 +1,20 @@
 {
-	"name": "veilchen",
+	"name": "@thwbh/veilchen",
 	"version": "0.0.1",
-  "description": "A set of reusable Svelte components styled with DaisyUI",
-  "keywords": [
-    "components",
-    "svelte",
-    "daisiui"
-  ],
-  "homepage": "https://veilchen.tohuwabohu.io/",
-  "license": "MIT",
-  "author": {
-    "name": "Stefan Poindl",
-    "url": "https://tohuwabohu.io/"
-  },
-  "repository": "github:thwbh/veilchen",
-  "sideEffects": false,
+	"description": "A set of reusable Svelte components styled with DaisyUI",
+	"keywords": [
+		"svelte"
+	],
+	"homepage": "https://veilchen.tohuwabohu.io/",
+	"license": "MIT",
+	"author": {
+		"name": "Stefan Poindl",
+		"url": "https://tohuwabohu.io/"
+	},
+	"repository": "github:thwbh/veilchen",
+	"sideEffects": [
+		"**/*.css"
+	],
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run prepack",
@@ -33,9 +33,6 @@
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
-	"sideEffects": [
-		"**/*.css"
-	],
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"type": "module",
@@ -46,8 +43,10 @@
 		}
 	},
 	"peerDependencies": {
-		"svelte": "^5.0.0"
-	},
+		"daisyui": "^5.0.12",
+		"svelte": "^5.0.0",
+		"svelte-gestures": "^5.1.3"
+  },
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.18.0",
@@ -76,8 +75,5 @@
 		"typescript-eslint": "^8.20.0",
 		"vite": "^6.2.5",
 		"vitest": "^3.0.0"
-	},
-	"keywords": [
-		"svelte"
-	]
+	}
 }

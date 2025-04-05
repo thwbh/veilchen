@@ -49,7 +49,7 @@
 	};
 </script>
 
-<div class="flex w-full flex-col gap-4 p-4">
+<div class="flex w-full flex-col gap-4">
 	<hr class="step-line" />
 	<ul class="timeline timeline-horizontal flex-row justify-between">
 		<span class="flex flex-row">

@@ -1,4 +1,6 @@
 import Step from './stepper/Step.svelte';
 import Stepper from './stepper/Stepper.svelte';
 
-export { Stepper, Step };
+import Stack from './stack/Stack.svelte';
+
+export { Stepper, Step, Stack };
