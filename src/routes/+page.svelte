@@ -7,6 +7,7 @@
 	let current = $state(1);
 
 	let sliderValue = $state(40);
+	let sliderStepValue = $state(0);
 
 	const cardEntries = ['Card 1', 'Card 2', 'Card 3'];
 
@@ -25,6 +26,16 @@
 
 <div class="flex flex-col gap-4 p-4">
 	<RangeInput label="Slider" bind:value={sliderValue} min={10} max={200} unit="Joule" />
+
+	<RangeInput
+		label="Stepped Slider"
+		bind:value={sliderStepValue}
+		min={0}
+		max={3}
+		step={0.25}
+		unit="Tons"
+		rangeClass={'range range-xs'}
+	/>
 
 	<Stepper
 		bind:currentStep={current}
