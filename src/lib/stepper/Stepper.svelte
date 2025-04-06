@@ -16,6 +16,7 @@
 		onnext?: () => void;
 		onback?: () => void;
 		onfinish?: () => void;
+		activeClass?: string;
 		[key: string]: StepSnippet | number | string | undefined | (() => void);
 	}
 
@@ -31,6 +32,7 @@
 		onnext = () => {},
 		onback = () => {},
 		onfinish = () => {},
+		activeClass = 'badge-neutral',
 		...restProps
 	}: Props = $props();
 
@@ -62,7 +64,7 @@
 				<li>
 					<div class="timeline-middle">
 						{#if currentStep === step + 1}
-							<span class="badge badge-step badge-neutral">{stepLabel} {step + 1}</span>
+							<span class="badge badge-step {activeClass}">{stepLabel} {step + 1}</span>
 						{:else}
 							<span class="badge badge-step">{step + 1}</span>
 						{/if}
@@ -75,7 +77,7 @@
 				<li>
 					<div class="timeline-middle">
 						{#if currentStep === last - step + 1}
-							<span class="badge badge-step badge-neutral"
+							<span class="badge badge-step {activeClass}"
 								>{stepLabel} {step + 1 + currentStep}</span
 							>
 						{:else}

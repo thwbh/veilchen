@@ -58,15 +58,31 @@
 		onnext={handleNextStep}
 		onback={handleBackStep}
 		onfinish={handleFinish}
+		activeClass={'badge-primary'}
 	>
 		{#snippet step1()}
-			<Step number={1} {current}>Content 1</Step>
+			<Step number={1} {current}>
+				{#snippet header()}
+					<header>Head 1</header>
+				{/snippet}
+				Content 1</Step
+			>
 		{/snippet}
 		{#snippet step2()}
-			<Step number={2} {current}>Content 2</Step>
+			<Step number={2} {current}>
+				{#snippet header()}
+					<header>Head 2</header>
+				{/snippet}
+				Content 2</Step
+			>
 		{/snippet}
 		{#snippet step3()}
-			<Step number={3} {current}>Content 3</Step>
+			<Step number={3} {current}>
+				{#snippet header()}
+					<header>Head 1</header>
+				{/snippet}
+				Content 3
+			</Step>
 		{/snippet}
 	</Stepper>
 
