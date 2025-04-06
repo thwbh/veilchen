@@ -4,9 +4,9 @@
 		value: number;
 		min: number;
 		max: number;
-		unit: string;
-		step: number;
-		rangeClass: string;
+		unit?: string;
+		step?: number;
+		rangeClass?: string;
 	}
 
 	let {
@@ -18,7 +18,7 @@
 		unit = undefined,
 		step = undefined,
 		...props
-	} = $props();
+	}: Props = $props();
 
 	const checkBounds = () => {
 		if (value > max) value = max;
@@ -32,7 +32,7 @@
 	};
 </script>
 
-<label class="flex flex-col gap-2">
+<label class="flex flex-col gap-2" {...props}>
 	<span class="flex flex-row justify-between">
 		<span>{label}</span>
 		<span>
