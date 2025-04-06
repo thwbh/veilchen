@@ -8,7 +8,7 @@
 		children: Snippet;
 	}
 
-	let { number, current, header = undefined, children }: Props = $props();
+	let { number, current = $bindable(1), header = undefined, children }: Props = $props();
 </script>
 
 {#if number == current}

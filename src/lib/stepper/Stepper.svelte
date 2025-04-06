@@ -2,19 +2,21 @@
 	import { type Snippet } from 'svelte';
 	import Step from './Step.svelte';
 
+	type StepSnippet = Snippet<[]>;
+
 	interface Props {
 		currentStep?: number;
 		stepLabel?: string;
 		backLabel?: string;
 		nextLabel?: string;
 		finishLabel?: string;
-		leftCaret?: () => void;
-		rightCaret?: () => void;
-		finishCaret?: () => void;
+		leftCaret?: Snippet<[]> | undefined;
+		rightCaret?: Snippet<[]> | undefined;
+		finishCaret?: Snippet<[]> | undefined;
 		onnext?: () => void;
 		onback?: () => void;
 		onfinish?: () => void;
-		[key: string]: Snippet<[Step]>;
+		[key: string]: StepSnippet | number | string | undefined | (() => void);
 	}
 
 	let {
@@ -32,7 +34,10 @@
 		...restProps
 	}: Props = $props();
 
-	let steps = $derived(Object.values(restProps).filter((f) => typeof f === 'function'));
+	// More explicit type filtering for steps
+	let steps = $derived(
+		Object.values(restProps).filter((f): f is StepSnippet => typeof f === 'function')
+	);
 
 	let first = 1,
 		last = $derived(Object.values(restProps).length);
@@ -88,7 +93,11 @@
 	</div>
 	<div class="join grid grid-cols-2">
 		<button onclick={() => move(-1)} class="join-item btn flex items-center justify-start">
-			<span> {@render leftCaret?.()} </span>
+			<span>
+				{#if leftCaret}
+					{@render leftCaret()}
+				{/if}
+			</span>
 			<span> {backLabel} </span>
 		</button>
 		{#if currentStep < last}
@@ -97,7 +106,11 @@
 				class="join-item btn btn-neutral flex items-center justify-end"
 			>
 				<span> {nextLabel} </span>
-				<span> {@render rightCaret?.()} </span>
+				<span>
+					{#if rightCaret}
+						{@render rightCaret()}
+					{/if}
+				</span>
 			</button>
 		{:else}
 			<button
@@ -105,7 +118,11 @@
 				class="join-item btn btn-primary flex items-center justify-end"
 			>
 				<span> {finishLabel} </span>
-				<span> {@render finishCaret?.()} </span>
+				<span>
+					{#if finishCaret}
+						{@render finishCaret()}
+					{/if}
+				</span>
 			</button>
 		{/if}
 	</div>
