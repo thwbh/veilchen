@@ -6,8 +6,8 @@
 		size: number;
 		indicator?: Snippet;
 		card: Snippet<[number]>;
-		swipeable: boolean;
-		swipeParams: Partial<SwipeParameters>;
+		swipeable?: boolean;
+		swipeParams?: Partial<SwipeParameters>;
 		onswipe?: (event: SwipeCustomEvent) => void;
 	}
 
