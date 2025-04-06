@@ -49,6 +49,8 @@
 
 	<ButtonGroup bind:value={segmentValue} entries={segments} />
 
+	<ButtonGroup bind:value={segmentValue} entries={segments} label={'Choose'} />
+
 	{segmentValue}
 
 	<Stepper
