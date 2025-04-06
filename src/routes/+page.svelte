@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { KeyValuePair } from '$lib/types/types.js';
 	import RangeInput from '$lib/input/RangeInput.svelte';
+	import ButtonGroup from '$lib/input/ButtonGroup.svelte';
 	import Step from '$lib/stepper/Step.svelte';
 	import Stepper from '$lib/stepper/Stepper.svelte';
 	import Stack from '$lib/stack/Stack.svelte';
@@ -10,6 +12,14 @@
 	let sliderStepValue = $state(0);
 
 	const cardEntries = ['Card 1', 'Card 2', 'Card 3'];
+
+	let segmentValue = $state('b');
+
+	const segments = [
+		new KeyValuePair('a', 'AAA'),
+		new KeyValuePair('b', 'BBB'),
+		new KeyValuePair('c', 'CCC')
+	];
 
 	const handleNextStep = () => {
 		console.log('next!');
@@ -37,6 +47,10 @@
 		rangeClass={'range range-xs'}
 	/>
 
+	<ButtonGroup bind:value={segmentValue} entries={segments} />
+
+	{segmentValue}
+
 	<Stepper
 		bind:currentStep={current}
 		onnext={handleNextStep}
@@ -44,13 +58,13 @@
 		onfinish={handleFinish}
 	>
 		{#snippet step1()}
-			<Step number="1" {current}>Content 1</Step>
+			<Step number={1} {current}>Content 1</Step>
 		{/snippet}
 		{#snippet step2()}
-			<Step number="2" {current}>Content 2</Step>
+			<Step number={2} {current}>Content 2</Step>
 		{/snippet}
 		{#snippet step3()}
-			<Step number="3" {current}>Content 3</Step>
+			<Step number={3} {current}>Content 3</Step>
 		{/snippet}
 	</Stepper>
 
