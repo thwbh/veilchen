@@ -1,58 +1,234 @@
-# Svelte library
+# veilchen
 
-Everything you need to build a Svelte library, powered by [`sv`](https://npmjs.com/package/sv).
+veilchen is a set of reusable Svelte components, styled with DaisyUI.
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+Requirements:
+- [Svelte 5](https://svelte.dev/docs/svelte/overview)
+- [DaisyUI 5](https://daisyui.com/docs/v5/)
+- [tailwindcss 4](https://tailwindcss.com/docs/installation/using-vite)
 
-## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Setup
+
+Follow the DaisyUI installation guide incl. custom theme setup.
 
 ```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+npm i -D @thwbh/veilchen
 ```
 
-## Developing
+Open your `style.css` file. Insert this line after `@import 'tailwindcss'`.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```css
+@source '../node_modules/@thwbh/veilchen';
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+This needs to be inserted due to the fact that tailwind's JIT compiler will not scan the `node_modules` folder when excluded in `.gitignore`.
 
-## Building
+## Usage
 
-To build your library:
+### ButtonGroup.svelte
 
-```bash
-npm run package
+```sveltehtml
+<script lang="ts">
+    const entries = [
+        new KeyValuePair('y', 'Yes'),
+        new KeyValuePair('n', 'No')
+    ];
+
+    let value = $state('y');
+</script>
+
+<ButtonGroup label="Sex" bind:value {entries} />
 ```
 
-To create a production version of your showcase app:
+### Example 1: Basic Button Group with Default Binding
 
-```bash
-npm run build
+```sveltehtml
+<script lang="ts">
+    import { ButtonGroup } from '@thwbh/veilchen';
+
+    const entries = [
+        new KeyValuePair('a', 'Option A'),
+        new KeyValuePair('b', 'Option B'),
+        new KeyValuePair('c', 'Option C')
+    ];
+
+    let value = $state('a'); // Default to 'Option A'
+</script>
+
+<ButtonGroup label="Choose an option" bind:value {entries} />
 ```
 
-You can preview the production build with `npm run preview`.
+---
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+### Example 2: Button Group with Inline Entries
 
-## Publishing
+```sveltehtml
+<script lang="ts">
+    import { ButtonGroup } from '@thwbh/veilchen';
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
+    let selectedValue = $state('1');
+</script>
 
-To publish your library to [npm](https://www.npmjs.com):
+<ButtonGroup
+    label="Select a Number"
+    bind:value={selectedValue}
+    entries={[
+        new KeyValuePair('1', 'One'),
+        new KeyValuePair('2', 'Two'),
+        new KeyValuePair('3', 'Three')
+    ]}
+/>
+```
 
-```bash
-npm publish
+---
+
+### Example 3: Handling `on:change` Event
+
+```sveltehtml
+<script lang="ts">
+    import { ButtonGroup } from '@thwbh/veilchen';
+
+    const entries = [
+        new KeyValuePair('x', 'Choice X'),
+        new KeyValuePair('y', 'Choice Y'),
+        new KeyValuePair('z', 'Choice Z')
+    ];
+
+    let selectedKey = $state('x');
+
+    function handleChange(newValue: string) {
+        console.log('Selected value changed to:', newValue);
+    }
+</script>
+
+<ButtonGroup 
+    label="Pick a letter"
+    bind:value={selectedKey}
+    {entries}
+    on:change={handleChange}
+/>
+```
+
+## RangeInput.svelte Examples
+
+### Example 1: Basic Range Input
+
+```sveltehtml
+<script lang="ts">
+    import { RangeInput } from '@thwbh/veilchen';
+
+    let value = $state(50); // Default value
+</script>
+
+<RangeInput 
+    label="Adjust Volume"
+    bind:value
+    min={0}
+    max={100}
+/>
+```
+
+---
+
+### Example 2: Range Input with Custom Steps
+
+```sveltehtml
+<script lang="ts">
+    import { RangeInput } from '@thwbh/veilchen';
+
+    let brightness = $state(10); // Default value
+</script>
+
+<RangeInput 
+    label="Brightness"
+    bind:value={brightness}
+    min={0}
+    max={50}
+    step={5}
+/>
+```
+
+---
+
+## Stack.svelte Examples
+
+### Example 1: Basic Stack Layout
+
+```sveltehtml
+<script lang="ts">
+    import { Stack } from '@thwbh/veilchen';
+</script>
+
+<Stack>
+    <div class="p-4 bg-base-200">Element 1</div>
+    <div class="p-4 bg-base-300">Element 2</div>
+    <div class="p-4 bg-base-200">Element 3</div>
+</Stack>
+```
+
+---
+
+### Example 2: Stack with Gap and Vertical Alignment
+
+```sveltehtml
+<script lang="ts">
+    import { Stack } from '@thwbh/veilchen';
+</script>
+
+<Stack gap="4" vertical>
+    <div class="p-4 bg-base-200">Header</div>
+    <div class="p-4 bg-base-300">Main Content</div>
+    <div class="p-4 bg-base-200">Footer</div>
+</Stack>
+```
+
+## ValidatedInput.svelte Examples
+
+### Example 1: Basic Input with Validation
+
+```sveltehtml
+
+<script lang="ts">
+	import { ValidatedInput } from '@thwbh/veilchen';
+
+	let value = $state('');
+	let errorMessage = '';
+</script>
+
+<ValidatedInput
+	label="Username"
+	bind:value
+	validate={(value) => value.length > 0 ? '' : 'This field is required'}
+>
+	<p class="text-error">{errorMessage}</p>
+</ValidatedInput>
+```
+
+---
+
+### Example 2: Input with Regex Validation
+
+```sveltehtml
+<script lang="ts">
+    import { ValidatedInput } from '@thwbh/veilchen';
+
+    let password = $state('');
+</script>
+
+<ValidatedInput
+	bind:value={password}
+	label="Password"
+	type="password"
+	required
+	placeholder="Password"
+	minlength={8}
+	pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]){'{'}3{'}'}"
+	title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
+>
+	Must be more than 8 characters, including
+	<br />At least one number
+	<br />At least one lowercase letter
+	<br />At least one uppercase letter
+</ValidatedInput>
 ```
