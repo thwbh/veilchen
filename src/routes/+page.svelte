@@ -21,7 +21,8 @@
 	let emailValue = $state(null);
 	let validatedValue = $state(null);
 	let passwordValue = $state(null);
-	let dateValue = $state(null);
+	let dateValue = $state(new Date());
+	let numberValue = $state(0);
 
 	const segments = [
 		new KeyValuePair('a', 'AAA'),
@@ -137,7 +138,7 @@
 		required
 		placeholder="Password"
 		minlength={8}
-		pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])"
+		pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]){'{'}3{'}'}"
 		title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
 	>
 		Must be more than 8 characters, including
@@ -145,6 +146,8 @@
 		<br />At least one lowercase letter
 		<br />At least one uppercase letter
 	</ValidatedInput>
+
+	{dateValue}
 
 	<ValidatedInput
 		bind:value={dateValue}
@@ -155,8 +158,21 @@
 		placeholder="Pick a date in 2025"
 		min="2025-01-01"
 		max="2025-12-31"
-		title="Must be valid URL"
+		title="Must be a date in 2025."
 	>
-		Must be 2025
+		Must be a date in 2025.
+	</ValidatedInput>
+
+	<ValidatedInput
+		bind:value={numberValue}
+		label="Number"
+		type="number"
+		class="input validator"
+		required
+		placeholder="Insert a number."
+		min="0"
+		max="10"
+	>
+		Must be in range 0..10
 	</ValidatedInput>
 </div>

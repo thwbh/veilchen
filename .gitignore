@@ -9,6 +9,9 @@ node_modules
 /build
 /dist
 
+# IDEA
+.idea/
+
 # OS
 .DS_Store
 Thumbs.db
