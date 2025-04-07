@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
-	import Step from './Step.svelte';
 
 	type StepSnippet = Snippet<[]>;
 
