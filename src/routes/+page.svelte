@@ -15,6 +15,7 @@
 	const cardEntries = ['Card 1', 'Card 2', 'Card 3'];
 
 	let segmentValue = $state('b');
+	let segmentNumberValue = $state(1.5);
 
 	const passwordRegex = '';
 
@@ -28,6 +29,12 @@
 		new KeyValuePair('a', 'AAA'),
 		new KeyValuePair('b', 'BBB'),
 		new KeyValuePair('c', 'CCC')
+	];
+
+	const numberSegments = [
+		new KeyValuePair(1, '111'),
+		new KeyValuePair(1.5, '1.5'),
+		new KeyValuePair(5, '555')
 	];
 
 	const handleNextStep = () => {
@@ -59,6 +66,12 @@
 	<ButtonGroup bind:value={segmentValue} entries={segments} />
 
 	<ButtonGroup bind:value={segmentValue} entries={segments} label={'Choose'} />
+
+	<ButtonGroup bind:value={segmentNumberValue} entries={numberSegments} label="Numbers" />
+
+	{segmentNumberValue}
+
+	{typeof segmentNumberValue === 'number'}
 
 	{segmentValue}
 

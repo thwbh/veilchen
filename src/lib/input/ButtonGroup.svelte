@@ -3,7 +3,7 @@
 
 	interface Props {
 		label?: string;
-		value: string;
+		value: unknown;
 		entries?: Array<KeyValuePair>;
 	}
 
