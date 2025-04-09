@@ -232,3 +232,41 @@ This needs to be inserted due to the fact that tailwind's JIT compiler will not 
 	<br />At least one uppercase letter
 </ValidatedInput>
 ```
+## Stepper.svelte Examples
+
+### Example 1: Basic Usage
+
+```sveltehtml
+<Stepper
+		bind:currentStep={current}
+		onnext={handleNextStep}
+		onback={handleBackStep}
+		onfinish={handleFinish}
+		activeClass={'badge-primary'}
+	>
+		{#snippet step1()}
+			<div>
+				<strong>Header 1</strong>
+				<span>Content 1</span>
+			</div>
+		{/snippet}
+		{#snippet step2()}
+			<div>
+				<strong>Header 2</strong>
+				<span>Content 2</span>
+			</div>
+		{/snippet}
+		{#snippet step3()}
+			<div>
+				<strong>Header 3</strong>
+				<span>Content 3</span>
+			</div>
+		{/snippet}
+		{#snippet step4()}
+			<div>
+				<strong>Header 4</strong>
+				<span>Content 4</span>
+			</div>
+		{/snippet}
+	</Stepper>
+```

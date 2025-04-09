@@ -9,6 +9,7 @@
 		swipeable?: boolean;
 		swipeParams?: Partial<SwipeParameters>;
 		onswipe?: (event: SwipeCustomEvent) => void;
+		onchange?: (updatedIndex: number) => void;
 	}
 
 	let {
@@ -17,7 +18,8 @@
 		card,
 		swipeable = true,
 		swipeParams = { timeframe: 300, minSwipeDistance: 60 },
-		onswipe = undefined
+		onswipe = undefined,
+		onchange = undefined
 	}: Props = $props();
 
 	let index = $state(0);
@@ -32,6 +34,8 @@
 			else if (event.detail.direction === 'right') direction = -1;
 
 			index = (index + direction + size) % size;
+
+			onchange?.(index);
 		}
 	};
 </script>

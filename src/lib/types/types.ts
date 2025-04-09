@@ -1,9 +1,9 @@
 export class KeyValuePair {
-	key: string;
-	value: string;
+  key: unknown;
+  value: unknown;
 
-	constructor(key: string, value: string) {
-		this.key = key;
-		this.value = value;
-	}
+  constructor(key: unknown, value: unknown) {
+    this.key = key;
+    this.value = value;
+  }
 }

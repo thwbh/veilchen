@@ -2,7 +2,6 @@
 	import { KeyValuePair } from '$lib/types/types.js';
 	import RangeInput from '$lib/input/RangeInput.svelte';
 	import ButtonGroup from '$lib/input/ButtonGroup.svelte';
-	import Step from '$lib/stepper/Step.svelte';
 	import Stepper from '$lib/stepper/Stepper.svelte';
 	import Stack from '$lib/stack/Stack.svelte';
 	import ValidatedInput from '$lib/input/ValidatedInput.svelte';
@@ -83,28 +82,28 @@
 		activeClass={'badge-primary'}
 	>
 		{#snippet step1()}
-			<Step number={1} {current}>
-				{#snippet header()}
-					<header>Head 1</header>
-				{/snippet}
-				Content 1</Step
-			>
+			<div>
+				<strong>Header 1</strong>
+				<span>Content 1</span>
+			</div>
 		{/snippet}
 		{#snippet step2()}
-			<Step number={2} {current}>
-				{#snippet header()}
-					<header>Head 2</header>
-				{/snippet}
-				Content 2</Step
-			>
+			<div>
+				<strong>Header 2</strong>
+				<span>Content 2</span>
+			</div>
 		{/snippet}
 		{#snippet step3()}
-			<Step number={3} {current}>
-				{#snippet header()}
-					<header>Head 3</header>
-				{/snippet}
-				Content 3
-			</Step>
+			<div>
+				<strong>Header 3</strong>
+				<span>Content 3</span>
+			</div>
+		{/snippet}
+		{#snippet step4()}
+			<div>
+				<strong>Header 4</strong>
+				<span>Content 4</span>
+			</div>
 		{/snippet}
 	</Stepper>
 

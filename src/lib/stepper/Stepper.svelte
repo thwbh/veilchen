@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
 
-	type StepSnippet = Snippet<[]>;
+	type StepSnippet = Snippet<[number]>;
 
 	interface Props {
 		currentStep?: number;
@@ -88,8 +88,10 @@
 		</span>
 	</ul>
 	<div>
-		{#each steps as step}
-			{@render step()}
+		{#each steps as step, i}
+			{#if i + 1 === currentStep}
+				{@render step(i + 1)}
+			{/if}
 		{/each}
 	</div>
 	<div class="join grid grid-cols-2">
