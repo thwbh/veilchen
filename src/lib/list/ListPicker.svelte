@@ -38,7 +38,7 @@
 						onclick={() => (value = dataValue.value)}
 					>
 						<span class="flex w-full flex-row justify-between gap-2">
-							<span> {dataValue.header} </span>
+							<strong> {dataValue.header} </strong>
 							<span>
 								{#if dataValue.label}
 									<span
