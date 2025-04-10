@@ -6,8 +6,23 @@
 	import Stack from '$lib/stack/Stack.svelte';
 	import ValidatedInput from '$lib/input/ValidatedInput.svelte';
 	import AlertBox from '$lib/alert/AlertBox.svelte';
+	import ListPicker, { type ListPickerData } from '$lib/list/ListPicker.svelte';
 
 	let current = $state(1);
+
+	let listValue = $state(1.2);
+	const listData: Array<ListPickerData> = [
+		{ value: 1, header: 'Header 1', description: 'Content 1' },
+		{ value: 1.1, header: 'Header 2', description: 'Content 2' },
+		{
+			value: 1.2,
+			header: 'Header 3',
+			description: 'Content 3',
+			label: { text: 'Recommended', className: 'badge-primary' }
+		},
+		{ value: 1.3, header: 'Header 4', description: 'Content 4' },
+		{ value: 1.4, header: 'Header 5', description: 'Content 5' }
+	];
 
 	let sliderValue = $state(40);
 	let sliderStepValue = $state(0);
@@ -71,6 +86,14 @@
 		<strong>Attention!</strong>
 		<span>Free beer at 5pm.</span>
 	</AlertBox>
+
+	<ListPicker bind:value={listValue} data={listData}>
+		{#snippet header()}
+			<span>List description goes here.</span>
+		{/snippet}
+	</ListPicker>
+
+	{listValue}
 
 	<RangeInput label="Slider" bind:value={sliderValue} min={10} max={200} unit="Joule" />
 
