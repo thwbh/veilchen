@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { KeyValuePair } from '$lib/types/types.js';
+	import { KeyValuePair, type ListPickerData } from '$lib/types/types.js';
 	import RangeInput from '$lib/input/RangeInput.svelte';
 	import ButtonGroup from '$lib/input/ButtonGroup.svelte';
 	import Stepper from '$lib/stepper/Stepper.svelte';
 	import Stack from '$lib/stack/Stack.svelte';
 	import ValidatedInput from '$lib/input/ValidatedInput.svelte';
 	import AlertBox from '$lib/alert/AlertBox.svelte';
-	import ListPicker, { type ListPickerData } from '$lib/list/ListPicker.svelte';
+	import ListPicker from '$lib/list/ListPicker.svelte';
 
 	let current = $state(1);
 
@@ -24,6 +24,57 @@
 		{ value: 1.4, header: 'Header 5', description: 'Content 5' }
 	];
 
+	let listValue2 = $state(300);
+	const listData2 = [
+		{
+			value: 100,
+			header: 'End Date: 01.07.2026',
+			description: 'A with a deficit of 100 kcal, you reach your goal in 467 days.'
+		},
+		{
+			value: 200,
+			header: 'End Date: 31.12.2025',
+			description: 'A with a deficit of 200 kcal, you reach your goal in 451 days.'
+		},
+		{
+			value: 300,
+			header: 'End Date: 04.11.2025',
+			description: 'A with a deficit of 300 kcal, you reach your goal in 420 days.'
+		},
+
+		{
+			value: 400,
+			header: 'End Date: 08.10.2025',
+			description: 'A with a deficit of 400 kcal, you reach your goal in 397 days.'
+		},
+
+		{
+			value: 500,
+			header: 'End Date: 27.08.2025',
+			description: 'A with a deficit of 500 kcal, you reach your goal in 361 days.',
+			label: {
+				text: 'Sweet spot',
+				className: 'badge-primary'
+			}
+		},
+
+		{
+			value: 600,
+			header: 'End Date: 30.06.2025',
+			description: 'A with a deficit of 600 kcal, you reach your goal in 312 days.'
+		},
+
+		{
+			value: 700,
+			header: 'End Date: 17.05.2025',
+			description: 'A with a deficit of 700 kcal, you reach your goal in 261 days.',
+			label: {
+				text: 'Tough',
+				className: 'badge-error'
+			}
+		}
+	];
+
 	let sliderValue = $state(40);
 	let sliderStepValue = $state(0);
 
@@ -31,8 +82,6 @@
 
 	let segmentValue = $state('b');
 	let segmentNumberValue = $state(1.5);
-
-	const passwordRegex = '';
 
 	let emailValue = $state(null);
 	let validatedValue = $state(null);
@@ -93,7 +142,11 @@
 		{/snippet}
 	</ListPicker>
 
-	{listValue}
+	<ListPicker bind:value={listValue2} data={listData2}>
+		{#snippet header()}
+			Please review and choose.
+		{/snippet}
+	</ListPicker>
 
 	<RangeInput label="Slider" bind:value={sliderValue} min={10} max={200} unit="Joule" />
 

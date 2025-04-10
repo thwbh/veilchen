@@ -7,3 +7,15 @@ export class KeyValuePair {
     this.value = value;
   }
 }
+
+export interface ListPickerLabel {
+  text: string;
+  className?: string;
+}
+
+export interface ListPickerData {
+  value: unknown;
+  header: string;
+  label?: ListPickerLabel;
+  description: string;
+}

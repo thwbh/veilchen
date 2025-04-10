@@ -1,17 +1,6 @@
 <script lang="ts">
+	import type { ListPickerData } from '$lib/types/types.js';
 	import type { Snippet } from 'svelte';
-
-	export interface ListPickerLabel {
-		text: string;
-		className?: string;
-	}
-
-	export interface ListPickerData {
-		value: unknown;
-		header: string;
-		label?: ListPickerLabel;
-		description: string;
-	}
 
 	interface Props {
 		value: unknown;
@@ -37,19 +26,19 @@
 							: ''}"
 						onclick={() => (value = dataValue.value)}
 					>
-						<span class="flex w-full flex-row justify-between gap-2">
-							<strong> {dataValue.header} </strong>
+						<span class="flex w-full flex-row items-center justify-between gap-2">
 							<span>
-								{#if dataValue.label}
-									<span
-										class="badge {dataValue.label?.className
-											? dataValue.label.className
-											: ''} badge-xs"
-									>
-										{dataValue.label.text}
-									</span>
-								{/if}
+								<strong> {dataValue.header} </strong>
 							</span>
+							{#if dataValue.label}
+								<span
+									class="badge {dataValue.label?.className
+										? dataValue.label.className
+										: ''} badge-xs"
+								>
+									{dataValue.label.text}
+								</span>
+							{/if}
 						</span>
 
 						<span>

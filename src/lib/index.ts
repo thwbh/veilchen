@@ -1,5 +1,5 @@
 /** types go here */
-import { KeyValuePair } from './types/types.js';
+import type { KeyValuePair, ListPickerData, ListPickerLabel } from './types/types.js';
 
 /** components go here */
 import AlertBox from './alert/AlertBox.svelte';
@@ -14,5 +14,5 @@ import Stepper from './stepper/Stepper.svelte';
 
 import Stack from './stack/Stack.svelte';
 
-export { KeyValuePair };
+export type { KeyValuePair, ListPickerData, ListPickerLabel };
 export { AlertBox, ListPicker, RangeInput, ButtonGroup, Stepper, Stack };
