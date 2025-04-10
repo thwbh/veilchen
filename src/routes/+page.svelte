@@ -5,6 +5,7 @@
 	import Stepper from '$lib/stepper/Stepper.svelte';
 	import Stack from '$lib/stack/Stack.svelte';
 	import ValidatedInput from '$lib/input/ValidatedInput.svelte';
+	import AlertBox from '$lib/alert/AlertBox.svelte';
 
 	let current = $state(1);
 
@@ -50,6 +51,27 @@
 </script>
 
 <div class="flex flex-col gap-4 p-4">
+	<AlertBox>
+		{#snippet icon()}
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+				class="stroke-info h-6 w-6 shrink-0"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+				></path>
+			</svg>
+		{/snippet}
+
+		<strong>Attention!</strong>
+		<span>Free beer at 5pm.</span>
+	</AlertBox>
+
 	<RangeInput label="Slider" bind:value={sliderValue} min={10} max={200} unit="Joule" />
 
 	<RangeInput
