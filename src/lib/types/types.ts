@@ -11,6 +11,7 @@ export class KeyValuePair {
 export interface ListPickerLabel {
   text: string;
   className?: string;
+  activeClassName?: string;
 }
 
 export interface ListPickerData {

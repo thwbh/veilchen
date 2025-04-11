@@ -13,7 +13,12 @@
 	let listValue = $state(1.2);
 	const listData: Array<ListPickerData> = [
 		{ value: 1, header: 'Header 1', description: 'Content 1' },
-		{ value: 1.1, header: 'Header 2', description: 'Content 2' },
+		{
+			value: 1.1,
+			header: 'Header 2',
+			description: 'Content 2',
+			label: { text: 'Now vegan!', activeClassName: 'badge-primary' }
+		},
 		{
 			value: 1.2,
 			header: 'Header 3',

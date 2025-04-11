@@ -31,11 +31,15 @@
 								<strong> {dataValue.header} </strong>
 							</span>
 							{#if dataValue.label}
-								<span
-									class="badge {dataValue.label?.className
-										? dataValue.label.className
-										: ''} badge-xs"
-								>
+								{@const className =
+									dataValue.value === value
+										? dataValue.label?.activeClassName
+											? dataValue.label?.activeClassName
+											: dataValue.label?.className
+										: dataValue.label?.className
+											? dataValue.label?.className
+											: ''}
+								<span class="badge {className} badge-xs">
 									{dataValue.label.text}
 								</span>
 							{/if}
