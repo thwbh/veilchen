@@ -141,6 +141,6 @@
 		position: absolute;
 		margin-top: 0.8em;
 		width: calc(100% - calc(8 * var(--size-field)));
-		color: var(--color-accent);
+		color: var(--color-neutral);
 	}
 </style>
