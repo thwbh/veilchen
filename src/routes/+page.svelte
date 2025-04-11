@@ -7,6 +7,7 @@
 	import ValidatedInput from '$lib/input/ValidatedInput.svelte';
 	import AlertBox from '$lib/alert/AlertBox.svelte';
 	import ListPicker from '$lib/list/ListPicker.svelte';
+	import { AlertType } from '$lib/types/types.js';
 
 	let current = $state(1);
 
@@ -120,25 +121,24 @@
 </script>
 
 <div class="flex flex-col gap-4 p-4">
-	<AlertBox>
-		{#snippet icon()}
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				fill="none"
-				viewBox="0 0 24 24"
-				class="stroke-info h-6 w-6 shrink-0"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-				></path>
-			</svg>
-		{/snippet}
-
+	<AlertBox type={AlertType.info} alertClass="alert-soft">
 		<strong>Attention!</strong>
 		<span>Free beer at 5pm.</span>
+	</AlertBox>
+
+	<AlertBox type={AlertType.error} alertClass="alert-error alert-soft">
+		<strong>Error!</strong>
+		<span>An error occurred. Please try again later.</span>
+	</AlertBox>
+
+	<AlertBox type={AlertType.warning} alertClass="alert-warning alert-soft">
+		<strong>Warning!</strong>
+		<span>This lake is populated by crocodiles. Proceed with caution.</span>
+	</AlertBox>
+
+	<AlertBox type={AlertType.success} alertClass="alert-success alert-soft">
+		<strong>Success!</strong>
+		<span>Successfully intermingled flux capacitor with quantum loo.</span>
 	</AlertBox>
 
 	<ListPicker bind:value={listValue} data={listData}>
