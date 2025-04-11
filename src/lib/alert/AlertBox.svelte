@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AlertType } from '$lib/types/types.js';
+	import { AlertType } from '$lib/index.js';
 	import type { Snippet } from 'svelte';
 
 	interface Props {

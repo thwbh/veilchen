@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { KeyValuePair, type ListPickerData } from '$lib/types/types.js';
+	import type { KeyValuePair, ListPickerData } from '$lib/types/types.js';
 	import RangeInput from '$lib/input/RangeInput.svelte';
 	import ButtonGroup from '$lib/input/ButtonGroup.svelte';
 	import Stepper from '$lib/stepper/Stepper.svelte';
@@ -7,7 +7,7 @@
 	import ValidatedInput from '$lib/input/ValidatedInput.svelte';
 	import AlertBox from '$lib/alert/AlertBox.svelte';
 	import ListPicker from '$lib/list/ListPicker.svelte';
-	import { AlertType } from '$lib/types/types.js';
+	import { AlertType } from '$lib/index.js';
 
 	let current = $state(1);
 
@@ -95,16 +95,16 @@
 	let dateValue = $state(new Date());
 	let numberValue = $state(0);
 
-	const segments = [
-		new KeyValuePair('a', 'AAA'),
-		new KeyValuePair('b', 'BBB'),
-		new KeyValuePair('c', 'CCC')
+	const segments: Array<KeyValuePair> = [
+		{ key: 'a', value: 'AAA' },
+		{ key: 'b', value: 'BBB' },
+		{ key: 'c', value: 'CCC' }
 	];
 
-	const numberSegments = [
-		new KeyValuePair(1, '111'),
-		new KeyValuePair(1.5, '1.5'),
-		new KeyValuePair(5, '555')
+	const numberSegments: Array<KeyValuePair> = [
+		{ key: 1, value: '111' },
+		{ key: 1.5, value: '1.5' },
+		{ key: 5, value: '555' }
 	];
 
 	const handleNextStep = () => {

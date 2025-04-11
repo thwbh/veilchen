@@ -3,10 +3,10 @@
 veilchen is a set of reusable Svelte components, styled with DaisyUI.
 
 Requirements:
+
 - [Svelte 5](https://svelte.dev/docs/svelte/overview)
 - [DaisyUI 5](https://daisyui.com/docs/v5/)
 - [tailwindcss 4](https://tailwindcss.com/docs/installation/using-vite)
-
 
 ## Setup
 
@@ -102,7 +102,7 @@ This needs to be inserted due to the fact that tailwind's JIT compiler will not 
     }
 </script>
 
-<ButtonGroup 
+<ButtonGroup
     label="Pick a letter"
     bind:value={selectedKey}
     {entries}
@@ -121,7 +121,7 @@ This needs to be inserted due to the fact that tailwind's JIT compiler will not 
     let value = $state(50); // Default value
 </script>
 
-<RangeInput 
+<RangeInput
     label="Adjust Volume"
     bind:value
     min={0}
@@ -140,7 +140,7 @@ This needs to be inserted due to the fact that tailwind's JIT compiler will not 
     let brightness = $state(10); // Default value
 </script>
 
-<RangeInput 
+<RangeInput
     label="Brightness"
     bind:value={brightness}
     min={0}
@@ -232,6 +232,7 @@ This needs to be inserted due to the fact that tailwind's JIT compiler will not 
 	<br />At least one uppercase letter
 </ValidatedInput>
 ```
+
 ## Stepper.svelte Examples
 
 ### Example 1: Basic Usage
