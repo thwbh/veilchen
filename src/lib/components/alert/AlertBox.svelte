@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AlertType } from '$lib/index.js';
+	import { AlertType } from '$lib/enum/enum.js';
 	import type { Snippet } from 'svelte';
 
 	interface Props {

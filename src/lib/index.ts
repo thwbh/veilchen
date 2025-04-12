@@ -2,17 +2,17 @@
 import type { KeyValuePair, ListPickerData, ListPickerLabel } from './types/types.js';
 
 /** components go here */
-import AlertBox from './alert/AlertBox.svelte';
+import AlertBox from '$lib/components/alert/AlertBox.svelte';
 
-import ListPicker from './list/ListPicker.svelte';
+import ListPicker from '$lib/components/list/ListPicker.svelte';
 
-import RangeInput from './input/RangeInput.svelte';
+import RangeInput from '$lib/components/input/RangeInput.svelte';
 
-import ButtonGroup from './input/ButtonGroup.svelte';
+import ButtonGroup from '$lib/components/input/ButtonGroup.svelte';
 
-import Stepper from './stepper/Stepper.svelte';
+import Stepper from '$lib/components/stepper/Stepper.svelte';
 
-import Stack from './stack/Stack.svelte';
+import Stack from '$lib/components/stack/Stack.svelte';
 import { AlertType } from './enum/enum.js';
 
 export type { KeyValuePair, ListPickerData, ListPickerLabel };
