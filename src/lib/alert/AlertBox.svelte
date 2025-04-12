@@ -10,7 +10,7 @@
 	}
 
 	let {
-		type = AlertType.info,
+		type = AlertType.Info,
 		alertClass = '',
 		icon = undefined,
 		children,
@@ -21,12 +21,12 @@
 <span role="alert" class="alert alert-horizontal alert-{type} {alertClass}" {...props}>
 	{#if icon}
 		{@render icon()}
-	{:else if type === AlertType.info}
+	{:else if type === AlertType.Info}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
 			viewBox="0 0 24 24"
-			class="stroke-info h-6 w-6 shrink-0"
+			class="stroke.Info h-6 w-6 shrink-0"
 		>
 			<path
 				stroke-linecap="round"
@@ -35,7 +35,7 @@
 				d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 			></path>
 		</svg>
-	{:else if type === AlertType.error}
+	{:else if type === AlertType.Error}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			class="h-6 w-6 shrink-0 stroke-current"
@@ -49,7 +49,7 @@
 				d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
 			/>
 		</svg>
-	{:else if type === AlertType.warning}
+	{:else if type === AlertType.Warning}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			class="h-6 w-6 shrink-0 stroke-current"
@@ -63,7 +63,7 @@
 				d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
 			/>
 		</svg>
-	{:else if type === AlertType.success}
+	{:else if type === AlertType.Success}
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			class="h-6 w-6 shrink-0 stroke-current"
