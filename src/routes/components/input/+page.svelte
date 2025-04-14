@@ -90,6 +90,7 @@
 		placeholder="Insert a number."
 		min="0"
 		max="10"
+		errorInline={true}
 	>
 		Must be in range 0..10
 	</ValidatedInput>

@@ -9,6 +9,7 @@
 		value: unknown;
 		type: string;
 		required?: boolean;
+		errorInline?: boolean;
 		children: Snippet;
 		[key: string]: unknown;
 	}
@@ -20,6 +21,7 @@
 		value = $bindable(),
 		type = 'text',
 		required = false,
+		errorInline = false,
 		pattern = undefined,
 		children,
 		...props
@@ -30,8 +32,22 @@
 	<span class="text-xs">
 		{label}
 	</span>
+
 	<input class="input validator {className}" bind:value {name} {type} {required} {...props} />
-	<div class="validator-hint">
+
+	<span class="validator-hint {errorInline ? 'inline-error' : ''}">
 		{@render children()}
-	</div>
+	</span>
 </label>
+
+<style>
+	label {
+		position: relative;
+	}
+
+	.inline-error {
+		position: absolute;
+		bottom: 4em;
+		right: 0;
+	}
+</style>
