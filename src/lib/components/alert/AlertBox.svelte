@@ -26,7 +26,7 @@
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
 			viewBox="0 0 24 24"
-			class="stroke.Info h-6 w-6 shrink-0"
+			class="h-6 w-6 shrink-0 stroke-current"
 		>
 			<path
 				stroke-linecap="round"
