@@ -2,6 +2,7 @@
 	const components = [
 		{ name: 'Alert', path: '/components/alert' },
 		{ name: 'Button', path: '/components/button' },
+		{ name: 'Chart', path: '/components/chart' },
 		{ name: 'List Picker', path: '/components/list' },
 		{ name: 'Input Components', path: '/components/input' },
 		{ name: 'Stepper', path: '/components/stepper' },
