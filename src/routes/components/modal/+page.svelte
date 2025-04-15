@@ -9,8 +9,8 @@
 	let customContentDialog: HTMLDialogElement | undefined = $state();
 	let customButtonDialog: HTMLDialogElement | undefined = $state();
 
-	let customContentValue = $state();
-	let customButtonValue = $state();
+	let customContentValue = $state(-3);
+	let customButtonValue = $state(50);
 
 	let deleteMode = $state(false);
 </script>
@@ -70,7 +70,7 @@
 	{/snippet}
 
 	{#snippet content()}
-		<span>
+		<fieldset>
 			<ValidatedInput
 				bind:value={customContentValue}
 				label="Amount"
@@ -82,7 +82,7 @@
 			>
 				Must be between 0 - 100
 			</ValidatedInput>
-		</span>
+		</fieldset>
 	{/snippet}
 </ModalDialog>
 
@@ -97,7 +97,7 @@
 	{/snippet}
 
 	{#snippet content()}
-		<span>
+		<fieldset>
 			<ValidatedInput
 				bind:value={customButtonValue}
 				label="Amount"
@@ -106,10 +106,11 @@
 				min={0}
 				max={100}
 				errorInline={true}
+				disabled={deleteMode}
 			>
 				Must be between 0 - 100
 			</ValidatedInput>
-		</span>
+		</fieldset>
 	{/snippet}
 
 	{#snippet footer()}
