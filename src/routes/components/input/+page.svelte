@@ -9,6 +9,7 @@
 	let numberValue = $state(0);
 	let dateValue = $state();
 	let validatedValue = $state();
+	let unitValue = $state(100);
 </script>
 
 <div class="flex flex-col gap-4 p-4">
@@ -93,5 +94,19 @@
 		errorInline={true}
 	>
 		Must be in range 0..10
+	</ValidatedInput>
+
+	<ValidatedInput
+		bind:value={unitValue}
+		label="Number"
+		type="number"
+		required
+		placeholder="Insert a number."
+		min="100"
+		max="1000"
+		errorInline={true}
+		unit="Mt"
+	>
+		Must be in range 100..1000
 	</ValidatedInput>
 </div>

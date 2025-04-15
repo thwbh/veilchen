@@ -10,6 +10,7 @@
 		type: string;
 		required?: boolean;
 		errorInline?: boolean;
+		unit?: string;
 		children: Snippet;
 		[key: string]: unknown;
 	}
@@ -22,6 +23,7 @@
 		type = 'text',
 		required = false,
 		errorInline = false,
+		unit = undefined,
 		pattern = undefined,
 		children,
 		...props
@@ -33,10 +35,25 @@
 		{label}
 	</span>
 
-	<input class="input validator {className}" bind:value {name} {type} {required} {...props} />
+	<span class={unit ? 'join' : ''}>
+		<input
+			class="input validator {unit ? className + ' join-item' : className}"
+			bind:value
+			{name}
+			{type}
+			{required}
+			{...props}
+		/>
 
-	<span class="validator-hint {errorInline ? 'inline-error' : ''}">
-		{@render children()}
+		<span class="validator-hint {errorInline ? 'inline-error' : ''}">
+			{@render children()}
+		</span>
+
+		{#if unit}
+			<p class="join-item btn btn-disabled text-base-content">
+				{unit}
+			</p>
+		{/if}
 	</span>
 </label>
 
