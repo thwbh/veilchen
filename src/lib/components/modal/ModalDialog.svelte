@@ -2,16 +2,16 @@
 	import type { Snippet } from 'svelte';
 
 	interface Props {
-		dialog: HTMLDialogElement | undefined;
+		dialog?: HTMLDialogElement;
 		title?: Snippet;
 		content?: Snippet;
 		footer?: Snippet;
-		onconfirm: () => void;
-		oncancel: () => void;
+		onconfirm?: () => void;
+		oncancel?: () => void;
 	}
 
 	let {
-		dialog = $bindable(undefined),
+		dialog = $bindable(),
 		title = undefined,
 		content = undefined,
 		footer = undefined,
@@ -20,13 +20,13 @@
 	}: Props = $props();
 
 	const confirm = () => {
-		onconfirm();
+		onconfirm?.();
 
 		dialog?.close();
 	};
 
 	const cancel = () => {
-		oncancel();
+		oncancel?.();
 
 		dialog?.close();
 	};
