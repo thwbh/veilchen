@@ -3,6 +3,7 @@
 	import { swipe, type SwipeCustomEvent, type SwipeParameters } from 'svelte-gestures';
 
 	interface Props {
+		index?: number;
 		size: number;
 		indicator?: Snippet;
 		card: Snippet<[number]>;
@@ -13,6 +14,7 @@
 	}
 
 	let {
+		index = $bindable(0),
 		size,
 		indicator = undefined,
 		card,
@@ -21,8 +23,6 @@
 		onswipe = undefined,
 		onchange = undefined
 	}: Props = $props();
-
-	let index = $state(0);
 
 	const handleSwipe = (event: SwipeCustomEvent) => {
 		if (swipeable) {
