@@ -34,7 +34,9 @@
 
 <dialog bind:this={dialog} id="intake-modal" class="modal modal-bottom sm:modal-middle">
 	<div class="modal-box flex flex-col gap-2">
-		<div class="dialog-header border-base-300 mb-2 pb-2">
+		<div
+			class="border-base-300 mb-2 flex w-full grow items-center justify-between border-b border-dashed pb-2"
+		>
 			{#if title}
 				{@render title()}
 			{:else}
@@ -54,9 +56,3 @@
 		</div>
 	</div>
 </dialog>
-
-<style>
-	.dialog-header {
-		@apply flex w-full grow items-center justify-between border-b border-dashed;
-	}
-</style>
