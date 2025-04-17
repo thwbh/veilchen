@@ -1,12 +1,14 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import { swipe, type SwipeCustomEvent, type SwipeParameters } from 'svelte-gestures';
+	import { cubicOut } from 'svelte/easing';
+	import type { FlyParams } from 'svelte/transition';
 
 	interface Props {
 		index?: number;
 		size: number;
 		indicator?: Snippet;
-		card: Snippet<[number]>;
+		card: Snippet<[number, FlyParams]>;
 		swipeable?: boolean;
 		swipeParams?: Partial<SwipeParameters>;
 		onswipe?: (event: SwipeCustomEvent) => void;
@@ -24,11 +26,17 @@
 		onchange = undefined
 	}: Props = $props();
 
+	let direction = $state(0);
+	let flyParams: FlyParams = $derived({
+		x: -500 * direction,
+		delay: 0,
+		duration: 750,
+		easing: cubicOut
+	});
+
 	const handleSwipe = (event: SwipeCustomEvent) => {
 		if (swipeable) {
 			onswipe?.(event);
-
-			let direction = 0;
 
 			if (event.detail.direction === 'left') direction = 1;
 			else if (event.detail.direction === 'right') direction = -1;
@@ -51,12 +59,11 @@
 		</div>
 	{/if}
 
-	<div class="stack w-full" use:swipe={() => swipeParams} onswipe={handleSwipe}>
-		{@render card(index)}
-
+	<div class="stack relative w-full" use:swipe={() => swipeParams} onswipe={handleSwipe}>
+		{@render card(index, flyParams)}
 		{#each { length: size }, i}
 			{#if i !== index}
-				{@render card(i)}
+				{@render card(i, flyParams)}
 			{/if}
 		{/each}
 	</div>

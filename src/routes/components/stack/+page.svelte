@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Stack from '$lib/components/stack/Stack.svelte';
+	import { fly, type FlyParams } from 'svelte/transition';
 
 	const cardEntries = ['Card 1', 'Card 2', 'Card 3'];
 
@@ -8,8 +9,11 @@
 
 <div class="flex flex-col gap-4 p-4">
 	<Stack bind:index size={cardEntries.length}>
-		{#snippet card(index: number)}
-			<div class="bg-primary text-primary-content rounded-box grid place-content-center">
+		{#snippet card(index: number, flyParams: FlyParams)}
+			<div
+				out:fly={flyParams}
+				class="bg-primary text-primary-content rounded-box grid place-content-center"
+			>
 				<p>index {index}</p>
 				<p>
 					{cardEntries[index]}
