@@ -14,8 +14,11 @@ import Stepper from '$lib/components/stepper/Stepper.svelte';
 import Stack from '$lib/components/stack/Stack.svelte';
 import ValidatedInput from '$lib/components/input/ValidatedInput.svelte';
 import ModalDialog from '$lib/components/modal/ModalDialog.svelte';
+import LineChart from '$lib/components/chart/LineChart.svelte';
+import BarChart from '$lib/components/chart/BarChart.svelte';
+import PolarAreaChart from '$lib/components/chart/PolarAreaChart.svelte';
 
 import { AlertType } from './enum/enum.js';
 
 export { AlertType };
-export { AlertBox, ListPicker, RangeInput, ButtonGroup, ModalDialog, Stepper, Stack, ValidatedInput };
+export { AlertBox, ListPicker, RangeInput, ButtonGroup, ModalDialog, Stepper, Stack, ValidatedInput, LineChart, BarChart, PolarAreaChart };
