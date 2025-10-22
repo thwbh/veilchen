@@ -1,12 +1,22 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
+	/**
+	 * A modal dialog component with customizable content and actions.
+	 * Provides default confirm/cancel buttons or custom footer.
+	 */
 	interface Props {
+		/** Bindable reference to the dialog element for programmatic control */
 		dialog?: HTMLDialogElement;
+		/** Optional title snippet (defaults to "Please confirm") */
 		title?: Snippet;
+		/** Optional content snippet for the dialog body */
 		content?: Snippet;
+		/** Optional footer snippet (defaults to Confirm/Cancel buttons) */
 		footer?: Snippet;
+		/** Callback fired when confirm button is clicked */
 		onconfirm?: () => void;
+		/** Callback fired when cancel button is clicked */
 		oncancel?: () => void;
 	}
 

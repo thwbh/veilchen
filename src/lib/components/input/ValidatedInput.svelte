@@ -2,21 +2,33 @@
 	import { type Snippet } from 'svelte';
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
-	interface Props extends HTMLInputAttributes {
-		className?: string;
+	/**
+	 * A validated input component with error message display.
+	 * Accepts string, number, or any value depending on input type.
+	 */
+	interface Props extends Omit<HTMLInputAttributes, 'value' | 'type' | 'children'> {
+		/** CSS class to apply to the input element */
+		class?: string;
+		/** Label text displayed above the input */
 		label: string;
+		/** Name attribute for the input */
 		name?: string;
-		value: unknown;
-		type: string;
+		/** The current value of the input */
+		value: string | number;
+		/** Input type (text, email, password, number, date, etc.) */
+		type?: string;
+		/** Whether the field is required */
 		required?: boolean;
+		/** Whether to display error inline instead of below */
 		errorInline?: boolean;
+		/** Optional unit to display after the input */
 		unit?: string;
+		/** Children snippet for error/help text */
 		children: Snippet;
-		[key: string]: unknown;
 	}
 
 	let {
-		className = '',
+		class: className = '',
 		label,
 		name = undefined,
 		value = $bindable(),

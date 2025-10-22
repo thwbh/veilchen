@@ -3,19 +3,36 @@
 
 	type StepSnippet = Snippet<[number]>;
 
+	/**
+	 * A multi-step wizard component with navigation controls.
+	 * Pass step content as snippets named step1, step2, etc.
+	 */
 	interface Props {
+		/** Current active step number (1-indexed, bindable) */
 		currentStep?: number;
+		/** Label text for step badges (default: "Step") */
 		stepLabel?: string;
+		/** Label for the back button (default: "Previous") */
 		backLabel?: string;
+		/** Label for the next button (default: "Next Step") */
 		nextLabel?: string;
+		/** Label for the finish button (default: "Finish") */
 		finishLabel?: string;
+		/** Optional snippet for left arrow icon */
 		leftCaret?: Snippet<[]> | undefined;
+		/** Optional snippet for right arrow icon */
 		rightCaret?: Snippet<[]> | undefined;
+		/** Optional snippet for finish button icon */
 		finishCaret?: Snippet<[]> | undefined;
+		/** Callback when next button is clicked */
 		onnext?: () => void;
+		/** Callback when back button is clicked */
 		onback?: () => void;
+		/** Callback when finish button is clicked */
 		onfinish?: () => void;
+		/** CSS class for active step badge (default: "badge-neutral") */
 		activeClass?: string;
+		/** Step snippets (step1, step2, etc.) passed as additional props */
 		[key: string]: StepSnippet | number | string | undefined | (() => void);
 	}
 

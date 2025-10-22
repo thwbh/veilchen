@@ -1,6 +1,11 @@
-export interface KeyValuePair {
-	key: unknown;
-	value: unknown;
+/**
+ * A generic key-value pair interface for selection components.
+ * @template K - The type of the key (typically string or number)
+ * @template V - The type of the display value (typically string)
+ */
+export interface KeyValuePair<K = string | number, V = string> {
+	key: K;
+	value: V;
 }
 
 export interface ListPickerLabel {
@@ -9,9 +14,35 @@ export interface ListPickerLabel {
 	activeClassName?: string;
 }
 
-export interface ListPickerData {
-	value: unknown;
+/**
+ * Data structure for ListPicker component items.
+ * @template T - The type of the value
+ */
+export interface ListPickerData<T = unknown> {
+	value: T;
 	header: string;
 	label?: ListPickerLabel;
 	description: string;
+}
+
+export interface OptionCardBadge {
+	text: string;
+	color?: 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'error' | 'info';
+}
+
+export interface OptionCardMetric {
+	label: string;
+	value: string;
+}
+
+/**
+ * Data structure for OptionCards component items.
+ * @template T - The type of the value
+ */
+export interface OptionCardData<T = unknown> {
+	value: T;
+	header: string;
+	badge?: OptionCardBadge;
+	highlight?: OptionCardBadge;
+	metrics?: Array<OptionCardMetric>;
 }

@@ -4,14 +4,26 @@
 	import { cubicOut } from 'svelte/easing';
 	import type { FlyParams } from 'svelte/transition';
 
+	/**
+	 * A swipeable stack/carousel component for mobile-first interfaces.
+	 * Supports touch gestures and keyboard navigation.
+	 */
 	interface Props {
+		/** Current visible card index (0-indexed, bindable) */
 		index?: number;
+		/** Total number of cards in the stack */
 		size: number;
+		/** Optional custom indicator snippet (defaults to dot indicators) */
 		indicator?: Snippet;
+		/** Card content snippet that receives index and fly transition params */
 		card: Snippet<[number, FlyParams]>;
+		/** Whether swipe gestures are enabled (default: true) */
 		swipeable?: boolean;
+		/** Swipe gesture configuration parameters */
 		swipeParams?: Partial<SwipeParameters>;
+		/** Callback fired on swipe gesture */
 		onswipe?: (event: SwipeCustomEvent) => void;
+		/** Callback fired when the active card changes */
 		onchange?: (updatedIndex: number) => void;
 	}
 
@@ -46,6 +58,20 @@
 			onchange?.(index);
 		}
 	};
+
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key === 'ArrowLeft') {
+			event.preventDefault();
+			direction = -1;
+			index = (index - 1 + size) % size;
+			onchange?.(index);
+		} else if (event.key === 'ArrowRight') {
+			event.preventDefault();
+			direction = 1;
+			index = (index + 1) % size;
+			onchange?.(index);
+		}
+	}
 </script>
 
 <div class="flex flex-col items-center gap-2">
@@ -59,7 +85,18 @@
 		</div>
 	{/if}
 
-	<div class="stack relative w-full" use:swipe={() => swipeParams} onswipe={handleSwipe}>
+	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+	<div
+		class="stack relative w-full"
+		use:swipe={() => swipeParams}
+		onswipe={handleSwipe}
+		onkeydown={handleKeydown}
+		tabindex="0"
+		role="region"
+		aria-label="Swipeable content carousel"
+		aria-live="polite"
+	>
 		{@render card(index, flyParams)}
 		{#each { length: size }, i}
 			{#if i !== index}

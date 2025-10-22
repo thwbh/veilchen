@@ -1,12 +1,24 @@
 <script lang="ts">
+	/**
+	 * A range input component with visual steps and text input.
+	 */
 	interface Props {
-		label: string;
+		/** Label text displayed above the range input */
+		label?: string;
+		/** The current value of the range */
 		value: number;
+		/** Minimum value */
 		min: number;
+		/** Maximum value */
 		max: number;
+		/** Optional unit to display after the value */
 		unit?: string;
+		/** Step increment for the range */
 		step?: number;
-		rangeClass?: string;
+		/** CSS class to apply to the range element */
+		class?: string;
+		/** Optional change handler called when value changes */
+		onchange?: (value: number) => void;
 	}
 
 	let {
@@ -14,9 +26,10 @@
 		value = $bindable(0),
 		min = 0,
 		max = 10,
-		rangeClass = 'range',
+		class: rangeClass = 'range',
 		unit = undefined,
 		step = undefined,
+		onchange,
 		...props
 	}: Props = $props();
 
@@ -29,7 +42,12 @@
 				value = min;
 			}
 		}
+		onchange?.(value);
 	};
+
+	function handleChange() {
+		onchange?.(value);
+	}
 </script>
 
 <label class="flex flex-col gap-2" {...props}>
@@ -49,7 +67,7 @@
 	</span>
 
 	<span>
-		<input type="range" class="{rangeClass} w-full" {min} {max} {step} bind:value />
+		<input type="range" class="{rangeClass} w-full" {min} {max} {step} bind:value onchange={handleChange} />
 
 		<div class="text-step flex grow-0 flex-row items-center justify-between px-2.5">
 			{#if step}
