@@ -14,8 +14,8 @@
 		size: number;
 		/** Optional custom indicator snippet (defaults to dot indicators) */
 		indicator?: Snippet;
-		/** Card content snippet that receives index and fly transition params */
-		card: Snippet<[number, FlyParams]>;
+		/** Card content snippet that receives index, out fly params, and in fly params */
+		card: Snippet<[number, FlyParams, FlyParams]>;
 		/** Whether swipe gestures are enabled (default: true) */
 		swipeable?: boolean;
 		/** Minimum swipe distance in pixels (default: 60) */
@@ -41,9 +41,18 @@
 	}: Props = $props();
 
 	let direction = $state(0);
-	let flyParams: FlyParams = $derived({
+	let previousIndex = $state<number | null>(null);
+
+	let outFlyParams: FlyParams = $derived({
 		x: -500 * direction,
 		delay: 0,
+		duration: 750,
+		easing: cubicOut
+	});
+
+	let inFlyParams: FlyParams = $derived({
+		x: -500 * direction,
+		delay: 750,
 		duration: 750,
 		easing: cubicOut
 	});
@@ -85,9 +94,11 @@
 
 			if (swipeDirection === 'left') {
 				direction = 1;
+				previousIndex = index;
 				index = (index + 1) % size;
 			} else {
 				direction = -1;
+				previousIndex = index;
 				index = (index - 1 + size) % size;
 			}
 
@@ -99,11 +110,13 @@
 		if (event.key === 'ArrowLeft') {
 			event.preventDefault();
 			direction = -1;
+			previousIndex = index;
 			index = (index - 1 + size) % size;
 			onchange?.(index);
 		} else if (event.key === 'ArrowRight') {
 			event.preventDefault();
 			direction = 1;
+			previousIndex = index;
 			index = (index + 1) % size;
 			onchange?.(index);
 		}
@@ -114,6 +127,7 @@
 
 		// Determine direction based on target vs current
 		direction = targetIndex > index ? 1 : -1;
+		previousIndex = index;
 		index = targetIndex;
 		onchange?.(index);
 	}
@@ -150,10 +164,10 @@
 		aria-label="Swipeable content carousel"
 		aria-live="polite"
 	>
-		{@render card(index, flyParams)}
+		{@render card(index, outFlyParams, inFlyParams)}
 		{#each { length: size }, i}
 			{#if i !== index}
-				{@render card(i, flyParams)}
+				{@render card(i, outFlyParams, inFlyParams)}
 			{/if}
 		{/each}
 	</div>

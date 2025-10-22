@@ -6,7 +6,7 @@
 	const cards = ['Card 1', 'Card 2', 'Card 3'];
 </script>
 
-<div class="flex flex-col gap-6 p-4">
+<div class="flex flex-col gap-6 p-4 overflow-x-hidden">
 	<h1 class="text-3xl font-bold mb-2">Stack Example</h1>
 	<p class="text-sm opacity-70 mb-4">
 		Swipeable card stack with keyboard navigation (Arrow Left/Right). Click the indicator dots to
@@ -14,8 +14,8 @@
 	</p>
 
 	<Stack bind:index={currentIndex} size={cards.length} onchange={(idx) => console.log('Now showing:', idx)}>
-		{#snippet card(index, flyParams)}
-			<StackCard isActive={index === currentIndex} cardKey={currentIndex} {flyParams}>
+		{#snippet card(index, outFlyParams, inFlyParams)}
+			<StackCard isActive={index === currentIndex} cardKey={currentIndex} {outFlyParams} {inFlyParams}>
 				<h2 class="card-title">{cards[index]}</h2>
 				<p>Swipe, use arrow keys, or click the dots to navigate</p>
 			</StackCard>
