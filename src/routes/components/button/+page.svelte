@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ButtonGroup from '$lib/components/input/ButtonGroup.svelte';
+	import ButtonGroup from '$lib/components/control/ButtonGroup.svelte';
 	import type { KeyValuePair } from '$lib/types/types.js';
 
 	// Example 1: Basic Button Group

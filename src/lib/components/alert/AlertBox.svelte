@@ -19,14 +19,14 @@
 
 	let {
 		type = AlertType.Info,
-		class: alertClass = type,
+		class: className = '',
 		icon = undefined,
 		children,
 		...props
 	}: Props = $props();
 </script>
 
-<span role="alert" class="alert alert-horizontal {alertClass}" {...props}>
+<span role="alert" class="alert alert-horizontal {type} {className}" {...props}>
 	{#if icon}
 		{@render icon()}
 	{:else if type === AlertType.Info}
