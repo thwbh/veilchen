@@ -8,18 +8,32 @@
 
 <div class="flex flex-col gap-6 p-4">
 	<h1 class="text-3xl font-bold mb-2">Stack Example</h1>
-	<p class="text-sm opacity-70 mb-4">Swipeable card stack with keyboard navigation (Arrow Left/Right)</p>
+	<p class="text-sm opacity-70 mb-4">
+		Swipeable card stack with keyboard navigation (Arrow Left/Right). Click the indicator dots to
+		jump to a specific card!
+	</p>
 
 	<Stack bind:index={currentIndex} size={cards.length} onchange={(idx) => console.log('Now showing:', idx)}>
 		{#snippet card(index, flyParams)}
-			{#if index === currentIndex}
-				<div class="card bg-base-100 shadow-xl" transition:fly={flyParams}>
-					<div class="card-body">
+			<div class="card bg-base-100 shadow-xl">
+				<div class="card-body relative">
+					<!-- Height placeholder - always present to maintain card dimensions -->
+					<div class="opacity-0 pointer-events-none">
 						<h2 class="card-title">{cards[index]}</h2>
-						<p>Swipe or use arrow keys to navigate</p>
+						<p>Swipe, use arrow keys, or click the dots to navigate</p>
 					</div>
+
+					<!-- Only show content for current card with absolute positioning -->
+					{#if index === currentIndex}
+						{#key currentIndex}
+							<div class="absolute inset-0 p-8 overflow-hidden" out:fly={flyParams}>
+								<h2 class="card-title">{cards[index]}</h2>
+								<p>Swipe, use arrow keys, or click the dots to navigate</p>
+							</div>
+						{/key}
+					{/if}
 				</div>
-			{/if}
+			</div>
 		{/snippet}
 	</Stack>
 
