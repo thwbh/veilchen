@@ -3,16 +3,28 @@
 		{
 			category: 'Input Components',
 			items: [
-				{ name: 'ButtonGroup', path: '/components/button', description: 'Segmented control for selections' },
-				{ name: 'RangeInput', path: '/components/input', description: 'Slider with value display' },
-				{ name: 'ValidatedInput', path: '/components/input', description: 'Input with validation' }
+				{
+					name: 'ButtonGroup',
+					path: '/components/button',
+					description: 'Segmented control for selections'
+				},
+				{ name: 'RangeInput', path: '/components/rangeinput', description: 'Slider with value display' },
+				{ name: 'ValidatedInput', path: '/components/validatedinput', description: 'Input with validation' }
 			]
 		},
 		{
 			category: 'List Components',
 			items: [
-				{ name: 'ListPicker', path: '/components/list', description: 'Selectable list with labels' },
-				{ name: 'OptionCards', path: '/components/optioncards', description: 'Rich card-based selector' }
+				{
+					name: 'ListPicker',
+					path: '/components/list',
+					description: 'Selectable list with labels'
+				},
+				{
+					name: 'OptionCards',
+					path: '/components/optioncards',
+					description: 'Rich card-based selector'
+				}
 			]
 		},
 		{
@@ -32,7 +44,11 @@
 		{
 			category: 'Chart Components',
 			items: [
-				{ name: 'Charts (Line/Bar/Polar)', path: '/components/chart', description: 'Chart.js integration' }
+				{
+					name: 'Charts (Line/Bar/Polar)',
+					path: '/components/chart',
+					description: 'Chart.js integration'
+				}
 			]
 		}
 	];
@@ -40,11 +56,16 @@
 
 <div class="container mx-auto max-w-4xl p-4">
 	<div class="mb-8">
-		<h1 class="text-4xl font-bold mb-2">veilchen</h1>
+		<div class="flex flex-row items-center gap-4">
+			<span>
+				<img src="/logo_64.svg" alt="Veilchen logo" class="h-10 w-10" />
+			</span>
+			<h1 class="mb-2 text-4xl font-bold">veilchen</h1>
+		</div>
 		<p class="text-lg opacity-70">Svelte 5 component library for mobile apps</p>
 	</div>
 
-	<div class="mb-6 bg-base-200 rounded-box p-4">
+	<div class="bg-base-200 rounded-box mb-6 p-4">
 		<div class="flex flex-wrap gap-2">
 			<span class="badge badge-primary">Svelte 5</span>
 			<span class="badge badge-secondary">DaisyUI</span>
@@ -57,12 +78,12 @@
 	<div class="space-y-6">
 		{#each componentGroups as group}
 			<div>
-				<h2 class="text-xl font-bold mb-3">{group.category}</h2>
+				<h2 class="mb-3 text-xl font-bold">{group.category}</h2>
 				<div class="grid gap-3 md:grid-cols-2">
 					{#each group.items as component}
 						<a
 							href={component.path}
-							class="card bg-base-100 shadow-md hover:shadow-lg transition-shadow"
+							class="card bg-base-100 shadow-md transition-shadow hover:shadow-lg"
 						>
 							<div class="card-body p-4">
 								<h3 class="card-title text-base">{component.name}</h3>
@@ -75,8 +96,8 @@
 		{/each}
 	</div>
 
-	<div class="mt-8 pt-6 border-t border-base-300">
-		<h2 class="text-xl font-bold mb-3">Features</h2>
+	<div class="border-base-300 mt-8 border-t pt-6">
+		<h2 class="mb-3 text-xl font-bold">Features</h2>
 		<ul class="space-y-2">
 			<li class="flex items-start gap-2">
 				<span class="text-success">✓</span>
@@ -101,7 +122,7 @@
 		</ul>
 	</div>
 
-	<div class="mt-6 pt-6 border-t border-base-300 text-center opacity-70">
+	<div class="border-base-300 mt-6 border-t pt-6 text-center opacity-70">
 		<p class="text-sm">
 			View the
 			<a href="https://github.com/thwbh/veilchen" class="link link-primary">GitHub repository</a>
