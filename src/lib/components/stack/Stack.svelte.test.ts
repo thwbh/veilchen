@@ -119,4 +119,76 @@ describe('Stack', () => {
 
 		expect(onchange).toHaveBeenCalledWith(2);
 	});
+
+	test('handles swipe left touch gesture', async () => {
+		const onchange = vi.fn();
+		const onswipe = vi.fn();
+		const { container } = render(Stack, {
+			index: 0,
+			size: 3,
+			onchange,
+			onswipe,
+			card: () => {}
+		});
+
+		const stackElement = container.querySelector('[role="region"]') as HTMLElement;
+
+		// Simulate swipe left (start right, end left)
+		await fireEvent.touchStart(stackElement, {
+			touches: [{ clientX: 200, clientY: 100 }]
+		});
+		await fireEvent.touchEnd(stackElement, {
+			changedTouches: [{ clientX: 100, clientY: 100 }]
+		});
+
+		expect(onswipe).toHaveBeenCalledWith('left');
+		expect(onchange).toHaveBeenCalledWith(1);
+	});
+
+	test('handles swipe right touch gesture', async () => {
+		const onchange = vi.fn();
+		const onswipe = vi.fn();
+		const { container } = render(Stack, {
+			index: 1,
+			size: 3,
+			onchange,
+			onswipe,
+			card: () => {}
+		});
+
+		const stackElement = container.querySelector('[role="region"]') as HTMLElement;
+
+		// Simulate swipe right (start left, end right)
+		await fireEvent.touchStart(stackElement, {
+			touches: [{ clientX: 100, clientY: 100 }]
+		});
+		await fireEvent.touchEnd(stackElement, {
+			changedTouches: [{ clientX: 200, clientY: 100 }]
+		});
+
+		expect(onswipe).toHaveBeenCalledWith('right');
+		expect(onchange).toHaveBeenCalledWith(0);
+	});
+
+	test('ignores small swipe gestures', async () => {
+		const onchange = vi.fn();
+		const { container } = render(Stack, {
+			index: 0,
+			size: 3,
+			onchange,
+			card: () => {}
+		});
+
+		const stackElement = container.querySelector('[role="region"]') as HTMLElement;
+
+		// Simulate small swipe (less than minSwipeDistance)
+		await fireEvent.touchStart(stackElement, {
+			touches: [{ clientX: 100, clientY: 100 }]
+		});
+		await fireEvent.touchEnd(stackElement, {
+			changedTouches: [{ clientX: 130, clientY: 100 }]
+		});
+
+		expect(onchange).not.toHaveBeenCalled();
+	});
 });

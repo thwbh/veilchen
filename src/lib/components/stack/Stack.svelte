@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import { swipe, type SwipeCustomEvent, type SwipeParameters } from 'svelte-gestures';
 	import { cubicOut } from 'svelte/easing';
 	import type { FlyParams } from 'svelte/transition';
 
@@ -19,10 +18,12 @@
 		card: Snippet<[number, FlyParams]>;
 		/** Whether swipe gestures are enabled (default: true) */
 		swipeable?: boolean;
-		/** Swipe gesture configuration parameters */
-		swipeParams?: Partial<SwipeParameters>;
+		/** Minimum swipe distance in pixels (default: 60) */
+		minSwipeDistance?: number;
+		/** Maximum time in ms for a swipe gesture (default: 300) */
+		swipeTimeframe?: number;
 		/** Callback fired on swipe gesture */
-		onswipe?: (event: SwipeCustomEvent) => void;
+		onswipe?: (direction: 'left' | 'right') => void;
 		/** Callback fired when the active card changes */
 		onchange?: (updatedIndex: number) => void;
 	}
@@ -33,7 +34,8 @@
 		indicator = undefined,
 		card,
 		swipeable = true,
-		swipeParams = { timeframe: 300, minSwipeDistance: 60 },
+		minSwipeDistance = 60,
+		swipeTimeframe = 300,
 		onswipe = undefined,
 		onchange = undefined
 	}: Props = $props();
@@ -46,18 +48,49 @@
 		easing: cubicOut
 	});
 
-	const handleSwipe = (event: SwipeCustomEvent) => {
-		if (swipeable) {
-			onswipe?.(event);
+	// Touch/swipe state
+	let touchStartX = 0;
+	let touchStartY = 0;
+	let touchStartTime = 0;
 
-			if (event.detail.direction === 'left') direction = 1;
-			else if (event.detail.direction === 'right') direction = -1;
+	function handleTouchStart(event: TouchEvent) {
+		if (!swipeable) return;
+		touchStartX = event.touches[0].clientX;
+		touchStartY = event.touches[0].clientY;
+		touchStartTime = Date.now();
+	}
 
-			index = (index + direction + size) % size;
+	function handleTouchEnd(event: TouchEvent) {
+		if (!swipeable) return;
+
+		const touchEndX = event.changedTouches[0].clientX;
+		const touchEndY = event.changedTouches[0].clientY;
+		const touchEndTime = Date.now();
+
+		const deltaX = touchEndX - touchStartX;
+		const deltaY = touchEndY - touchStartY;
+		const deltaTime = touchEndTime - touchStartTime;
+
+		// Check if gesture qualifies as a swipe
+		if (
+			Math.abs(deltaX) > minSwipeDistance &&
+			Math.abs(deltaX) > Math.abs(deltaY) &&
+			deltaTime < swipeTimeframe
+		) {
+			const swipeDirection = deltaX > 0 ? 'right' : 'left';
+			onswipe?.(swipeDirection);
+
+			if (swipeDirection === 'left') {
+				direction = 1;
+				index = (index + 1) % size;
+			} else {
+				direction = -1;
+				index = (index - 1 + size) % size;
+			}
 
 			onchange?.(index);
 		}
-	};
+	}
 
 	function handleKeydown(event: KeyboardEvent) {
 		if (event.key === 'ArrowLeft') {
@@ -89,8 +122,8 @@
 	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 	<div
 		class="stack relative w-full"
-		use:swipe={() => swipeParams}
-		onswipe={handleSwipe}
+		ontouchstart={handleTouchStart}
+		ontouchend={handleTouchEnd}
 		onkeydown={handleKeydown}
 		tabindex="0"
 		role="region"
