@@ -105,15 +105,32 @@
 			onchange?.(index);
 		}
 	}
+
+	function handleIndicatorClick(targetIndex: number) {
+		if (targetIndex === index) return;
+
+		// Determine direction based on target vs current
+		direction = targetIndex > index ? 1 : -1;
+		index = targetIndex;
+		onchange?.(index);
+	}
 </script>
 
 <div class="flex flex-col items-center gap-2">
 	{#if indicator}
 		{@render indicator()}
 	{:else}
-		<div class="flex flex-row items-center gap-4">
+		<div class="flex flex-row items-center gap-4" role="tablist" aria-label="Card navigation">
 			{#each { length: size }, i}
-				<span class="indicator-bubble {i === index ? 'active' : ''}"></span>
+				<button
+					class="indicator-bubble {i === index ? 'active' : ''}"
+					onclick={() => handleIndicatorClick(i)}
+					aria-label="Go to card {i + 1}"
+					aria-current={i === index ? 'true' : undefined}
+					role="tab"
+					aria-selected={i === index}
+					tabindex={i === index ? 0 : -1}
+				></button>
 			{/each}
 		</div>
 	{/if}
@@ -140,6 +157,20 @@
 </div>
 
 <style>
+	.indicator-bubble {
+		border: none;
+		background: transparent;
+		padding: 0;
+		cursor: pointer;
+		transition: transform 0.2s ease;
+	}
+
+	.indicator-bubble:hover,
+	.indicator-bubble:focus-visible {
+		transform: scale(1.1);
+		outline: none;
+	}
+
 	.indicator-bubble::after {
 		content: '';
 		height: calc(var(--spacing) * 1.5);
@@ -148,10 +179,15 @@
 		border-radius: 50%;
 		background-color: var(--color-neutral);
 		display: inline-block;
+		transition: all 0.3s ease;
 	}
 
 	.indicator-bubble.active::after {
 		height: calc(var(--spacing) * 2.25);
 		width: calc(var(--spacing) * 2.25);
+	}
+
+	.indicator-bubble:hover::after {
+		opacity: 0.8;
 	}
 </style>

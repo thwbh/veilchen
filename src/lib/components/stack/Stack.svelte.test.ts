@@ -191,4 +191,58 @@ describe('Stack', () => {
 
 		expect(onchange).not.toHaveBeenCalled();
 	});
+
+	test('clicking indicator jumps to that card', async () => {
+		const onchange = vi.fn();
+		const { container } = render(Stack, {
+			index: 0,
+			size: 3,
+			onchange,
+			card: () => {}
+		});
+
+		const indicators = container.querySelectorAll('.indicator-bubble');
+		await fireEvent.click(indicators[2]);
+
+		expect(onchange).toHaveBeenCalledWith(2);
+	});
+
+	test('clicking active indicator does nothing', async () => {
+		const onchange = vi.fn();
+		const { container } = render(Stack, {
+			index: 1,
+			size: 3,
+			onchange,
+			card: () => {}
+		});
+
+		const indicators = container.querySelectorAll('.indicator-bubble');
+		await fireEvent.click(indicators[1]);
+
+		expect(onchange).not.toHaveBeenCalled();
+	});
+
+	test('indicators have proper ARIA attributes', () => {
+		const { container } = render(Stack, {
+			index: 1,
+			size: 3,
+			card: () => {}
+		});
+
+		const tablist = container.querySelector('[role="tablist"]');
+		expect(tablist).toHaveAttribute('aria-label', 'Card navigation');
+
+		const indicators = container.querySelectorAll('[role="tab"]');
+		expect(indicators.length).toBe(3);
+
+		// Check active indicator
+		expect(indicators[1]).toHaveAttribute('aria-selected', 'true');
+		expect(indicators[1]).toHaveAttribute('aria-current', 'true');
+		expect(indicators[1]).toHaveAttribute('tabindex', '0');
+
+		// Check inactive indicators
+		expect(indicators[0]).toHaveAttribute('aria-selected', 'false');
+		expect(indicators[0]).not.toHaveAttribute('aria-current');
+		expect(indicators[0]).toHaveAttribute('tabindex', '-1');
+	});
 });
