@@ -36,7 +36,6 @@
 		required = false,
 		errorInline = false,
 		unit = undefined,
-		pattern = undefined,
 		children,
 		...props
 	}: Props = $props();
