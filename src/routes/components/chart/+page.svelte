@@ -1,76 +1,81 @@
 <script lang="ts">
 	import LineChart from '$lib/components/chart/LineChart.svelte';
+	import BarChart from '$lib/components/chart/BarChart.svelte';
+	import PolarAreaChart from '$lib/components/chart/PolarAreaChart.svelte';
 
-	const style = getComputedStyle(document.body);
+	// LineChart Example
+	const lineData = {
+		labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+		datasets: [
+			{
+				label: 'Sales',
+				data: [12, 19, 3, 5, 2],
+				borderColor: 'rgb(75, 192, 192)',
+				tension: 0.1
+			}
+		]
+	};
 
-	const legend = ['1', '2', '3', '4', '5', '6', '7'];
-	const axisLabel = 'Value (Mt)';
-	const data = [19, 45, 100, 98, 99, 35, 31];
-
-	const lineChartData = {
-		data: {
-			labels: legend,
-			datasets: [
-				{
-					label: axisLabel,
-					data
-				}
-			]
-		},
-		options: {
-			responsive: true
+	const lineOptions = {
+		responsive: true,
+		plugins: {
+			legend: { position: 'top' as const }
 		}
 	};
 
-	const filledChartData = {
-		data: {
-			labels: legend,
-			datasets: [
-				{
-					label: 'Axis 1',
-					data: [4, 6, 8, 10, 12, 14, 16, 18, 20, 22],
-					fill: '1'
-				},
-				{
-					label: 'Axis 2',
-					data: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19],
-					fill: 'start'
-				},
-				{
-					label: 'Axis 3',
-					data: [10, 12, 14, 16, 18, 20, 22, 24, 26],
-					fill: 'end'
-				}
-			]
-		},
-		options: { responsive: true }
+	// BarChart Example
+	const barData = {
+		labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+		datasets: [
+			{
+				label: 'Revenue',
+				data: [65, 59, 80, 81],
+				backgroundColor: 'rgba(54, 162, 235, 0.5)'
+			}
+		]
 	};
 
-	const bmiChart = {
-		data: {
-			labels: ['150', '160', '170', '180', '190', '200', '220'],
-			datasets: [
-				{
-					label: 'optimal upper',
-					data: [54.1, 67.3, 75.6, 84.1, 93.5, 101.2, 111.0],
-					backgroundColor: `${style.getPropertyValue('--color-success')}`
-				},
-				{
-					label: 'optimal lower',
-					data: [43.1, 54.2, 64.1, 73.9, 83.1, 90.1, 99.9],
-					fill: '0',
-					backgroundColor: `${style.getPropertyValue('--color-success')}`
-				}
-			]
-		},
-		options: { responsive: true }
+	// PolarAreaChart Example
+	const polarData = {
+		labels: ['Red', 'Green', 'Yellow', 'Grey', 'Blue'],
+		datasets: [
+			{
+				data: [11, 16, 7, 3, 14],
+				backgroundColor: [
+					'rgb(255, 99, 132)',
+					'rgb(75, 192, 192)',
+					'rgb(255, 205, 86)',
+					'rgb(201, 203, 207)',
+					'rgb(54, 162, 235)'
+				]
+			}
+		]
 	};
 </script>
 
-<div class="flex flex-col gap-4 p-4">
-	<LineChart data={lineChartData.data} options={lineChartData.options} />
+<div class="flex flex-col gap-6 p-4">
+	<h1 class="text-3xl font-bold mb-2">Chart Examples</h1>
+	<p class="text-sm opacity-70 mb-4">Chart components powered by Chart.js</p>
 
-	<LineChart data={filledChartData.data} options={filledChartData.options} />
+	<div>
+		<h2 class="text-2xl font-bold mb-2">LineChart</h2>
+		<p class="text-sm opacity-70 mb-4">Monthly sales data</p>
+		<LineChart data={lineData} options={lineOptions} />
+	</div>
 
-	<LineChart data={bmiChart.data} options={bmiChart.options} />
+	<div class="divider"></div>
+
+	<div>
+		<h2 class="text-2xl font-bold mb-2">BarChart</h2>
+		<p class="text-sm opacity-70 mb-4">Quarterly revenue</p>
+		<BarChart data={barData} options={{}} />
+	</div>
+
+	<div class="divider"></div>
+
+	<div>
+		<h2 class="text-2xl font-bold mb-2">PolarAreaChart</h2>
+		<p class="text-sm opacity-70 mb-4">Color distribution</p>
+		<PolarAreaChart data={polarData} options={{}} />
+	</div>
 </div>

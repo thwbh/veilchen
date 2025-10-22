@@ -2,111 +2,108 @@
 	import RangeInput from '$lib/components/input/RangeInput.svelte';
 	import ValidatedInput from '$lib/components/input/ValidatedInput.svelte';
 
-	let sliderValue = $state(40);
-	let sliderStepValue = $state(0);
-	let emailValue = $state(null);
-	let passwordValue = $state(null);
-	let numberValue = $state(0);
-	let dateValue = $state();
-	let validatedValue = $state();
-	let unitValue = $state(100);
+	// RangeInput Example 1: Basic Range Input
+	let volume = $state(50);
+
+	// RangeInput Example 2: With Steps and Custom Styling
+	let brightness = $state(25);
+
+	// ValidatedInput Example 1: Email Validation
+	let email = $state('');
+
+	// ValidatedInput Example 2: Password with Pattern
+	let password = $state('');
 </script>
 
-<div class="flex flex-col gap-4 p-4">
-	<RangeInput label="Slider" bind:value={sliderValue} min={10} max={200} unit="Joule" />
+<div class="flex flex-col gap-6 p-4">
+	<h1 class="text-3xl font-bold mb-4">RangeInput Examples</h1>
 
-	<RangeInput
-		label="Stepped Slider"
-		bind:value={sliderStepValue}
-		min={0}
-		max={3}
-		step={0.25}
-		unit="Tons"
-		rangeClass={'range range-xs'}
-	/>
+	<div>
+		<h2 class="text-2xl font-bold mb-2">Example 1: Basic Range Input</h2>
+		<p class="text-sm opacity-70 mb-4">Simple volume slider</p>
 
-	<ValidatedInput
-		bind:value={emailValue}
-		class="input validator"
-		label="Validated Email"
-		type="email"
-		required={true}
-		placeholder="mail@site.com"
-	>
-		Enter a valid email address
-	</ValidatedInput>
+		<RangeInput label="Volume" bind:value={volume} min={0} max={100} unit="%" />
 
-	<ValidatedInput
-		bind:value={validatedValue}
-		label="Validated Input"
-		type="text"
-		placeholder="Validated Input"
-		required={true}
-		minlength={3}
-		maxlength={30}
-		title="Only letters, numbers or dash"
-	>
-		Must be 3 to 30 characters
-		<br />containing only letters, numbers or dash
-	</ValidatedInput>
+		<div class="mt-4 p-4 bg-base-200 rounded-box">
+			<p class="text-sm">
+				<strong>Volume:</strong>
+				{volume}%
+			</p>
+		</div>
+	</div>
 
-	<ValidatedInput
-		bind:value={passwordValue}
-		label="Password"
-		type="password"
-		required
-		placeholder="Password"
-		minlength={8}
-		pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]){'{'}3{'}'}"
-		title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"
-	>
-		Must be more than 8 characters, including
-		<br />At least one number
-		<br />At least one lowercase letter
-		<br />At least one uppercase letter
-	</ValidatedInput>
+	<div class="divider"></div>
 
-	{dateValue}
+	<div>
+		<h2 class="text-2xl font-bold mb-2">Example 2: With Steps and Custom Styling</h2>
+		<p class="text-sm opacity-70 mb-4">Brightness control with 25-unit steps</p>
 
-	<ValidatedInput
-		bind:value={dateValue}
-		label="Date"
-		type="date"
-		class="input validator"
-		required
-		placeholder="Pick a date in 2025"
-		min="2025-01-01"
-		max="2025-12-31"
-		title="Must be a date in 2025."
-	>
-		Must be a date in 2025.
-	</ValidatedInput>
+		<RangeInput
+			label="Brightness"
+			bind:value={brightness}
+			min={0}
+			max={100}
+			step={25}
+			class="range-primary"
+			unit="lux"
+		/>
 
-	<ValidatedInput
-		bind:value={numberValue}
-		label="Number"
-		type="number"
-		class="input validator"
-		required
-		placeholder="Insert a number."
-		min="0"
-		max="10"
-		errorInline={true}
-	>
-		Must be in range 0..10
-	</ValidatedInput>
+		<div class="mt-4 p-4 bg-base-200 rounded-box">
+			<p class="text-sm">
+				<strong>Brightness:</strong>
+				{brightness} lux
+			</p>
+		</div>
+	</div>
 
-	<ValidatedInput
-		bind:value={unitValue}
-		label="Number"
-		type="number"
-		required
-		placeholder="Insert a number."
-		min="100"
-		max="1000"
-		errorInline={true}
-		unit="Mt"
-	>
-		Must be in range 100..1000
-	</ValidatedInput>
+	<div class="divider"></div>
+
+	<h1 class="text-3xl font-bold mb-4 mt-6">ValidatedInput Examples</h1>
+
+	<div>
+		<h2 class="text-2xl font-bold mb-2">Example 1: Email Validation</h2>
+		<p class="text-sm opacity-70 mb-4">Built-in HTML5 email validation</p>
+
+		<ValidatedInput
+			bind:value={email}
+			label="Email Address"
+			type="email"
+			required
+			placeholder="your@email.com"
+		>
+			Please enter a valid email address
+		</ValidatedInput>
+
+		<div class="mt-4 p-4 bg-base-200 rounded-box">
+			<p class="text-sm">
+				<strong>Email:</strong>
+				{email || '(empty)'}
+			</p>
+		</div>
+	</div>
+
+	<div class="divider"></div>
+
+	<div>
+		<h2 class="text-2xl font-bold mb-2">Example 2: Password with Pattern</h2>
+		<p class="text-sm opacity-70 mb-4">Complex validation with regex pattern</p>
+
+		<ValidatedInput
+			bind:value={password}
+			label="Password"
+			type="password"
+			required
+			minlength={8}
+			pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{'{'}8,{'}'}"
+		>
+			Must be 8+ characters with uppercase, lowercase, and number
+		</ValidatedInput>
+
+		<div class="mt-4 p-4 bg-base-200 rounded-box">
+			<p class="text-sm">
+				<strong>Password length:</strong>
+				{password.length} characters
+			</p>
+		</div>
+	</div>
 </div>

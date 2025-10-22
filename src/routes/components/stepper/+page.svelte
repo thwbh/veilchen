@@ -1,52 +1,48 @@
 <script lang="ts">
 	import Stepper from '$lib/components/stepper/Stepper.svelte';
 
-	let current = $state(1);
+	let currentStep = $state(1);
 
-	const handleNextStep = () => {
-		console.log('next!');
-	};
+	function handleNext() {
+		console.log('Moving to next step');
+	}
 
-	const handleBackStep = () => {
-		console.log('back!');
-	};
-
-	const handleFinish = () => {
-		console.log('finish!');
-	};
+	function handleFinish() {
+		console.log('Wizard completed!');
+	}
 </script>
 
-<div class="flex flex-col gap-4 p-4">
-	<Stepper
-		bind:currentStep={current}
-		onnext={handleNextStep}
-		onback={handleBackStep}
-		onfinish={handleFinish}
-		activeClass={'badge-primary'}
-	>
+<div class="flex flex-col gap-6 p-4">
+	<h1 class="text-3xl font-bold mb-2">Stepper Example</h1>
+	<p class="text-sm opacity-70 mb-4">Multi-step wizard with progress indicator and navigation controls</p>
+
+	<Stepper bind:currentStep onnext={handleNext} onfinish={handleFinish} activeClass="badge-primary">
 		{#snippet step1()}
-			<div>
-				<strong>Header 1</strong>
-				<span>Content 1</span>
+			<div class="p-4">
+				<h3 class="font-bold">Step 1: Personal Info</h3>
+				<p>Enter your details here</p>
 			</div>
 		{/snippet}
+
 		{#snippet step2()}
-			<div>
-				<strong>Header 2</strong>
-				<span>Content 2</span>
+			<div class="p-4">
+				<h3 class="font-bold">Step 2: Preferences</h3>
+				<p>Set your preferences</p>
 			</div>
 		{/snippet}
+
 		{#snippet step3()}
-			<div>
-				<strong>Header 3</strong>
-				<span>Content 3</span>
-			</div>
-		{/snippet}
-		{#snippet step4()}
-			<div>
-				<strong>Header 4</strong>
-				<span>Content 4</span>
+			<div class="p-4">
+				<h3 class="font-bold">Step 3: Review</h3>
+				<p>Review and confirm</p>
 			</div>
 		{/snippet}
 	</Stepper>
+
+	<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<p class="text-sm">
+			<strong>Current step:</strong>
+			{currentStep} of 3
+		</p>
+	</div>
 </div>
