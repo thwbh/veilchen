@@ -1,5 +1,7 @@
 # veilchen
 
+![veilchen logo](./static/logo_128.png)
+
 veilchen is a set of reusable Svelte 5 components for mobile apps, styled with DaisyUI.
 
 ## Features
@@ -18,10 +20,12 @@ veilchen is a set of reusable Svelte 5 components for mobile apps, styled with D
 - [DaisyUI 5](https://daisyui.com/docs/v5/)
 - [Tailwind CSS 4](https://tailwindcss.com/docs/installation/using-vite)
 
-### Optional Dependencies
+### Peer Dependencies
 
-- [Chart.js](https://www.chartjs.org/) - Required for chart components (LineChart, BarChart, PolarAreaChart)
-- [svelte-gestures](https://github.com/Rezi/svelte-gestures) - Required for Stack component swipe functionality
+The following dependencies are included with veilchen and will be automatically available:
+
+- [Chart.js](https://www.chartjs.org/) - Powers the chart components (LineChart, BarChart, PolarAreaChart)
+- [svelte-gestures](https://github.com/Rezi/svelte-gestures) - Enables swipe functionality in the Stack component
 
 ## Installation
 
@@ -29,15 +33,7 @@ veilchen is a set of reusable Svelte 5 components for mobile apps, styled with D
 npm install -D @thwbh/veilchen daisyui
 ```
 
-### Optional: For Chart Components
-```bash
-npm install chart.js
-```
-
-### Optional: For Stack Component
-```bash
-npm install svelte-gestures
-```
+All dependencies including Chart.js and svelte-gestures are bundled with veilchen, so no additional installation is required.
 
 ## Setup
 
@@ -50,6 +46,75 @@ Open your `style.css` file and insert this line after `@import 'tailwindcss'`:
 ```
 
 This is required because Tailwind's JIT compiler does not scan the `node_modules` folder when excluded in `.gitignore`.
+
+### Custom Theme
+
+veilchen includes a custom DaisyUI theme inspired by violet flowers. The theme features:
+
+- **Primary**: Deep purple - from the flower center
+- **Secondary**: Light lavender - from the petals
+- **Accent**: Golden yellow - from the flower's center
+- **Base**: Clean white with subtle purple tints
+
+The theme is defined using modern OKLCH color space for perceptually uniform colors and better accessibility. All colors meet WCAG contrast requirements.
+
+To use the veilchen theme in your project, add it to your `style.css`:
+
+```css
+@import 'tailwindcss';
+@config '../tailwind.config.js';
+
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+	name: veilchen;
+	color-scheme: light;
+
+	/* Primary: Deep purple from the flower center */
+	--color-primary: oklch(48% 0.18 295);
+	--color-primary-content: oklch(98% 0.01 295);
+
+	/* Secondary: Light lavender from the petals */
+	--color-secondary: oklch(75% 0.12 295);
+	--color-secondary-content: oklch(25% 0.08 295);
+
+	/* Accent: Yellow from the flower center */
+	--color-accent: oklch(85% 0.15 95);
+	--color-accent-content: oklch(25% 0.05 95);
+
+	/* Neutral: Soft gray-purple */
+	--color-neutral: oklch(40% 0.05 295);
+	--color-neutral-content: oklch(95% 0.02 295);
+
+	/* Base colors: Light background with slight purple tint */
+	--color-base-100: oklch(100% 0 0);
+	--color-base-200: oklch(97% 0.01 295);
+	--color-base-300: oklch(94% 0.02 295);
+	--color-base-content: oklch(25% 0.03 295);
+
+	/* State colors */
+	--color-info: oklch(65% 0.20 240);
+	--color-info-content: oklch(98% 0.01 240);
+	--color-success: oklch(70% 0.18 145);
+	--color-success-content: oklch(20% 0.05 145);
+	--color-warning: oklch(80% 0.18 80);
+	--color-warning-content: oklch(25% 0.05 80);
+	--color-error: oklch(60% 0.25 25);
+	--color-error-content: oklch(98% 0.01 25);
+
+	/* Border radius - soft and organic like flower petals */
+	--radius-box: 1rem;
+	--radius-selector: 0.5rem;
+	--radius-field: 0.5rem;
+	--border: 0px;
+}
+```
+
+Then activate the theme by adding `data-theme="veilchen"` to your `<html>` tag in `src/app.html`:
+
+```html
+<html lang="en" data-theme="veilchen">
+```
 
 ## Components
 
@@ -678,6 +743,17 @@ type OptionCardData<T = unknown> = {
 };
 ```
 
+### Styling Components
+
+All components accept a `class` prop for custom styling. Since `class` is a reserved keyword in JavaScript, it is internally mapped to avoid conflicts:
+
+```svelte
+<!-- Apply custom classes to components -->
+<ButtonGroup class="my-custom-class" {entries} bind:value />
+<RangeInput class="range-primary" bind:value min={0} max={100} />
+<AlertBox class="alert-soft" type={AlertType.Warning}>Warning message</AlertBox>
+```
+
 ## Accessibility
 
 All components include ARIA attributes and keyboard support:
@@ -686,6 +762,7 @@ All components include ARIA attributes and keyboard support:
 - **ListPicker**: `aria-pressed` on list items
 - **OptionCards**: `aria-pressed` on cards
 - **Stack**: Keyboard navigation with Arrow Left/Right, `role="region"`, `aria-live="polite"`
+- **Stepper**: Keyboard navigation with Arrow keys (Left/Up for previous, Right/Down for next), `role="navigation"`
 - **ValidatedInput**: Native HTML5 validation with error messages
 
 ## License

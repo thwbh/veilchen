@@ -1,10 +1,35 @@
 <script lang="ts">
-	import { Chart } from 'chart.js/auto';
+	import {
+		Chart,
+		LineController,
+		LineElement,
+		PointElement,
+		LinearScale,
+		CategoryScale,
+		Title,
+		Tooltip,
+		Legend,
+		Filler
+	} from 'chart.js';
 	import type { ChartProps } from '$lib/chart/props.js';
+
+	// Register only the components needed for line charts
+	Chart.register(
+		LineController,
+		LineElement,
+		PointElement,
+		LinearScale,
+		CategoryScale,
+		Title,
+		Tooltip,
+		Legend,
+		Filler
+	);
 
 	/**
 	 * A line chart component powered by Chart.js.
 	 * Automatically updates when data or options change.
+	 * Uses tree-shakeable imports for optimal bundle size.
 	 */
 	const { data, options, ...rest }: ChartProps<'line'> = $props();
 

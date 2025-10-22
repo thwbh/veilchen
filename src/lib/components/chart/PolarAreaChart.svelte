@@ -1,10 +1,22 @@
 <script lang="ts">
-	import { Chart } from 'chart.js/auto';
+	import {
+		Chart,
+		PolarAreaController,
+		RadialLinearScale,
+		ArcElement,
+		Title,
+		Tooltip,
+		Legend
+	} from 'chart.js';
 	import type { ChartProps } from '$lib/chart/props.js';
+
+	// Register only the components needed for polar area charts
+	Chart.register(PolarAreaController, RadialLinearScale, ArcElement, Title, Tooltip, Legend);
 
 	/**
 	 * A polar area chart component powered by Chart.js.
 	 * Automatically updates when data or options change.
+	 * Uses tree-shakeable imports for optimal bundle size.
 	 */
 	const { data, options, ...rest }: ChartProps<'polarArea'> = $props();
 

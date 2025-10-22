@@ -70,9 +70,31 @@
 			if (inc < 0) onback();
 		}
 	};
+
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+			event.preventDefault();
+			move(-1);
+		} else if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+			event.preventDefault();
+			if (currentStep < last) {
+				move(1);
+			} else {
+				onfinish();
+			}
+		}
+	}
 </script>
 
-<div class="flex w-full flex-col gap-4">
+<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+<div
+	class="flex w-full flex-col gap-4"
+	onkeydown={handleKeydown}
+	tabindex="0"
+	role="navigation"
+	aria-label="Step wizard navigation"
+>
 	<hr class="step-line" />
 	<ul class="timeline timeline-horizontal flex-row justify-between">
 		<span class="flex flex-row">

@@ -1,10 +1,23 @@
 <script lang="ts">
-	import { Chart } from 'chart.js/auto';
+	import {
+		Chart,
+		BarController,
+		BarElement,
+		CategoryScale,
+		LinearScale,
+		Title,
+		Tooltip,
+		Legend
+	} from 'chart.js';
 	import type { ChartProps } from '$lib/chart/props.js';
+
+	// Register only the components needed for bar charts
+	Chart.register(BarController, BarElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
 
 	/**
 	 * A bar chart component powered by Chart.js.
 	 * Automatically updates when data or options change.
+	 * Uses tree-shakeable imports for optimal bundle size.
 	 */
 	const { data, options, ...rest }: ChartProps<'bar'> = $props();
 
