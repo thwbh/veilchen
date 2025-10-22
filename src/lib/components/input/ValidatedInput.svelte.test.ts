@@ -13,6 +13,17 @@ describe('ValidatedInput', () => {
 		expect(screen.getByText('Email')).toBeInTheDocument();
 	});
 
+	test('renders validator-hint span for validation messages', () => {
+		const { container } = render(ValidatedInput, {
+			value: '',
+			label: 'Email',
+			children: () => {}
+		});
+
+		const validatorHint = container.querySelector('.validator-hint');
+		expect(validatorHint).toBeInTheDocument();
+	});
+
 	test('renders with email type', () => {
 		const { container } = render(ValidatedInput, {
 			value: '',
@@ -123,5 +134,29 @@ describe('ValidatedInput', () => {
 		expect(input).toBeInTheDocument();
 		expect(input).toHaveAttribute('min', '0');
 		expect(input).toHaveAttribute('max', '120');
+	});
+
+	test('applies inline-error class when errorInline is true', () => {
+		const { container } = render(ValidatedInput, {
+			value: '',
+			label: 'Username',
+			errorInline: true,
+			children: () => 'Username is required'
+		});
+
+		const validatorHint = container.querySelector('.validator-hint');
+		expect(validatorHint).toHaveClass('inline-error');
+	});
+
+	test('does not apply inline-error class when errorInline is false', () => {
+		const { container } = render(ValidatedInput, {
+			value: '',
+			label: 'Username',
+			errorInline: false,
+			children: () => 'Username is required'
+		});
+
+		const validatorHint = container.querySelector('.validator-hint');
+		expect(validatorHint).not.toHaveClass('inline-error');
 	});
 });
