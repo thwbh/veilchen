@@ -2,16 +2,24 @@
 	import { AlertType } from '$lib/enum/enum.js';
 	import type { Snippet } from 'svelte';
 
+	/**
+	 * An alert box component for displaying informational messages.
+	 * Supports different alert types (info, error, warning, success) with appropriate icons.
+	 */
 	interface Props {
+		/** The type of alert (info, error, warning, success) */
 		type?: AlertType;
-		alertClass?: string;
+		/** CSS class to apply to the alert element */
+		class?: string;
+		/** Optional custom icon snippet to replace the default icon */
 		icon?: Snippet;
+		/** Content to display in the alert */
 		children: Snippet;
 	}
 
 	let {
 		type = AlertType.Info,
-		alertClass = '',
+		class: alertClass = '',
 		icon = undefined,
 		children,
 		...props
