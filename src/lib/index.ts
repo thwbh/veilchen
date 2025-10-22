@@ -1,13 +1,14 @@
 /** types go here */
-import type { KeyValuePair, ListPickerData, ListPickerLabel } from './types/types.js';
+import type { KeyValuePair, ListPickerData, ListPickerLabel, OptionCardData, OptionCardBadge, OptionCardMetric } from './types/types.js';
 import type { ChartProps } from './chart/props.js';
 
-export type { KeyValuePair, ListPickerData, ListPickerLabel };
+export type { KeyValuePair, ListPickerData, ListPickerLabel, OptionCardData, OptionCardBadge, OptionCardMetric };
 export type { ChartProps };
 
 /** components go here */
 import AlertBox from '$lib/components/alert/AlertBox.svelte';
 import ListPicker from '$lib/components/list/ListPicker.svelte';
+import OptionCards from '$lib/components/list/OptionCards.svelte';
 import RangeInput from '$lib/components/input/RangeInput.svelte';
 import ButtonGroup from '$lib/components/input/ButtonGroup.svelte';
 import Stepper from '$lib/components/stepper/Stepper.svelte';
@@ -21,4 +22,4 @@ import PolarAreaChart from '$lib/components/chart/PolarAreaChart.svelte';
 import { AlertType } from './enum/enum.js';
 
 export { AlertType };
-export { AlertBox, ListPicker, RangeInput, ButtonGroup, ModalDialog, Stepper, Stack, ValidatedInput, LineChart, BarChart, PolarAreaChart };
+export { AlertBox, ListPicker, OptionCards, RangeInput, ButtonGroup, ModalDialog, Stepper, Stack, ValidatedInput, LineChart, BarChart, PolarAreaChart };
