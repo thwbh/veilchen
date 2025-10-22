@@ -52,16 +52,19 @@
 	let touchStartX = 0;
 	let touchStartY = 0;
 	let touchStartTime = 0;
+	let isDragging = $state(false);
 
 	function handleTouchStart(event: TouchEvent) {
 		if (!swipeable) return;
 		touchStartX = event.touches[0].clientX;
 		touchStartY = event.touches[0].clientY;
 		touchStartTime = Date.now();
+		isDragging = true;
 	}
 
 	function handleTouchEnd(event: TouchEvent) {
 		if (!swipeable) return;
+		isDragging = false;
 
 		const touchEndX = event.changedTouches[0].clientX;
 		const touchEndY = event.changedTouches[0].clientY;
@@ -138,7 +141,7 @@
 	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 	<div
-		class="stack relative w-full"
+		class="stack relative w-full {isDragging ? 'dragging' : ''}"
 		ontouchstart={handleTouchStart}
 		ontouchend={handleTouchEnd}
 		onkeydown={handleKeydown}

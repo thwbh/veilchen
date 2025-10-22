@@ -23,20 +23,18 @@
 	let { isActive, cardKey, flyParams, children, class: className = '' }: Props = $props();
 </script>
 
-<div class="card bg-base-100 shadow-xl {className}">
-	<div class="card-body relative">
-		<!-- Height placeholder - maintains card dimensions during transitions -->
-		<div class="opacity-0 pointer-events-none">
-			{@render children()}
+{#if isActive}
+	{#key cardKey}
+		<div class="card bg-base-100 shadow-xl {className}" out:fly={flyParams}>
+			<div class="card-body">
+				{@render children()}
+			</div>
 		</div>
-
-		<!-- Animated content layer - only shown for active card -->
-		{#if isActive}
-			{#key cardKey}
-				<div class="absolute inset-0 p-8 overflow-hidden" out:fly={flyParams}>
-					{@render children()}
-				</div>
-			{/key}
-		{/if}
+	{/key}
+{:else}
+	<div class="card bg-base-100 shadow-xl {className}">
+		<div class="card-body">
+			<!-- Empty card for stack effect -->
+		</div>
 	</div>
-</div>
+{/if}
