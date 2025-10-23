@@ -22,7 +22,14 @@
 		class?: string;
 	}
 
-	let { isActive, cardKey, outFlyParams, inFlyParams, children, class: className = '' }: Props = $props();
+	let {
+		isActive,
+		cardKey,
+		outFlyParams,
+		inFlyParams,
+		children,
+		class: className = ''
+	}: Props = $props();
 </script>
 
 {#if isActive}
