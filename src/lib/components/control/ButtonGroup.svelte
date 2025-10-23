@@ -30,7 +30,11 @@
 			{label}
 		</span>
 	{/if}
-	<div class="join join-horizontal stretch w-full" role="group" aria-labelledby={label ? 'button-group-label' : undefined}>
+	<div
+		class="join join-horizontal stretch w-full"
+		role="group"
+		aria-labelledby={label ? 'button-group-label' : undefined}
+	>
 		{#each entries as entry}
 			<button
 				class="btn join-item {value === entry.key ? 'btn-neutral' : ''}"

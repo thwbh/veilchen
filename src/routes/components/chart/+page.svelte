@@ -54,28 +54,28 @@
 </script>
 
 <div class="flex flex-col gap-6 p-4">
-	<h1 class="text-3xl font-bold mb-2">Chart Examples</h1>
-	<p class="text-sm opacity-70 mb-4">Chart components powered by Chart.js</p>
+	<h1 class="mb-2 text-3xl font-bold">Chart Examples</h1>
+	<p class="mb-4 text-sm opacity-70">Chart components powered by Chart.js</p>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">LineChart</h2>
-		<p class="text-sm opacity-70 mb-4">Monthly sales data</p>
+		<h2 class="mb-2 text-2xl font-bold">LineChart</h2>
+		<p class="mb-4 text-sm opacity-70">Monthly sales data</p>
 		<LineChart data={lineData} options={lineOptions} />
 	</div>
 
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">BarChart</h2>
-		<p class="text-sm opacity-70 mb-4">Quarterly revenue</p>
+		<h2 class="mb-2 text-2xl font-bold">BarChart</h2>
+		<p class="mb-4 text-sm opacity-70">Quarterly revenue</p>
 		<BarChart data={barData} options={{}} />
 	</div>
 
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">PolarAreaChart</h2>
-		<p class="text-sm opacity-70 mb-4">Color distribution</p>
+		<h2 class="mb-2 text-2xl font-bold">PolarAreaChart</h2>
+		<p class="mb-4 text-sm opacity-70">Color distribution</p>
 		<PolarAreaChart data={polarData} options={{}} />
 	</div>
 </div>

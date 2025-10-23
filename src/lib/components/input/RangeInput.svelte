@@ -67,7 +67,15 @@
 	</span>
 
 	<span>
-		<input type="range" class="range {className} w-full" {min} {max} {step} bind:value onchange={handleChange} />
+		<input
+			type="range"
+			class="range {className} w-full"
+			{min}
+			{max}
+			{step}
+			bind:value
+			onchange={handleChange}
+		/>
 
 		<div class="text-step flex grow-0 flex-row items-center justify-between px-2.5">
 			{#if step}

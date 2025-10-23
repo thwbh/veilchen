@@ -28,8 +28,8 @@
 
 <div class="flex flex-col gap-6 p-4">
 	<div>
-		<h2 class="text-2xl font-bold mb-2">ListPicker Example</h2>
-		<p class="text-sm opacity-70 mb-4">
+		<h2 class="mb-2 text-2xl font-bold">ListPicker Example</h2>
+		<p class="mb-4 text-sm opacity-70">
 			Selectable list with headers, descriptions, and optional labels
 		</p>
 
@@ -39,7 +39,7 @@
 			{/snippet}
 		</ListPicker>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Selected plan ID:</strong>
 				{selected}

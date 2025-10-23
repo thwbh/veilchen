@@ -37,12 +37,12 @@
 
 <div class="flex flex-col gap-6 p-4">
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 1: Basic Button Group</h2>
-		<p class="text-sm opacity-70 mb-4">Simple Yes/No selection</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 1: Basic Button Group</h2>
+		<p class="mb-4 text-sm opacity-70">Simple Yes/No selection</p>
 
 		<ButtonGroup label="Confirm?" bind:value {entries} />
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Selected:</strong>
 				{value}
@@ -53,8 +53,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 2: With Change Handler</h2>
-		<p class="text-sm opacity-70 mb-4">Fires callback on selection change (check console)</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 2: With Change Handler</h2>
+		<p class="mb-4 text-sm opacity-70">Fires callback on selection change (check console)</p>
 
 		<ButtonGroup
 			label="Choose an option"
@@ -63,7 +63,7 @@
 			onchange={handleChange}
 		/>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Selected:</strong>
 				{selectedValue}
@@ -74,12 +74,12 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 3: With Numbers</h2>
-		<p class="text-sm opacity-70 mb-4">Using numeric values for ratings</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 3: With Numbers</h2>
+		<p class="mb-4 text-sm opacity-70">Using numeric values for ratings</p>
 
 		<ButtonGroup label="Rate this" bind:value={rating} entries={entries3} />
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Rating:</strong>
 				{rating} / 5

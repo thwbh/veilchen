@@ -112,5 +112,4 @@ describe('AlertBox', () => {
 		const alert = container.querySelector('[role="alert"]');
 		expect(alert).toBeInTheDocument();
 	});
-
 });

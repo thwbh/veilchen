@@ -1,6 +1,6 @@
 {
 	"name": "@thwbh/veilchen",
-  "version": "0.1.0",
+	"version": "0.1.0",
 	"description": "veilchen is a set of reusable Svelte 5 components for mobile apps, styled with DaisyUI.",
 	"keywords": [
 		"svelte"

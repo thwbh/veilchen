@@ -13,8 +13,10 @@
 </script>
 
 <div class="flex flex-col gap-6 p-4">
-	<h1 class="text-3xl font-bold mb-2">Stepper Example</h1>
-	<p class="text-sm opacity-70 mb-4">Multi-step wizard with progress indicator and navigation controls</p>
+	<h1 class="mb-2 text-3xl font-bold">Stepper Example</h1>
+	<p class="mb-4 text-sm opacity-70">
+		Multi-step wizard with progress indicator and navigation controls
+	</p>
 
 	<Stepper bind:currentStep onnext={handleNext} onfinish={handleFinish} activeClass="badge-primary">
 		{#snippet step1()}
@@ -39,7 +41,7 @@
 		{/snippet}
 	</Stepper>
 
-	<div class="mt-4 p-4 bg-base-200 rounded-box">
+	<div class="bg-base-200 rounded-box mt-4 p-4">
 		<p class="text-sm">
 			<strong>Current step:</strong>
 			{currentStep} of 3

@@ -93,7 +93,7 @@ To use the veilchen theme in your project, add it to your `style.css`:
 	--color-base-content: oklch(25% 0.03 295);
 
 	/* State colors */
-	--color-info: oklch(65% 0.20 240);
+	--color-info: oklch(65% 0.2 240);
 	--color-info-content: oklch(98% 0.01 240);
 	--color-success: oklch(70% 0.18 145);
 	--color-success-content: oklch(20% 0.05 145);
@@ -113,7 +113,7 @@ To use the veilchen theme in your project, add it to your `style.css`:
 Then activate the theme by adding `data-theme="veilchen"` to your `<html>` tag in `src/app.html`:
 
 ```html
-<html lang="en" data-theme="veilchen">
+<html lang="en" data-theme="veilchen"></html>
 ```
 
 ## Components
@@ -121,23 +121,28 @@ Then activate the theme by adding `data-theme="veilchen"` to your `<html>` tag i
 veilchen provides 12 components organized by category:
 
 ### Input Components
+
 - **ButtonGroup** - Segmented control for multiple choice selection
 - **RangeInput** - Range slider with value display and steps
 - **ValidatedInput** - Input field with built-in validation display
 
 ### List Components
+
 - **ListPicker** - Selectable list with labels and descriptions
 - **OptionCards** - Rich card-based option selector with metrics
 
 ### Display Components
+
 - **AlertBox** - Alert messages with different types (info, error, warning, success)
 - **ModalDialog** - Customizable modal dialog
 
 ### Layout Components
+
 - **Stack** - Swipeable card stack with keyboard navigation
 - **Stepper** - Multi-step wizard with progress indicator
 
 ### Chart Components
+
 - **LineChart** - Line chart powered by Chart.js
 - **BarChart** - Bar chart powered by Chart.js
 - **PolarAreaChart** - Polar area chart powered by Chart.js
@@ -148,11 +153,11 @@ veilchen provides 12 components organized by category:
 
 ```typescript
 import {
-    ButtonGroup,
-    ListPicker,
-    type KeyValuePair,
-    type ListPickerData,
-    type OptionCardData
+	ButtonGroup,
+	ListPicker,
+	type KeyValuePair,
+	type ListPickerData,
+	type OptionCardData
 } from '@thwbh/veilchen';
 ```
 
@@ -161,6 +166,7 @@ import {
 A segmented control for selecting between multiple options.
 
 **Props:**
+
 - `value` - Currently selected value (bindable)
 - `entries` - Array of KeyValuePair options
 - `label` - Optional label text
@@ -171,14 +177,14 @@ A segmented control for selecting between multiple options.
 
 ```svelte
 <script lang="ts">
-    import { ButtonGroup, type KeyValuePair } from '@thwbh/veilchen';
+	import { ButtonGroup, type KeyValuePair } from '@thwbh/veilchen';
 
-    let value = $state('y');
+	let value = $state('y');
 
-    const entries: KeyValuePair<string, string>[] = [
-        { key: 'y', value: 'Yes' },
-        { key: 'n', value: 'No' }
-    ];
+	const entries: KeyValuePair<string, string>[] = [
+		{ key: 'y', value: 'Yes' },
+		{ key: 'n', value: 'No' }
+	];
 </script>
 
 <ButtonGroup label="Confirm?" bind:value {entries} />
@@ -188,26 +194,26 @@ A segmented control for selecting between multiple options.
 
 ```svelte
 <script lang="ts">
-    import { ButtonGroup, type KeyValuePair } from '@thwbh/veilchen';
+	import { ButtonGroup, type KeyValuePair } from '@thwbh/veilchen';
 
-    let selectedValue = $state('a');
+	let selectedValue = $state('a');
 
-    const entries: KeyValuePair<string, string>[] = [
-        { key: 'a', value: 'Option A' },
-        { key: 'b', value: 'Option B' },
-        { key: 'c', value: 'Option C' }
-    ];
+	const entries: KeyValuePair<string, string>[] = [
+		{ key: 'a', value: 'Option A' },
+		{ key: 'b', value: 'Option B' },
+		{ key: 'c', value: 'Option C' }
+	];
 
-    function handleChange(value: string) {
-        console.log('Selected:', value);
-    }
+	function handleChange(value: string) {
+		console.log('Selected:', value);
+	}
 </script>
 
 <ButtonGroup
-    label="Choose an option"
-    bind:value={selectedValue}
-    {entries}
-    onchange={handleChange}
+	label="Choose an option"
+	bind:value={selectedValue}
+	{entries}
+	onchange={handleChange}
 />
 ```
 
@@ -215,17 +221,17 @@ A segmented control for selecting between multiple options.
 
 ```svelte
 <script lang="ts">
-    import { ButtonGroup, type KeyValuePair } from '@thwbh/veilchen';
+	import { ButtonGroup, type KeyValuePair } from '@thwbh/veilchen';
 
-    let rating = $state(3);
+	let rating = $state(3);
 
-    const entries: KeyValuePair<number, string>[] = [
-        { key: 1, value: '⭐' },
-        { key: 2, value: '⭐⭐' },
-        { key: 3, value: '⭐⭐⭐' },
-        { key: 4, value: '⭐⭐⭐⭐' },
-        { key: 5, value: '⭐⭐⭐⭐⭐' }
-    ];
+	const entries: KeyValuePair<number, string>[] = [
+		{ key: 1, value: '⭐' },
+		{ key: 2, value: '⭐⭐' },
+		{ key: 3, value: '⭐⭐⭐' },
+		{ key: 4, value: '⭐⭐⭐⭐' },
+		{ key: 5, value: '⭐⭐⭐⭐⭐' }
+	];
 </script>
 
 <ButtonGroup label="Rate this" bind:value={rating} {entries} />
@@ -236,6 +242,7 @@ A segmented control for selecting between multiple options.
 A range slider with value display and visual step indicators.
 
 **Props:**
+
 - `value` - Current value (bindable, number)
 - `min` - Minimum value
 - `max` - Maximum value
@@ -249,37 +256,31 @@ A range slider with value display and visual step indicators.
 
 ```svelte
 <script lang="ts">
-    import { RangeInput } from '@thwbh/veilchen';
+	import { RangeInput } from '@thwbh/veilchen';
 
-    let volume = $state(50);
+	let volume = $state(50);
 </script>
 
-<RangeInput
-    label="Volume"
-    bind:value={volume}
-    min={0}
-    max={100}
-    unit="%"
-/>
+<RangeInput label="Volume" bind:value={volume} min={0} max={100} unit="%" />
 ```
 
 #### Example 2: With Steps and Custom Styling
 
 ```svelte
 <script lang="ts">
-    import { RangeInput } from '@thwbh/veilchen';
+	import { RangeInput } from '@thwbh/veilchen';
 
-    let brightness = $state(25);
+	let brightness = $state(25);
 </script>
 
 <RangeInput
-    label="Brightness"
-    bind:value={brightness}
-    min={0}
-    max={100}
-    step={25}
-    class="range-primary"
-    unit="lux"
+	label="Brightness"
+	bind:value={brightness}
+	min={0}
+	max={100}
+	step={25}
+	class="range-primary"
+	unit="lux"
 />
 ```
 
@@ -288,6 +289,7 @@ A range slider with value display and visual step indicators.
 Input field with built-in HTML5 validation and error message display.
 
 **Props:**
+
 - `value` - Current value (bindable, string or number)
 - `label` - Label text
 - `type` - Input type (text, email, password, number, date, etc.)
@@ -304,19 +306,19 @@ Input field with built-in HTML5 validation and error message display.
 
 ```svelte
 <script lang="ts">
-    import { ValidatedInput } from '@thwbh/veilchen';
+	import { ValidatedInput } from '@thwbh/veilchen';
 
-    let email = $state('');
+	let email = $state('');
 </script>
 
 <ValidatedInput
-    bind:value={email}
-    label="Email Address"
-    type="email"
-    required
-    placeholder="your@email.com"
+	bind:value={email}
+	label="Email Address"
+	type="email"
+	required
+	placeholder="your@email.com"
 >
-    Please enter a valid email address
+	Please enter a valid email address
 </ValidatedInput>
 ```
 
@@ -324,20 +326,20 @@ Input field with built-in HTML5 validation and error message display.
 
 ```svelte
 <script lang="ts">
-    import { ValidatedInput } from '@thwbh/veilchen';
+	import { ValidatedInput } from '@thwbh/veilchen';
 
-    let password = $state('');
+	let password = $state('');
 </script>
 
 <ValidatedInput
-    bind:value={password}
-    label="Password"
-    type="password"
-    required
-    minlength={8}
-    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{'{'}8,{'}'}"
+	bind:value={password}
+	label="Password"
+	type="password"
+	required
+	minlength={8}
+	pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{'{'}8,{'}'}"
 >
-    Must be 8+ characters with uppercase, lowercase, and number
+	Must be 8+ characters with uppercase, lowercase, and number
 </ValidatedInput>
 ```
 
@@ -346,6 +348,7 @@ Input field with built-in HTML5 validation and error message display.
 Selectable list with headers, descriptions, and optional labels.
 
 **Props:**
+
 - `value` - Currently selected value (bindable)
 - `data` - Array of ListPickerData items
 - `header` - Optional header snippet
@@ -355,35 +358,35 @@ Selectable list with headers, descriptions, and optional labels.
 
 ```svelte
 <script lang="ts">
-    import { ListPicker, type ListPickerData } from '@thwbh/veilchen';
+	import { ListPicker, type ListPickerData } from '@thwbh/veilchen';
 
-    let selected = $state(2);
+	let selected = $state(2);
 
-    const options: ListPickerData<number>[] = [
-        {
-            value: 1,
-            header: 'Basic Plan',
-            description: 'Perfect for individuals',
-            label: { text: 'Popular', className: 'badge-primary' }
-        },
-        {
-            value: 2,
-            header: 'Pro Plan',
-            description: 'For professionals',
-            label: { text: 'Best Value', className: 'badge-success' }
-        },
-        {
-            value: 3,
-            header: 'Enterprise',
-            description: 'For large teams'
-        }
-    ];
+	const options: ListPickerData<number>[] = [
+		{
+			value: 1,
+			header: 'Basic Plan',
+			description: 'Perfect for individuals',
+			label: { text: 'Popular', className: 'badge-primary' }
+		},
+		{
+			value: 2,
+			header: 'Pro Plan',
+			description: 'For professionals',
+			label: { text: 'Best Value', className: 'badge-success' }
+		},
+		{
+			value: 3,
+			header: 'Enterprise',
+			description: 'For large teams'
+		}
+	];
 </script>
 
 <ListPicker bind:value={selected} data={options}>
-    {#snippet header()}
-        <span>Choose your plan</span>
-    {/snippet}
+	{#snippet header()}
+		<span>Choose your plan</span>
+	{/snippet}
 </ListPicker>
 ```
 
@@ -392,6 +395,7 @@ Selectable list with headers, descriptions, and optional labels.
 Rich card-based option selector with custom icons, badges, and metrics.
 
 **Props:**
+
 - `value` - Currently selected value (bindable)
 - `data` - Array of OptionCardData items
 - `header` - Optional header snippet
@@ -404,43 +408,43 @@ Rich card-based option selector with custom icons, badges, and metrics.
 
 ```svelte
 <script lang="ts">
-    import { OptionCards, type OptionCardData } from '@thwbh/veilchen';
+	import { OptionCards, type OptionCardData } from '@thwbh/veilchen';
 
-    let selected = $state('plan-a');
+	let selected = $state('plan-a');
 
-    const plans: OptionCardData<string>[] = [
-        {
-            value: 'plan-a',
-            header: 'Starter',
-            badge: { text: 'Free', color: 'success' },
-            metrics: [
-                { label: 'Users', value: '5' },
-                { label: 'Storage', value: '10GB' }
-            ]
-        },
-        {
-            value: 'plan-b',
-            header: 'Professional',
-            highlight: { text: 'Recommended', color: 'primary' },
-            badge: { text: '$29/mo', color: 'primary' },
-            metrics: [
-                { label: 'Users', value: '50' },
-                { label: 'Storage', value: '500GB' },
-                { label: 'Support', value: '24/7' }
-            ]
-        }
-    ];
+	const plans: OptionCardData<string>[] = [
+		{
+			value: 'plan-a',
+			header: 'Starter',
+			badge: { text: 'Free', color: 'success' },
+			metrics: [
+				{ label: 'Users', value: '5' },
+				{ label: 'Storage', value: '10GB' }
+			]
+		},
+		{
+			value: 'plan-b',
+			header: 'Professional',
+			highlight: { text: 'Recommended', color: 'primary' },
+			badge: { text: '$29/mo', color: 'primary' },
+			metrics: [
+				{ label: 'Users', value: '50' },
+				{ label: 'Storage', value: '500GB' },
+				{ label: 'Support', value: '24/7' }
+			]
+		}
+	];
 
-    const icons: Record<string, string> = {
-        'plan-a': '🚀',
-        'plan-b': '⭐'
-    };
+	const icons: Record<string, string> = {
+		'plan-a': '🚀',
+		'plan-b': '⭐'
+	};
 </script>
 
 <OptionCards bind:value={selected} data={plans}>
-    {#snippet icon(option)}
-        <span class="text-2xl">{icons[option.value]}</span>
-    {/snippet}
+	{#snippet icon(option)}
+		<span class="text-2xl">{icons[option.value]}</span>
+	{/snippet}
 </OptionCards>
 ```
 
@@ -448,13 +452,13 @@ Rich card-based option selector with custom icons, badges, and metrics.
 
 ```svelte
 <OptionCards bind:value={selected} data={plans}>
-    {#snippet icon(option)}
-        <div class="avatar placeholder">
-            <div class="bg-primary text-primary-content w-10 rounded-full">
-                <span class="text-xs">{option.value.slice(0, 2)}</span>
-            </div>
-        </div>
-    {/snippet}
+	{#snippet icon(option)}
+		<div class="avatar placeholder">
+			<div class="bg-primary text-primary-content w-10 rounded-full">
+				<span class="text-xs">{option.value.slice(0, 2)}</span>
+			</div>
+		</div>
+	{/snippet}
 </OptionCards>
 ```
 
@@ -470,6 +474,7 @@ Rich card-based option selector with custom icons, badges, and metrics.
 Alert messages with different severity types.
 
 **Props:**
+
 - `type` - Alert type (AlertType.Info, Error, Warning, Success)
 - `class` - Optional CSS class
 - `icon` - Optional custom icon snippet
@@ -479,17 +484,17 @@ Alert messages with different severity types.
 
 ```svelte
 <script lang="ts">
-    import { AlertBox, AlertType } from '@thwbh/veilchen';
+	import { AlertBox, AlertType } from '@thwbh/veilchen';
 </script>
 
 <AlertBox type={AlertType.Success}>
-    <strong>Success!</strong>
-    <span>Your changes have been saved.</span>
+	<strong>Success!</strong>
+	<span>Your changes have been saved.</span>
 </AlertBox>
 
 <AlertBox type={AlertType.Warning} class="alert-soft">
-    <strong>Warning:</strong>
-    <span>Please review your input.</span>
+	<strong>Warning:</strong>
+	<span>Please review your input.</span>
 </AlertBox>
 ```
 
@@ -498,6 +503,7 @@ Alert messages with different severity types.
 Swipeable card stack with keyboard navigation (Arrow Left/Right).
 
 **Props:**
+
 - `index` - Current visible card index (bindable)
 - `size` - Total number of cards
 - `card` - Card content snippet
@@ -510,28 +516,28 @@ Swipeable card stack with keyboard navigation (Arrow Left/Right).
 
 ```svelte
 <script lang="ts">
-    import { Stack } from '@thwbh/veilchen';
-    import { fly } from 'svelte/transition';
+	import { Stack } from '@thwbh/veilchen';
+	import { fly } from 'svelte/transition';
 
-    let currentIndex = $state(0);
-    const cards = ['Card 1', 'Card 2', 'Card 3'];
+	let currentIndex = $state(0);
+	const cards = ['Card 1', 'Card 2', 'Card 3'];
 </script>
 
 <Stack
-    bind:index={currentIndex}
-    size={cards.length}
-    onchange={(idx) => console.log('Now showing:', idx)}
+	bind:index={currentIndex}
+	size={cards.length}
+	onchange={(idx) => console.log('Now showing:', idx)}
 >
-    {#snippet card(index, flyParams)}
-        {#if index === currentIndex}
-            <div class="card bg-base-100 shadow-xl" transition:fly={flyParams}>
-                <div class="card-body">
-                    <h2 class="card-title">{cards[index]}</h2>
-                    <p>Swipe or use arrow keys to navigate</p>
-                </div>
-            </div>
-        {/if}
-    {/snippet}
+	{#snippet card(index, flyParams)}
+		{#if index === currentIndex}
+			<div class="card bg-base-100 shadow-xl" transition:fly={flyParams}>
+				<div class="card-body">
+					<h2 class="card-title">{cards[index]}</h2>
+					<p>Swipe or use arrow keys to navigate</p>
+				</div>
+			</div>
+		{/if}
+	{/snippet}
 </Stack>
 ```
 
@@ -540,6 +546,7 @@ Swipeable card stack with keyboard navigation (Arrow Left/Right).
 Multi-step wizard with progress indicator and navigation controls.
 
 **Props:**
+
 - `currentStep` - Current active step number (bindable, 1-indexed)
 - `stepLabel` - Label text for step badges (default: "Step")
 - `backLabel` - Back button label (default: "Previous")
@@ -555,45 +562,40 @@ Multi-step wizard with progress indicator and navigation controls.
 
 ```svelte
 <script lang="ts">
-    import { Stepper } from '@thwbh/veilchen';
+	import { Stepper } from '@thwbh/veilchen';
 
-    let currentStep = $state(1);
+	let currentStep = $state(1);
 
-    function handleNext() {
-        console.log('Moving to next step');
-    }
+	function handleNext() {
+		console.log('Moving to next step');
+	}
 
-    function handleFinish() {
-        console.log('Wizard completed!');
-    }
+	function handleFinish() {
+		console.log('Wizard completed!');
+	}
 </script>
 
-<Stepper
-    bind:currentStep
-    onnext={handleNext}
-    onfinish={handleFinish}
-    activeClass="badge-primary"
->
-    {#snippet step1()}
-        <div class="p-4">
-            <h3 class="font-bold">Step 1: Personal Info</h3>
-            <p>Enter your details here</p>
-        </div>
-    {/snippet}
+<Stepper bind:currentStep onnext={handleNext} onfinish={handleFinish} activeClass="badge-primary">
+	{#snippet step1()}
+		<div class="p-4">
+			<h3 class="font-bold">Step 1: Personal Info</h3>
+			<p>Enter your details here</p>
+		</div>
+	{/snippet}
 
-    {#snippet step2()}
-        <div class="p-4">
-            <h3 class="font-bold">Step 2: Preferences</h3>
-            <p>Set your preferences</p>
-        </div>
-    {/snippet}
+	{#snippet step2()}
+		<div class="p-4">
+			<h3 class="font-bold">Step 2: Preferences</h3>
+			<p>Set your preferences</p>
+		</div>
+	{/snippet}
 
-    {#snippet step3()}
-        <div class="p-4">
-            <h3 class="font-bold">Step 3: Review</h3>
-            <p>Review and confirm</p>
-        </div>
-    {/snippet}
+	{#snippet step3()}
+		<div class="p-4">
+			<h3 class="font-bold">Step 3: Review</h3>
+			<p>Review and confirm</p>
+		</div>
+	{/snippet}
 </Stepper>
 ```
 
@@ -602,6 +604,7 @@ Multi-step wizard with progress indicator and navigation controls.
 Customizable modal dialog with confirm/cancel actions.
 
 **Props:**
+
 - `dialog` - Dialog element reference (bindable)
 - `title` - Optional title snippet
 - `content` - Optional content snippet
@@ -613,27 +616,25 @@ Customizable modal dialog with confirm/cancel actions.
 
 ```svelte
 <script lang="ts">
-    import { ModalDialog } from '@thwbh/veilchen';
+	import { ModalDialog } from '@thwbh/veilchen';
 
-    let dialog: HTMLDialogElement;
+	let dialog: HTMLDialogElement;
 
-    function handleConfirm() {
-        console.log('Confirmed!');
-    }
+	function handleConfirm() {
+		console.log('Confirmed!');
+	}
 </script>
 
-<button class="btn" onclick={() => dialog?.showModal()}>
-    Open Dialog
-</button>
+<button class="btn" onclick={() => dialog?.showModal()}> Open Dialog </button>
 
 <ModalDialog bind:dialog onconfirm={handleConfirm}>
-    {#snippet title()}
-        <h3 class="font-bold text-lg">Confirm Action</h3>
-    {/snippet}
+	{#snippet title()}
+		<h3 class="text-lg font-bold">Confirm Action</h3>
+	{/snippet}
 
-    {#snippet content()}
-        <p>Are you sure you want to proceed?</p>
-    {/snippet}
+	{#snippet content()}
+		<p>Are you sure you want to proceed?</p>
+	{/snippet}
 </ModalDialog>
 ```
 
@@ -642,6 +643,7 @@ Customizable modal dialog with confirm/cancel actions.
 Chart components powered by Chart.js. All three share the same props structure.
 
 **Props:**
+
 - `data` - Chart.js data configuration
 - `options` - Chart.js options configuration
 - All HTMLCanvasAttributes (width, height, class, etc.)
@@ -650,24 +652,26 @@ Chart components powered by Chart.js. All three share the same props structure.
 
 ```svelte
 <script lang="ts">
-    import { LineChart } from '@thwbh/veilchen';
+	import { LineChart } from '@thwbh/veilchen';
 
-    const data = {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-        datasets: [{
-            label: 'Sales',
-            data: [12, 19, 3, 5, 2],
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
-        }]
-    };
+	const data = {
+		labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+		datasets: [
+			{
+				label: 'Sales',
+				data: [12, 19, 3, 5, 2],
+				borderColor: 'rgb(75, 192, 192)',
+				tension: 0.1
+			}
+		]
+	};
 
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: { position: 'top' }
-        }
-    };
+	const options = {
+		responsive: true,
+		plugins: {
+			legend: { position: 'top' }
+		}
+	};
 </script>
 
 <LineChart {data} {options} />
@@ -677,16 +681,18 @@ Chart components powered by Chart.js. All three share the same props structure.
 
 ```svelte
 <script lang="ts">
-    import { BarChart } from '@thwbh/veilchen';
+	import { BarChart } from '@thwbh/veilchen';
 
-    const data = {
-        labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-        datasets: [{
-            label: 'Revenue',
-            data: [65, 59, 80, 81],
-            backgroundColor: 'rgba(54, 162, 235, 0.5)'
-        }]
-    };
+	const data = {
+		labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+		datasets: [
+			{
+				label: 'Revenue',
+				data: [65, 59, 80, 81],
+				backgroundColor: 'rgba(54, 162, 235, 0.5)'
+			}
+		]
+	};
 </script>
 
 <BarChart {data} options={{}} />
@@ -696,21 +702,23 @@ Chart components powered by Chart.js. All three share the same props structure.
 
 ```svelte
 <script lang="ts">
-    import { PolarAreaChart } from '@thwbh/veilchen';
+	import { PolarAreaChart } from '@thwbh/veilchen';
 
-    const data = {
-        labels: ['Red', 'Green', 'Yellow', 'Grey', 'Blue'],
-        datasets: [{
-            data: [11, 16, 7, 3, 14],
-            backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(75, 192, 192)',
-                'rgb(255, 205, 86)',
-                'rgb(201, 203, 207)',
-                'rgb(54, 162, 235)'
-            ]
-        }]
-    };
+	const data = {
+		labels: ['Red', 'Green', 'Yellow', 'Grey', 'Blue'],
+		datasets: [
+			{
+				data: [11, 16, 7, 3, 14],
+				backgroundColor: [
+					'rgb(255, 99, 132)',
+					'rgb(75, 192, 192)',
+					'rgb(255, 205, 86)',
+					'rgb(201, 203, 207)',
+					'rgb(54, 162, 235)'
+				]
+			}
+		]
+	};
 </script>
 
 <PolarAreaChart {data} options={{}} />
@@ -723,23 +731,23 @@ All components have full TypeScript support with generics where appropriate:
 ```typescript
 // Generic types for flexible data structures
 type KeyValuePair<K = string | number, V = string> = {
-    key: K;
-    value: V;
+	key: K;
+	value: V;
 };
 
 type ListPickerData<T = unknown> = {
-    value: T;
-    header: string;
-    label?: ListPickerLabel;
-    description: string;
+	value: T;
+	header: string;
+	label?: ListPickerLabel;
+	description: string;
 };
 
 type OptionCardData<T = unknown> = {
-    value: T;
-    header: string;
-    badge?: OptionCardBadge;
-    highlight?: OptionCardBadge;
-    metrics?: Array<OptionCardMetric>;
+	value: T;
+	header: string;
+	badge?: OptionCardBadge;
+	highlight?: OptionCardBadge;
+	metrics?: Array<OptionCardMetric>;
 };
 ```
 

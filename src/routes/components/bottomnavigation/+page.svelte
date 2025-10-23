@@ -79,16 +79,16 @@
 
 <div class="flex flex-col gap-6 p-4 pb-32">
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 1: Basic Bottom Navigation</h2>
-		<p class="text-sm opacity-70 mb-4">Three-item navigation with icons</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 1: Basic Bottom Navigation</h2>
+		<p class="mb-4 text-sm opacity-70">Three-item navigation with icons</p>
 
 		<div class="mockup-phone">
 			<div class="camera"></div>
 			<div class="display">
 				<div class="artboard artboard-demo phone-1 relative">
-					<div class="flex items-center justify-center h-full">
+					<div class="flex h-full items-center justify-center">
 						<div class="text-center">
-							<p class="text-6xl mb-4">
+							<p class="mb-4 text-6xl">
 								{items1.find((item) => item.id === activeTab1)?.icon?.() || ''}
 							</p>
 							<p class="text-lg font-semibold">
@@ -111,16 +111,16 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 2: Four Items Navigation</h2>
-		<p class="text-sm opacity-70 mb-4">Navigation with four tabs</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 2: Four Items Navigation</h2>
+		<p class="mb-4 text-sm opacity-70">Navigation with four tabs</p>
 
 		<div class="mockup-phone">
 			<div class="camera"></div>
 			<div class="display">
 				<div class="artboard artboard-demo phone-1 relative">
-					<div class="flex items-center justify-center h-full">
+					<div class="flex h-full items-center justify-center">
 						<div class="text-center">
-							<p class="text-6xl mb-4">
+							<p class="mb-4 text-6xl">
 								{items2.find((item) => item.id === activeTab2)?.icon?.() || ''}
 							</p>
 							<p class="text-lg font-semibold">
@@ -143,16 +143,16 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 3: With Change Handler</h2>
-		<p class="text-sm opacity-70 mb-4">Fires callback on tab change (check console)</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 3: With Change Handler</h2>
+		<p class="mb-4 text-sm opacity-70">Fires callback on tab change (check console)</p>
 
 		<div class="mockup-phone">
 			<div class="camera"></div>
 			<div class="display">
 				<div class="artboard artboard-demo phone-1 relative">
-					<div class="flex items-center justify-center h-full flex-col gap-4 p-4">
+					<div class="flex h-full flex-col items-center justify-center gap-4 p-4">
 						<div class="text-center">
-							<p class="text-6xl mb-4">
+							<p class="mb-4 text-6xl">
 								{items3.find((item) => item.id === activeTab3)?.icon?.() || ''}
 							</p>
 							<p class="text-lg font-semibold">

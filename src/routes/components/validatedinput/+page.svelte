@@ -30,14 +30,14 @@
 </script>
 
 <div class="flex flex-col gap-6 p-4">
-	<h1 class="text-3xl font-bold mb-4">ValidatedInput Examples</h1>
-	<p class="text-sm opacity-70 mb-2">
+	<h1 class="mb-4 text-3xl font-bold">ValidatedInput Examples</h1>
+	<p class="mb-2 text-sm opacity-70">
 		Input component with built-in HTML5 validation and error message display
 	</p>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 1: Email Validation</h2>
-		<p class="text-sm opacity-70 mb-4">Built-in HTML5 email validation</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 1: Email Validation</h2>
+		<p class="mb-4 text-sm opacity-70">Built-in HTML5 email validation</p>
 
 		<ValidatedInput
 			bind:value={email}
@@ -49,7 +49,7 @@
 			Please enter a valid email address
 		</ValidatedInput>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Email:</strong>
 				{email || '(empty)'}
@@ -60,8 +60,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 2: Password with Pattern</h2>
-		<p class="text-sm opacity-70 mb-4">Complex validation with regex pattern</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 2: Password with Pattern</h2>
+		<p class="mb-4 text-sm opacity-70">Complex validation with regex pattern</p>
 
 		<ValidatedInput
 			bind:value={password}
@@ -74,12 +74,12 @@
 			Must be 8+ characters with uppercase, lowercase, and number
 		</ValidatedInput>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Password length:</strong>
 				{password.length} characters
 			</p>
-			<p class="text-xs opacity-70 mt-1">
+			<p class="mt-1 text-xs opacity-70">
 				{#if password.length >= 8}
 					✓ Length OK
 				{:else}
@@ -110,8 +110,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 3: Username with Min/Max Length</h2>
-		<p class="text-sm opacity-70 mb-4">Text input with length constraints</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 3: Username with Min/Max Length</h2>
+		<p class="mb-4 text-sm opacity-70">Text input with length constraints</p>
 
 		<ValidatedInput
 			bind:value={username}
@@ -125,20 +125,20 @@
 			Username must be 3-20 characters
 		</ValidatedInput>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Username:</strong>
 				{username || '(empty)'}
 			</p>
-			<p class="text-xs opacity-70 mt-1">Length: {username.length}/20 characters</p>
+			<p class="mt-1 text-xs opacity-70">Length: {username.length}/20 characters</p>
 		</div>
 	</div>
 
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 4: URL Validation</h2>
-		<p class="text-sm opacity-70 mb-4">Built-in URL validation</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 4: URL Validation</h2>
+		<p class="mb-4 text-sm opacity-70">Built-in URL validation</p>
 
 		<ValidatedInput
 			bind:value={website}
@@ -149,7 +149,7 @@
 			Please enter a valid URL (including https://)
 		</ValidatedInput>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Website:</strong>
 				{website || '(empty)'}
@@ -160,8 +160,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 5: Number Input with Unit</h2>
-		<p class="text-sm opacity-70 mb-4">Number validation with unit display</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 5: Number Input with Unit</h2>
+		<p class="mb-4 text-sm opacity-70">Number validation with unit display</p>
 
 		<ValidatedInput
 			bind:value={weight}
@@ -175,7 +175,7 @@
 			Enter weight between 1 and 500 kg
 		</ValidatedInput>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Weight:</strong>
 				{weight || '(empty)'}
@@ -187,8 +187,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 6: Phone Number Pattern</h2>
-		<p class="text-sm opacity-70 mb-4">Custom regex pattern for phone validation</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 6: Phone Number Pattern</h2>
+		<p class="mb-4 text-sm opacity-70">Custom regex pattern for phone validation</p>
 
 		<ValidatedInput
 			bind:value={phone}
@@ -200,7 +200,7 @@
 			Format: XXX-XXX-XXXX
 		</ValidatedInput>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Phone:</strong>
 				{phone || '(empty)'}
@@ -211,8 +211,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 7: Date Input</h2>
-		<p class="text-sm opacity-70 mb-4">Date picker with min/max constraints</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 7: Date Input</h2>
+		<p class="mb-4 text-sm opacity-70">Date picker with min/max constraints</p>
 
 		<ValidatedInput
 			bind:value={birthdate}
@@ -225,13 +225,13 @@
 			Please select a date between 1900 and 2010
 		</ValidatedInput>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Date of Birth:</strong>
 				{birthdate || '(empty)'}
 			</p>
 			{#if birthdate}
-				<p class="text-xs opacity-70 mt-1">
+				<p class="mt-1 text-xs opacity-70">
 					Age: {new Date().getFullYear() - new Date(birthdate).getFullYear()} years
 				</p>
 			{/if}
@@ -241,8 +241,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 8: Inline Error Display</h2>
-		<p class="text-sm opacity-70 mb-4">Error message displayed inline instead of below</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 8: Inline Error Display</h2>
+		<p class="mb-4 text-sm opacity-70">Error message displayed inline instead of below</p>
 
 		<ValidatedInput
 			bind:value={fullname}
@@ -256,7 +256,7 @@
 			Name is required
 		</ValidatedInput>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Full Name:</strong>
 				{fullname || '(empty)'}
@@ -267,8 +267,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 9: Postal Code with Custom Pattern</h2>
-		<p class="text-sm opacity-70 mb-4">5-digit postal code validation</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 9: Postal Code with Custom Pattern</h2>
+		<p class="mb-4 text-sm opacity-70">5-digit postal code validation</p>
 
 		<ValidatedInput
 			bind:value={postalCode}
@@ -280,7 +280,7 @@
 			Enter a 5-digit postal code
 		</ValidatedInput>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Postal Code:</strong>
 				{postalCode || '(empty)'}

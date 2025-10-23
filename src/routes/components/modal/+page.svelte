@@ -64,21 +64,21 @@
 </script>
 
 <div class="flex flex-col gap-6 p-4">
-	<h1 class="text-3xl font-bold mb-2">ModalDialog Examples</h1>
-	<p class="text-sm opacity-70 mb-4">
+	<h1 class="mb-2 text-3xl font-bold">ModalDialog Examples</h1>
+	<p class="mb-4 text-sm opacity-70">
 		Customizable modal dialogs with various configurations and use cases
 	</p>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 1: Basic Confirmation Dialog</h2>
-		<p class="text-sm opacity-70 mb-4">Standard confirm/cancel dialog with callbacks</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 1: Basic Confirmation Dialog</h2>
+		<p class="mb-4 text-sm opacity-70">Standard confirm/cancel dialog with callbacks</p>
 
 		<button class="btn btn-primary" onclick={() => dialog1?.showModal()}>
 			Open Confirmation Dialog
 		</button>
 
 		{#if confirmResult}
-			<div class="mt-4 p-4 bg-base-200 rounded-box">
+			<div class="bg-base-200 rounded-box mt-4 p-4">
 				<p class="text-sm">{confirmResult}</p>
 			</div>
 		{/if}
@@ -87,8 +87,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 2: Delete Confirmation</h2>
-		<p class="text-sm opacity-70 mb-4">Warning dialog for destructive actions</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 2: Delete Confirmation</h2>
+		<p class="mb-4 text-sm opacity-70">Warning dialog for destructive actions</p>
 
 		<button class="btn btn-error" onclick={() => dialog2?.showModal()}>Delete Item</button>
 
@@ -102,13 +102,13 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 3: Form Dialog</h2>
-		<p class="text-sm opacity-70 mb-4">Dialog with form inputs</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 3: Form Dialog</h2>
+		<p class="mb-4 text-sm opacity-70">Dialog with form inputs</p>
 
 		<button class="btn btn-secondary" onclick={() => dialog3?.showModal()}>Add User</button>
 
 		{#if formResult}
-			<div class="mt-4 p-4 bg-base-200 rounded-box">
+			<div class="bg-base-200 rounded-box mt-4 p-4">
 				<p class="text-sm">{formResult}</p>
 			</div>
 		{/if}
@@ -117,8 +117,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 4: Custom Footer with Multiple Actions</h2>
-		<p class="text-sm opacity-70 mb-4">Dialog with custom footer snippet and multiple buttons</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 4: Custom Footer with Multiple Actions</h2>
+		<p class="mb-4 text-sm opacity-70">Dialog with custom footer snippet and multiple buttons</p>
 
 		<button class="btn btn-accent" onclick={() => dialog4?.showModal()}>Edit Document</button>
 
@@ -132,8 +132,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 5: Information Dialog</h2>
-		<p class="text-sm opacity-70 mb-4">Simple informational dialog with custom close button</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 5: Information Dialog</h2>
+		<p class="mb-4 text-sm opacity-70">Simple informational dialog with custom close button</p>
 
 		<button class="btn btn-info" onclick={() => dialog5?.showModal()}>Show Info</button>
 	</div>
@@ -141,8 +141,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 6: Long Content Dialog</h2>
-		<p class="text-sm opacity-70 mb-4">Dialog with scrollable content</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 6: Long Content Dialog</h2>
+		<p class="mb-4 text-sm opacity-70">Dialog with scrollable content</p>
 
 		<button class="btn" onclick={() => dialog6?.showModal()}>View Terms & Conditions</button>
 	</div>
@@ -151,19 +151,19 @@
 <!-- Example 1: Basic Confirmation Dialog -->
 <ModalDialog bind:dialog={dialog1} onconfirm={handleConfirm1} oncancel={handleCancel1}>
 	{#snippet title()}
-		<h3 class="font-bold text-lg">Confirm Action</h3>
+		<h3 class="text-lg font-bold">Confirm Action</h3>
 	{/snippet}
 
 	{#snippet content()}
 		<p>Are you sure you want to proceed with this action?</p>
-		<p class="text-sm opacity-70 mt-2">This will make changes to your account.</p>
+		<p class="mt-2 text-sm opacity-70">This will make changes to your account.</p>
 	{/snippet}
 </ModalDialog>
 
 <!-- Example 2: Delete Confirmation -->
 <ModalDialog bind:dialog={dialog2} onconfirm={handleDelete}>
 	{#snippet title()}
-		<h3 class="font-bold text-lg text-error">⚠️ Delete Item</h3>
+		<h3 class="text-error text-lg font-bold">⚠️ Delete Item</h3>
 	{/snippet}
 
 	{#snippet content()}
@@ -178,7 +178,7 @@
 <!-- Example 3: Form Dialog -->
 <ModalDialog bind:dialog={dialog3} onconfirm={handleFormSubmit}>
 	{#snippet title()}
-		<h3 class="font-bold text-lg">Add New User</h3>
+		<h3 class="text-lg font-bold">Add New User</h3>
 	{/snippet}
 
 	{#snippet content()}
@@ -213,12 +213,12 @@
 <!-- Example 4: Custom Footer -->
 <ModalDialog bind:dialog={dialog4}>
 	{#snippet title()}
-		<h3 class="font-bold text-lg">Unsaved Changes</h3>
+		<h3 class="text-lg font-bold">Unsaved Changes</h3>
 	{/snippet}
 
 	{#snippet content()}
 		<p>You have unsaved changes in your document.</p>
-		<p class="text-sm opacity-70 mt-2">What would you like to do?</p>
+		<p class="mt-2 text-sm opacity-70">What would you like to do?</p>
 	{/snippet}
 
 	{#snippet footer()}
@@ -231,7 +231,7 @@
 <!-- Example 5: Info Dialog -->
 <ModalDialog bind:dialog={dialog5}>
 	{#snippet title()}
-		<h3 class="font-bold text-lg">ℹ️ Information</h3>
+		<h3 class="text-lg font-bold">ℹ️ Information</h3>
 	{/snippet}
 
 	{#snippet content()}
@@ -252,7 +252,7 @@
 <!-- Example 6: Long Content Dialog -->
 <ModalDialog bind:dialog={dialog6}>
 	{#snippet title()}
-		<h3 class="font-bold text-lg">Terms & Conditions</h3>
+		<h3 class="text-lg font-bold">Terms & Conditions</h3>
 	{/snippet}
 
 	{#snippet content()}
@@ -277,8 +277,8 @@
 
 			<h4>4. Data Usage</h4>
 			<p>
-				By using our service, you consent to the collection and use of your data as described in
-				our privacy policy.
+				By using our service, you consent to the collection and use of your data as described in our
+				privacy policy.
 			</p>
 
 			<h4>5. Service Modifications</h4>

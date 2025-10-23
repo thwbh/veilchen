@@ -28,18 +28,18 @@
 </script>
 
 <div class="flex flex-col gap-6 p-4">
-	<h1 class="text-3xl font-bold mb-4">RangeInput Examples</h1>
-	<p class="text-sm opacity-70 mb-2">
+	<h1 class="mb-4 text-3xl font-bold">RangeInput Examples</h1>
+	<p class="mb-2 text-sm opacity-70">
 		Range input component with visual steps and text input for precise value entry
 	</p>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 1: Basic Range Input</h2>
-		<p class="text-sm opacity-70 mb-4">Simple volume slider with percentage unit</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 1: Basic Range Input</h2>
+		<p class="mb-4 text-sm opacity-70">Simple volume slider with percentage unit</p>
 
 		<RangeInput label="Volume" bind:value={volume} min={0} max={100} unit="%" />
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Current value:</strong>
 				{volume}%
@@ -50,8 +50,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 2: With Steps and Custom Styling</h2>
-		<p class="text-sm opacity-70 mb-4">Brightness control with 25-unit steps and primary color</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 2: With Steps and Custom Styling</h2>
+		<p class="mb-4 text-sm opacity-70">Brightness control with 25-unit steps and primary color</p>
 
 		<RangeInput
 			label="Brightness"
@@ -63,20 +63,20 @@
 			unit="lux"
 		/>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Current value:</strong>
 				{brightness} lux
 			</p>
-			<p class="text-xs opacity-70 mt-1">Snaps to: 0, 25, 50, 75, 100</p>
+			<p class="mt-1 text-xs opacity-70">Snaps to: 0, 25, 50, 75, 100</p>
 		</div>
 	</div>
 
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 3: Temperature Control</h2>
-		<p class="text-sm opacity-70 mb-4">Fine-grained control with smaller steps</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 3: Temperature Control</h2>
+		<p class="mb-4 text-sm opacity-70">Fine-grained control with smaller steps</p>
 
 		<RangeInput
 			label="Room Temperature"
@@ -88,12 +88,12 @@
 			unit="°C"
 		/>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Current value:</strong>
 				{temperature}°C
 			</p>
-			<p class="text-xs opacity-70 mt-1">
+			<p class="mt-1 text-xs opacity-70">
 				{#if temperature < 18}
 					Too cold
 				{:else if temperature > 24}
@@ -108,8 +108,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 4: With Change Handler</h2>
-		<p class="text-sm opacity-70 mb-4">Zoom control that logs changes</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 4: With Change Handler</h2>
+		<p class="mb-4 text-sm opacity-70">Zoom control that logs changes</p>
 
 		<RangeInput
 			label="Zoom Level"
@@ -122,7 +122,7 @@
 			onchange={handleZoomChange}
 		/>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Current value:</strong>
 				{zoom}%
@@ -130,7 +130,7 @@
 			<div class="mt-2">
 				<p class="text-xs font-bold">Recent changes:</p>
 				{#if zoomLog.length > 0}
-					<ul class="text-xs opacity-70 list-disc list-inside">
+					<ul class="list-inside list-disc text-xs opacity-70">
 						{#each zoomLog as log}
 							<li>{log}</li>
 						{/each}
@@ -145,8 +145,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 5: Multiple Ranges with Different Colors</h2>
-		<p class="text-sm opacity-70 mb-4">Audio equalizer with bass, mid, and treble controls</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 5: Multiple Ranges with Different Colors</h2>
+		<p class="mb-4 text-sm opacity-70">Audio equalizer with bass, mid, and treble controls</p>
 
 		<div class="space-y-4">
 			<RangeInput label="Bass" bind:value={bass} min={0} max={10} class="range-error" />
@@ -156,11 +156,11 @@
 			<RangeInput label="Treble" bind:value={treble} min={0} max={10} class="range-success" />
 		</div>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>EQ Settings:</strong>
 			</p>
-			<div class="grid grid-cols-3 gap-2 mt-2 text-xs">
+			<div class="mt-2 grid grid-cols-3 gap-2 text-xs">
 				<div>Bass: {bass}</div>
 				<div>Mid: {mid}</div>
 				<div>Treble: {treble}</div>
@@ -171,8 +171,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 6: Wide Range with Unit</h2>
-		<p class="text-sm opacity-70 mb-4">Budget/price selector with larger range</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 6: Wide Range with Unit</h2>
+		<p class="mb-4 text-sm opacity-70">Budget/price selector with larger range</p>
 
 		<RangeInput
 			label="Maximum Price"
@@ -184,12 +184,12 @@
 			unit="€"
 		/>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Budget:</strong>
 				{price}€
 			</p>
-			<p class="text-xs opacity-70 mt-1">
+			<p class="mt-1 text-xs opacity-70">
 				{#if price < 500}
 					Budget range
 				{:else if price < 1000}
