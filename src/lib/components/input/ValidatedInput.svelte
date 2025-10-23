@@ -24,7 +24,7 @@
 		/** Optional unit to display after the input */
 		unit?: string;
 		/** Children snippet for error/help text */
-		children: Snippet;
+		children?: Snippet;
 	}
 
 	let {
@@ -57,7 +57,9 @@
 		/>
 
 		<span class="validator-hint {errorInline ? 'inline-error' : ''}">
-			{@render children()}
+			{#if children}
+				{@render children()}
+			{/if}
 		</span>
 
 		{#if unit}
