@@ -46,3 +46,11 @@ export interface OptionCardData<T = unknown> {
 	highlight?: OptionCardBadge;
 	metrics?: Array<OptionCardMetric>;
 }
+
+/**
+ * Data structure for BottomNavigation component items.
+ */
+export interface BottomNavItem {
+	id: string;
+	label: string;
+}

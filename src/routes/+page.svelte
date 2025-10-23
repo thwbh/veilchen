@@ -8,8 +8,16 @@
 					path: '/components/button',
 					description: 'Segmented control for selections'
 				},
-				{ name: 'RangeInput', path: '/components/rangeinput', description: 'Slider with value display' },
-				{ name: 'ValidatedInput', path: '/components/validatedinput', description: 'Input with validation' }
+				{
+					name: 'RangeInput',
+					path: '/components/rangeinput',
+					description: 'Slider with value display'
+				},
+				{
+					name: 'ValidatedInput',
+					path: '/components/validatedinput',
+					description: 'Input with validation'
+				}
 			]
 		},
 		{
@@ -31,7 +39,13 @@
 			category: 'Display Components',
 			items: [
 				{ name: 'AlertBox', path: '/components/alert', description: 'Alert messages' },
-				{ name: 'ModalDialog', path: '/components/modal', description: 'Modal dialogs' }
+				{ name: 'ModalDialog', path: '/components/modal', description: 'Modal dialogs' },
+				{
+					name: 'CircularProgress',
+					path: '/components/circularprogress',
+					description: 'Circular progress indicator'
+				},
+				{ name: 'StatCard', path: '/components/statcard', description: 'Stat/Metrics display' }
 			]
 		},
 		{
