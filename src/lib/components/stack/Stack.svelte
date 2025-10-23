@@ -58,30 +58,27 @@
 	});
 
 	// Touch/swipe state
-	let touchStartX = 0;
-	let touchStartY = 0;
-	let touchStartTime = 0;
+	let startX = 0;
+	let startY = 0;
+	let startTime = 0;
 	let isDragging = $state(false);
 
-	function handleTouchStart(event: TouchEvent) {
+	function handleStart(clientX: number, clientY: number) {
 		if (!swipeable) return;
-		touchStartX = event.touches[0].clientX;
-		touchStartY = event.touches[0].clientY;
-		touchStartTime = Date.now();
+		startX = clientX;
+		startY = clientY;
+		startTime = Date.now();
 		isDragging = true;
 	}
 
-	function handleTouchEnd(event: TouchEvent) {
+	function handleEnd(clientX: number, clientY: number) {
 		if (!swipeable) return;
 		isDragging = false;
 
-		const touchEndX = event.changedTouches[0].clientX;
-		const touchEndY = event.changedTouches[0].clientY;
-		const touchEndTime = Date.now();
-
-		const deltaX = touchEndX - touchStartX;
-		const deltaY = touchEndY - touchStartY;
-		const deltaTime = touchEndTime - touchStartTime;
+		const endTime = Date.now();
+		const deltaX = clientX - startX;
+		const deltaY = clientY - startY;
+		const deltaTime = endTime - startTime;
 
 		// Check if gesture qualifies as a swipe
 		if (
@@ -103,6 +100,24 @@
 			}
 
 			onchange?.(index);
+		}
+	}
+
+	function handleTouchStart(event: TouchEvent) {
+		handleStart(event.touches[0].clientX, event.touches[0].clientY);
+	}
+
+	function handleTouchEnd(event: TouchEvent) {
+		handleEnd(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+	}
+
+	function handleMouseDown(event: MouseEvent) {
+		handleStart(event.clientX, event.clientY);
+	}
+
+	function handleMouseUp(event: MouseEvent) {
+		if (isDragging) {
+			handleEnd(event.clientX, event.clientY);
 		}
 	}
 
@@ -158,11 +173,14 @@
 		class="stack relative w-full {isDragging ? 'dragging' : ''}"
 		ontouchstart={handleTouchStart}
 		ontouchend={handleTouchEnd}
+		onmousedown={handleMouseDown}
+		onmouseup={handleMouseUp}
 		onkeydown={handleKeydown}
 		tabindex="0"
 		role="region"
 		aria-label="Swipeable content carousel"
 		aria-live="polite"
+		style="touch-action: pan-y; user-select: none; cursor: grab;"
 	>
 		{@render card(index, outFlyParams, inFlyParams)}
 		{#each { length: size }, i}
