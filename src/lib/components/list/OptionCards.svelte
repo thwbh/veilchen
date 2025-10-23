@@ -46,33 +46,35 @@
 	{/if}
 
 	<div
-		class="flex flex-col gap-3 {scrollable ? 'overflow-y-auto pr-2 scroll-smooth' : ''}"
+		class="flex flex-col gap-3 {scrollable ? 'overflow-y-auto scroll-smooth pr-2' : ''}"
 		style={scrollable ? `max-height: ${maxHeight}` : ''}
 	>
 		{#each data as option}
 			{@const isSelected = value === option.value}
 
 			<button
-				class="card bg-base-100 shadow-md transition-all hover:shadow-lg border-2 {isSelected
+				class="card bg-base-100 border-2 shadow-md transition-all hover:shadow-lg {isSelected
 					? 'border-primary'
-					: 'border-transparent'} text-left w-full"
+					: 'border-transparent'} w-full text-left"
 				onclick={() => handleSelect(option.value)}
 				aria-pressed={isSelected}
 			>
-				<div class="card-body p-3 sm:p-4 w-full">
+				<div class="card-body w-full p-3 sm:p-4">
 					<!-- Header row -->
-					<div class="flex items-start justify-between mb-2 gap-2">
-						<div class="flex items-center gap-2 flex-1 min-w-0">
+					<div class="mb-2 flex items-start justify-between gap-2">
+						<div class="flex min-w-0 flex-1 items-center gap-2">
 							{#if icon}
 								<div class="flex-shrink-0">
 									{@render icon(option)}
 								</div>
 							{/if}
 							<div class="min-w-0 flex-1">
-								<div class="flex items-center gap-2 mb-1">
-									<h3 class="text-base sm:text-lg font-bold text-base-content">{option.header}</h3>
+								<div class="mb-1 flex items-center gap-2">
+									<h3 class="text-base-content text-base font-bold sm:text-lg">{option.header}</h3>
 									{#if option.highlight}
-										<span class="badge badge-{option.highlight.color || 'primary'} badge-sm text-xs">
+										<span
+											class="badge badge-{option.highlight.color || 'primary'} badge-sm text-xs"
+										>
 											{option.highlight.text}
 										</span>
 									{/if}
@@ -86,24 +88,32 @@
 						</div>
 
 						{#if isSelected}
-							<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+							<div
+								class="bg-primary flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full"
+							>
 								<span class="text-primary-content text-xs font-bold">✓</span>
 							</div>
 						{/if}
 					</div>
 
+					{#if option.text}
+						<div>
+							<p>{option.text}</p>
+						</div>
+					{/if}
+
 					<!-- Metrics grid -->
 					{#if option.metrics && option.metrics.length > 0}
 						<div
-							class="grid gap-2 sm:gap-3 text-sm"
+							class="grid gap-2 text-sm sm:gap-3"
 							class:grid-cols-2={option.metrics.length === 2}
 							class:grid-cols-3={option.metrics.length === 3}
 							class:grid-cols-1={option.metrics.length === 1}
 						>
 							{#each option.metrics as metric}
 								<div class="bg-base-200 rounded-lg p-2.5 sm:p-2">
-									<p class="text-xs text-base-content opacity-60 mb-0.5">{metric.label}</p>
-									<p class="font-bold text-sm sm:text-base text-base-content">{metric.value}</p>
+									<p class="text-base-content mb-0.5 text-xs opacity-60">{metric.label}</p>
+									<p class="text-base-content text-sm font-bold sm:text-base">{metric.value}</p>
 								</div>
 							{/each}
 						</div>

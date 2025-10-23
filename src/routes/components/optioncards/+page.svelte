@@ -18,6 +18,7 @@
 		{
 			value: 'plan-b',
 			header: 'Professional',
+			text: "I'd buy that for a dollar!",
 			highlight: { text: 'Recommended', color: 'primary' },
 			badge: { text: '$29/mo', color: 'primary' },
 			metrics: [
@@ -42,8 +43,8 @@
 
 <div class="flex flex-col gap-6 p-4">
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 1: With Emoji Icons</h2>
-		<p class="text-sm opacity-70 mb-4">Using emoji passed through icon snippet</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 1: With Emoji Icons</h2>
+		<p class="mb-4 text-sm opacity-70">Using emoji passed through icon snippet</p>
 
 		<OptionCards bind:value={selected} data={plans}>
 			{#snippet icon(option)}
@@ -51,7 +52,7 @@
 			{/snippet}
 		</OptionCards>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Selected:</strong>
 				{selected}
@@ -62,8 +63,8 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 2: With Custom Components</h2>
-		<p class="text-sm opacity-70 mb-4">Using custom avatar components</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 2: With Custom Components</h2>
+		<p class="mb-4 text-sm opacity-70">Using custom avatar components</p>
 
 		<OptionCards bind:value={selected2} data={plans}>
 			{#snippet icon(option)}
@@ -75,7 +76,7 @@
 			{/snippet}
 		</OptionCards>
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Selected:</strong>
 				{selected2}
@@ -86,12 +87,12 @@
 	<div class="divider"></div>
 
 	<div>
-		<h2 class="text-2xl font-bold mb-2">Example 3: Without Icons</h2>
-		<p class="text-sm opacity-70 mb-4">Icons are completely optional</p>
+		<h2 class="mb-2 text-2xl font-bold">Example 3: Without Icons</h2>
+		<p class="mb-4 text-sm opacity-70">Icons are completely optional</p>
 
 		<OptionCards bind:value={selected3} data={plans} />
 
-		<div class="mt-4 p-4 bg-base-200 rounded-box">
+		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
 				<strong>Selected:</strong>
 				{selected3}
