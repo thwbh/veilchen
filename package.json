@@ -11,7 +11,10 @@
 		"name": "Stefan Poindl",
 		"url": "https://tohuwabohu.io/"
 	},
-	"repository": "github:thwbh/veilchen",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/thwbh/veilchen.git"
+	},
 	"sideEffects": [
 		"**/*.css"
 	],
