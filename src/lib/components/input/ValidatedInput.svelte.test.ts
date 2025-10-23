@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/svelte';
 import { expect, test, describe } from 'vitest';
+import { createRawSnippet } from 'svelte';
 import ValidatedInput from './ValidatedInput.svelte';
 
 describe('ValidatedInput', () => {
@@ -7,7 +8,9 @@ describe('ValidatedInput', () => {
 		render(ValidatedInput, {
 			value: '',
 			label: 'Email',
-			children: () => 'Please enter email'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Please enter email</span>`
+			}))
 		});
 
 		expect(screen.getByText('Email')).toBeInTheDocument();
@@ -17,7 +20,9 @@ describe('ValidatedInput', () => {
 		const { container } = render(ValidatedInput, {
 			value: '',
 			label: 'Email',
-			children: () => {}
+			children: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const validatorHint = container.querySelector('.validator-hint');
@@ -29,7 +34,9 @@ describe('ValidatedInput', () => {
 			value: '',
 			label: 'Email Address',
 			type: 'email',
-			children: () => 'Invalid email'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Invalid email</span>`
+			}))
 		});
 
 		const input = container.querySelector('input[type="email"]');
@@ -41,7 +48,9 @@ describe('ValidatedInput', () => {
 			value: '',
 			label: 'Username',
 			required: true,
-			children: () => 'Required field'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Required field</span>`
+			}))
 		});
 
 		const input = container.querySelector('input');
@@ -53,7 +62,9 @@ describe('ValidatedInput', () => {
 			value: '',
 			label: 'Password',
 			minlength: 8,
-			children: () => 'Minimum 8 characters'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Minimum 8 characters</span>`
+			}))
 		});
 
 		const input = container.querySelector('input');
@@ -65,7 +76,9 @@ describe('ValidatedInput', () => {
 			value: '',
 			label: 'Phone',
 			pattern: '[0-9]{3}-[0-9]{3}-[0-9]{4}',
-			children: () => 'Format: XXX-XXX-XXXX'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Format: XXX-XXX-XXXX</span>`
+			}))
 		});
 
 		const input = container.querySelector('input');
@@ -77,7 +90,9 @@ describe('ValidatedInput', () => {
 			value: '',
 			label: 'Weight',
 			unit: 'kg',
-			children: () => 'Enter weight'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Enter weight</span>`
+			}))
 		});
 
 		expect(screen.getByText('kg')).toBeInTheDocument();
@@ -88,7 +103,9 @@ describe('ValidatedInput', () => {
 			value: '',
 			label: 'Custom Input',
 			class: 'input-bordered',
-			children: () => 'Help text'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Help text</span>`
+			}))
 		});
 
 		const input = container.querySelector('input');
@@ -100,7 +117,9 @@ describe('ValidatedInput', () => {
 			value: '',
 			label: 'Email',
 			placeholder: 'your@email.com',
-			children: () => 'Enter email'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Enter email</span>`
+			}))
 		});
 
 		const input = container.querySelector('input') as HTMLInputElement;
@@ -111,7 +130,9 @@ describe('ValidatedInput', () => {
 		const { container } = render(ValidatedInput, {
 			value: '',
 			label: 'Name',
-			children: () => 'Enter name'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Enter name</span>`
+			}))
 		});
 
 		const input = container.querySelector('input') as HTMLInputElement;
@@ -127,7 +148,9 @@ describe('ValidatedInput', () => {
 			type: 'number',
 			min: 0,
 			max: 120,
-			children: () => 'Enter age'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Enter age</span>`
+			}))
 		});
 
 		const input = container.querySelector('input[type="number"]');
@@ -141,7 +164,9 @@ describe('ValidatedInput', () => {
 			value: '',
 			label: 'Username',
 			errorInline: true,
-			children: () => 'Username is required'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Username is required</span>`
+			}))
 		});
 
 		const validatorHint = container.querySelector('.validator-hint');
@@ -153,7 +178,9 @@ describe('ValidatedInput', () => {
 			value: '',
 			label: 'Username',
 			errorInline: false,
-			children: () => 'Username is required'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Username is required</span>`
+			}))
 		});
 
 		const validatorHint = container.querySelector('.validator-hint');

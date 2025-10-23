@@ -4,7 +4,7 @@
 	import { AlertType } from '$lib/enum/enum.js';
 
 	// Example 1: Basic Confirmation Dialog
-	let dialog1: HTMLDialogElement;
+	let dialog1 = $state<HTMLDialogElement>();
 	let confirmResult = $state('');
 
 	function handleConfirm1() {
@@ -18,7 +18,7 @@
 	}
 
 	// Example 2: Delete Confirmation with Custom Title
-	let dialog2: HTMLDialogElement;
+	let dialog2 = $state<HTMLDialogElement>();
 	let deleteResult = $state('');
 
 	function handleDelete() {
@@ -26,7 +26,7 @@
 	}
 
 	// Example 3: Form Dialog with Custom Content
-	let dialog3: HTMLDialogElement;
+	let dialog3 = $state<HTMLDialogElement>();
 	let userName = $state('');
 	let userEmail = $state('');
 	let formResult = $state('');
@@ -38,7 +38,7 @@
 	}
 
 	// Example 4: Custom Footer with Multiple Actions
-	let dialog4: HTMLDialogElement;
+	let dialog4 = $state<HTMLDialogElement>();
 	let actionResult = $state('');
 
 	function handleSave() {
@@ -57,10 +57,10 @@
 	}
 
 	// Example 5: Info Dialog (No Actions Required)
-	let dialog5: HTMLDialogElement;
+	let dialog5 = $state<HTMLDialogElement>();
 
 	// Example 6: Long Content Dialog
-	let dialog6: HTMLDialogElement;
+	let dialog6 = $state<HTMLDialogElement>();
 </script>
 
 <div class="flex flex-col gap-6 p-4">

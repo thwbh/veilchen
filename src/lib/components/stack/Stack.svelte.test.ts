@@ -1,5 +1,6 @@
 import { render, fireEvent } from '@testing-library/svelte';
 import { expect, test, describe, vi } from 'vitest';
+import { createRawSnippet } from 'svelte';
 import Stack from './Stack.svelte';
 
 describe('Stack', () => {
@@ -7,7 +8,9 @@ describe('Stack', () => {
 		const { container } = render(Stack, {
 			index: 0,
 			size: 3,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const stackElement = container.querySelector('[role="region"]');
@@ -18,7 +21,9 @@ describe('Stack', () => {
 		const { container } = render(Stack, {
 			index: 0,
 			size: 5,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const indicators = container.querySelectorAll('.indicator-bubble');
@@ -29,7 +34,9 @@ describe('Stack', () => {
 		const { container } = render(Stack, {
 			index: 2,
 			size: 4,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const indicators = container.querySelectorAll('.indicator-bubble');
@@ -40,7 +47,9 @@ describe('Stack', () => {
 		const { container } = render(Stack, {
 			index: 0,
 			size: 3,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const stackElement = container.querySelector('[role="region"]');
@@ -53,7 +62,9 @@ describe('Stack', () => {
 		const { container } = render(Stack, {
 			index: 0,
 			size: 3,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const stackElement = container.querySelector('[role="region"]');
@@ -66,7 +77,9 @@ describe('Stack', () => {
 			index: 0,
 			size: 3,
 			onchange,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const stackElement = container.querySelector('[role="region"]') as HTMLElement;
@@ -81,7 +94,9 @@ describe('Stack', () => {
 			index: 2,
 			size: 3,
 			onchange,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const stackElement = container.querySelector('[role="region"]') as HTMLElement;
@@ -96,7 +111,9 @@ describe('Stack', () => {
 			index: 2,
 			size: 3,
 			onchange,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const stackElement = container.querySelector('[role="region"]') as HTMLElement;
@@ -111,7 +128,9 @@ describe('Stack', () => {
 			index: 0,
 			size: 3,
 			onchange,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const stackElement = container.querySelector('[role="region"]') as HTMLElement;
@@ -128,7 +147,9 @@ describe('Stack', () => {
 			size: 3,
 			onchange,
 			onswipe,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const stackElement = container.querySelector('[role="region"]') as HTMLElement;
@@ -153,7 +174,9 @@ describe('Stack', () => {
 			size: 3,
 			onchange,
 			onswipe,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const stackElement = container.querySelector('[role="region"]') as HTMLElement;
@@ -176,7 +199,9 @@ describe('Stack', () => {
 			index: 0,
 			size: 3,
 			onchange,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const stackElement = container.querySelector('[role="region"]') as HTMLElement;
@@ -198,7 +223,9 @@ describe('Stack', () => {
 			index: 0,
 			size: 3,
 			onchange,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const indicators = container.querySelectorAll('.indicator-bubble');
@@ -213,7 +240,9 @@ describe('Stack', () => {
 			index: 1,
 			size: 3,
 			onchange,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const indicators = container.querySelectorAll('.indicator-bubble');
@@ -226,7 +255,9 @@ describe('Stack', () => {
 		const { container } = render(Stack, {
 			index: 1,
 			size: 3,
-			card: () => {}
+			card: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const tablist = container.querySelector('[role="tablist"]');

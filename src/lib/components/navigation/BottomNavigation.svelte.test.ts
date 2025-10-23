@@ -1,5 +1,6 @@
 import { render, fireEvent } from '@testing-library/svelte';
 import { expect, test, describe, vi } from 'vitest';
+import { createRawSnippet } from 'svelte';
 import BottomNavigation from './BottomNavigation.svelte';
 
 describe('BottomNavigation', () => {

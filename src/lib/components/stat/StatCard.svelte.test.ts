@@ -1,5 +1,6 @@
 import { render } from '@testing-library/svelte';
 import { expect, test, describe } from 'vitest';
+import { createRawSnippet } from 'svelte';
 import StatCard from './StatCard.svelte';
 
 describe('StatCard', () => {
@@ -82,7 +83,9 @@ describe('StatCard', () => {
 
 	test('renders figure snippet', () => {
 		const { container } = render(StatCard, {
-			figure: () => '📊'
+			figure: createRawSnippet(() => ({
+				render: () => `<span>📊</span>`
+			}))
 		});
 
 		const figure = container.querySelector('.stat-figure');
@@ -91,7 +94,9 @@ describe('StatCard', () => {
 
 	test('renders actions snippet', () => {
 		const { container } = render(StatCard, {
-			actions: () => {}
+			actions: createRawSnippet(() => ({
+				render: () => `<div></div>`
+			}))
 		});
 
 		const actions = container.querySelector('.stat-actions');
@@ -103,7 +108,9 @@ describe('StatCard', () => {
 			title: 'Revenue',
 			value: '$89,400',
 			description: 'Jan 1st - Feb 1st',
-			figure: () => '💰'
+			figure: createRawSnippet(() => ({
+				render: () => `<span>💰</span>`
+			}))
 		});
 
 		expect(container.textContent).toContain('Revenue');

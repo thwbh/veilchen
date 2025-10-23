@@ -1,12 +1,15 @@
 import { render, screen } from '@testing-library/svelte';
 import { expect, test, describe } from 'vitest';
+import { createRawSnippet } from 'svelte';
 import AlertBox from './AlertBox.svelte';
 import { AlertType } from '$lib/enum/enum.js';
 
 describe('AlertBox', () => {
 	test('renders with default info type', () => {
 		const { container } = render(AlertBox, {
-			children: () => 'Test alert message'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Test alert message</span>`
+			}))
 		});
 
 		const alert = container.querySelector('[role="alert"]');
@@ -17,7 +20,9 @@ describe('AlertBox', () => {
 	test('renders with success type', () => {
 		const { container } = render(AlertBox, {
 			type: AlertType.Success,
-			children: () => 'Success message'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Success message</span>`
+			}))
 		});
 
 		const alert = container.querySelector('[role="alert"]');
@@ -27,7 +32,9 @@ describe('AlertBox', () => {
 	test('renders with warning type', () => {
 		const { container } = render(AlertBox, {
 			type: AlertType.Warning,
-			children: () => 'Warning message'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Warning message</span>`
+			}))
 		});
 
 		const alert = container.querySelector('[role="alert"]');
@@ -37,7 +44,9 @@ describe('AlertBox', () => {
 	test('renders with error type', () => {
 		const { container } = render(AlertBox, {
 			type: AlertType.Error,
-			children: () => 'Error message'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Error message</span>`
+			}))
 		});
 
 		const alert = container.querySelector('[role="alert"]');
@@ -46,7 +55,9 @@ describe('AlertBox', () => {
 
 	test('renders children content', () => {
 		const { container } = render(AlertBox, {
-			children: () => 'Test alert message'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Test alert message</span>`
+			}))
 		});
 
 		const alert = container.querySelector('[role="alert"]');
@@ -56,7 +67,9 @@ describe('AlertBox', () => {
 	test('renders default info icon', () => {
 		const { container } = render(AlertBox, {
 			type: AlertType.Info,
-			children: () => 'Info message'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Info message</span>`
+			}))
 		});
 
 		const svg = container.querySelector('svg');
@@ -66,7 +79,9 @@ describe('AlertBox', () => {
 	test('renders default error icon', () => {
 		const { container } = render(AlertBox, {
 			type: AlertType.Error,
-			children: () => 'Error message'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Error message</span>`
+			}))
 		});
 
 		const svg = container.querySelector('svg');
@@ -76,7 +91,9 @@ describe('AlertBox', () => {
 	test('renders default warning icon', () => {
 		const { container } = render(AlertBox, {
 			type: AlertType.Warning,
-			children: () => 'Warning message'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Warning message</span>`
+			}))
 		});
 
 		const svg = container.querySelector('svg');
@@ -86,7 +103,9 @@ describe('AlertBox', () => {
 	test('renders default success icon', () => {
 		const { container } = render(AlertBox, {
 			type: AlertType.Success,
-			children: () => 'Success message'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Success message</span>`
+			}))
 		});
 
 		const svg = container.querySelector('svg');
@@ -96,7 +115,9 @@ describe('AlertBox', () => {
 	test('applies custom class', () => {
 		const { container } = render(AlertBox, {
 			class: 'alert-soft custom-class',
-			children: () => 'Custom styled alert'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Custom styled alert</span>`
+			}))
 		});
 
 		const alert = container.querySelector('[role="alert"]');
@@ -106,7 +127,9 @@ describe('AlertBox', () => {
 
 	test('has role="alert" for accessibility', () => {
 		const { container } = render(AlertBox, {
-			children: () => 'Alert message'
+			children: createRawSnippet(() => ({
+				render: () => `<span>Alert message</span>`
+			}))
 		});
 
 		const alert = container.querySelector('[role="alert"]');

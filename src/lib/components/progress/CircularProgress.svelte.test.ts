@@ -1,5 +1,6 @@
 import { render } from '@testing-library/svelte';
 import { expect, test, describe } from 'vitest';
+import { createRawSnippet } from 'svelte';
 import CircularProgress from './CircularProgress.svelte';
 
 describe('CircularProgress', () => {
@@ -101,7 +102,9 @@ describe('CircularProgress', () => {
 	test('renders children content', () => {
 		const { container } = render(CircularProgress, {
 			value: 75,
-			children: () => '75%'
+			children: createRawSnippet(() => ({
+				render: () => `<span>75%</span>`
+			}))
 		});
 
 		const progress = container.querySelector('.radial-progress');
