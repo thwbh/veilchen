@@ -4,7 +4,7 @@
 	import AvatarPicker from '$lib/components/avatar/AvatarPicker.svelte';
 
 	import { createAvatar } from '@dicebear/core';
-	import { thumbs, bigSmile } from '@dicebear/collection';
+	import { thumbs, lorelei } from '@dicebear/collection';
 	import type { AvatarOption } from '$lib/types/types.js';
 	import AlertBox from '$lib/components/alert/AlertBox.svelte';
 	import { AlertType } from '$lib/index.js';
@@ -15,41 +15,41 @@
 
 	const teamAvatars = [
 		{
-			src: createAvatar(bigSmile, {
-				seed: 'John ',
+			src: createAvatar(lorelei, {
+				seed: 'John',
 				backgroundColor: ['ece9f8']
 			}).toDataUri()
 		},
 		{
-			src: createAvatar(bigSmile, {
-				seed: 'Jane ',
+			src: createAvatar(lorelei, {
+				seed: 'Jane Smith',
 				backgroundColor: ['ece9f8']
 			}).toDataUri()
 		},
 		{
-			src: createAvatar(bigSmile, {
+			src: createAvatar(lorelei, {
 				seed: 'Bob W',
 				backgroundColor: ['ece9f8']
 			}).toDataUri()
 		},
 		{
-			src: createAvatar(bigSmile, {
+			src: createAvatar(lorelei, {
 				seed: 'Alice J',
 				backgroundColor: ['ece9f8']
 			}).toDataUri()
 		}
 	];
 
-	// DiceBear avatars - bigSmile style
-	const bigSmileAvatars: AvatarOption[] = [
-		{ id: 'felix', src: createAvatar(bigSmile, { seed: 'Felix' }).toDataUri() },
-		{ id: 'aneka', src: createAvatar(bigSmile, { seed: 'Aneka' }).toDataUri() },
-		{ id: 'luna', src: createAvatar(bigSmile, { seed: 'Luna' }).toDataUri() },
-		{ id: 'max', src: createAvatar(bigSmile, { seed: 'Max' }).toDataUri() },
-		{ id: 'bella', src: createAvatar(bigSmile, { seed: 'Bella' }).toDataUri() },
-		{ id: 'charlie', src: createAvatar(bigSmile, { seed: 'Charlie' }).toDataUri() },
-		{ id: 'daisy', src: createAvatar(bigSmile, { seed: 'Daisy' }).toDataUri() },
-		{ id: 'oscar', src: createAvatar(bigSmile, { seed: 'Oscar' }).toDataUri() }
+	// DiceBear avatars - lorelei style
+	const loreleiAvatars: AvatarOption[] = [
+		{ id: 'felix', src: createAvatar(lorelei, { seed: 'Felix' }).toDataUri() },
+		{ id: 'aneka', src: createAvatar(lorelei, { seed: 'Aneka' }).toDataUri() },
+		{ id: 'luna', src: createAvatar(lorelei, { seed: 'Luna' }).toDataUri() },
+		{ id: 'max', src: createAvatar(lorelei, { seed: 'Max' }).toDataUri() },
+		{ id: 'bella', src: createAvatar(lorelei, { seed: 'Bella' }).toDataUri() },
+		{ id: 'charlie', src: createAvatar(lorelei, { seed: 'Charlie' }).toDataUri() },
+		{ id: 'daisy', src: createAvatar(lorelei, { seed: 'Daisy' }).toDataUri() },
+		{ id: 'oscar', src: createAvatar(lorelei, { seed: 'Oscar' }).toDataUri() }
 	];
 
 	// DiceBear avatars - thumbs style
@@ -373,10 +373,10 @@
 
 			<div class="space-y-8">
 				<div>
-					<h3 class="mb-4 font-semibold">DiceBear Avatars (bigSmile style)</h3>
+					<h3 class="mb-4 font-semibold">DiceBear Avatars (lorelei style)</h3>
 					<AvatarPicker
 						bind:value={selectedAvatar}
-						avatars={bigSmileAvatars}
+						avatars={loreleiAvatars}
 						label="Pick your character"
 					/>
 					{#if selectedAvatar}
@@ -409,10 +409,10 @@
 					<h3 class="mb-4 font-semibold">Different Sizes</h3>
 					<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
 						<div>
-							<AvatarPicker label="Small" size="sm" avatars={bigSmileAvatars.slice(0, 6)} />
+							<AvatarPicker label="Small" size="sm" avatars={loreleiAvatars.slice(0, 6)} />
 						</div>
 						<div>
-							<AvatarPicker label="Medium" size="md" avatars={bigSmileAvatars.slice(0, 6)} />
+							<AvatarPicker label="Medium" size="md" avatars={loreleiAvatars.slice(0, 6)} />
 						</div>
 					</div>
 				</div>

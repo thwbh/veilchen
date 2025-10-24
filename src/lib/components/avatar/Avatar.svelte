@@ -73,67 +73,80 @@
 	const isClickable = onclick !== undefined;
 </script>
 
-<div
+<button
 	class="avatar {isPlaceholder ? 'placeholder' : ''} {className}"
 	class:avatar-online={status === 'online'}
 	class:avatar-offline={status === 'offline'}
 	class:avatar-busy={status === 'busy'}
 	class:avatar-away={status === 'away'}
-	role={isClickable ? 'button' : undefined}
-	tabindex={isClickable ? 0 : undefined}
-	onclick={onclick}
-	onkeydown={(e) => {
-		if (isClickable && (e.key === 'Enter' || e.key === ' ')) {
-			e.preventDefault();
-			onclick?.(e as unknown as MouseEvent);
-		}
-	}}
+	class:clickable={isClickable}
+	{onclick}
+	disabled={!isClickable}
+	type="button"
 >
 	<div
 		class="{sizeClasses[size]} {shapeClasses[shape]} {ring
-			? `ring ring-2 ${ringColor} ring-offset-2 ring-offset-base-100`
-			: ''} {isClickable ? 'cursor-pointer hover:opacity-80 transition-opacity' : ''} {isPlaceholder
+			? `ring ring-2 ${ringColor} ring-offset-base-100 ring-offset-2`
+			: ''} {isClickable ? 'cursor-pointer transition-opacity hover:opacity-80' : ''} {isPlaceholder
 			? 'bg-neutral text-neutral-content flex items-center justify-center'
 			: ''}"
 	>
 		{#if hasImage}
 			<img {src} {alt} onerror={handleImageError} />
 		{:else if placeholderContent}
-			<div class="flex items-center justify-center w-full h-full">
+			<div class="flex h-full w-full items-center justify-center">
 				{@render placeholderContent()}
 			</div>
 		{:else if placeholder}
-			<span>
+			<span class="flex items-center justify-center">
 				{placeholder}
 			</span>
 		{:else}
 			<!-- Default placeholder icon -->
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="w-3/5 h-3/5"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					stroke-width="2"
-					d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-				/>
-			</svg>
+			<div class="flex h-full w-full items-center justify-center">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="h-3/5 w-3/5"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+					/>
+				</svg>
+			</div>
 		{/if}
 	</div>
-</div>
+</button>
 
 <style>
+	/* Reset button styles */
 	.avatar {
+		background: none;
+		border: none;
+		padding: 0;
+		font: inherit;
 		user-select: none;
 		position: relative;
 		display: inline-flex;
 	}
 
-	.avatar[role='button']:focus-visible {
+	/* Disabled state - non-clickable avatar */
+	.avatar:disabled {
+		cursor: default;
+		pointer-events: none;
+	}
+
+	/* Clickable state */
+	.avatar.clickable {
+		cursor: pointer;
+	}
+
+	.avatar.clickable:focus-visible {
 		outline: 2px solid var(--color-primary);
 		outline-offset: 2px;
 	}
