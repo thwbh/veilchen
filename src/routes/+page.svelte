@@ -29,6 +29,11 @@
 					description: 'Selectable list with labels'
 				},
 				{
+					name: 'SwipeableListItem',
+					path: '/components/swipeablelistitem',
+					description: 'List items supporting swipe gestures'
+				},
+				{
 					name: 'OptionCards',
 					path: '/components/optioncards',
 					description: 'Rich card-based selector'
@@ -53,6 +58,26 @@
 			items: [
 				{ name: 'Stack', path: '/components/stack', description: 'Swipeable card stack' },
 				{ name: 'Stepper', path: '/components/stepper', description: 'Multi-step wizard' }
+			]
+		},
+		{
+			category: 'App Components',
+			items: [
+				{
+					name: 'Avatar',
+					path: '/components/avatar',
+					description: 'Display user avatar and avatar groups'
+				},
+				{
+					name: 'AvatarPicker',
+					path: '/components/avatarpicker',
+					description: 'Control to pick a user avatar'
+				},
+				{
+					name: 'PullToRefresh',
+					path: '/components/pulltorefresh',
+					description: "'Pull down' to refresh an area"
+				}
 			]
 		},
 		{

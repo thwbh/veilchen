@@ -57,3 +57,16 @@ export interface BottomNavItem {
 	id: string;
 	label: string;
 }
+
+/**
+ * Data structure for AvatarPicker component items.
+ * Supports file paths, URLs, and data URIs (including DiceBear's .toDataUri()).
+ */
+export interface AvatarOption {
+	/** Unique identifier for this avatar option */
+	id: string;
+	/** Avatar image source - file path, URL, or data URI */
+	src: string;
+	/** Optional alt text for accessibility */
+	alt?: string;
+}

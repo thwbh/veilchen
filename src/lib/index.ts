@@ -6,7 +6,8 @@ import type {
 	OptionCardData,
 	OptionCardBadge,
 	OptionCardMetric,
-	BottomNavItem
+	BottomNavItem,
+	AvatarOption
 } from './types/types.js';
 import type { ChartProps } from './chart/props.js';
 
@@ -17,7 +18,8 @@ export type {
 	OptionCardData,
 	OptionCardBadge,
 	OptionCardMetric,
-	BottomNavItem
+	BottomNavItem,
+	AvatarOption
 };
 export type { ChartProps };
 
@@ -25,6 +27,7 @@ export type { ChartProps };
 import AlertBox from '$lib/components/alert/AlertBox.svelte';
 import ListPicker from '$lib/components/list/ListPicker.svelte';
 import OptionCards from '$lib/components/list/OptionCards.svelte';
+import SwipeableListItem from '$lib/components/list/SwipeableListItem.svelte';
 import RangeInput from '$lib/components/input/RangeInput.svelte';
 import ButtonGroup from '$lib/components/control/ButtonGroup.svelte';
 import Stepper from '$lib/components/stepper/Stepper.svelte';
@@ -38,6 +41,10 @@ import PolarAreaChart from '$lib/components/chart/PolarAreaChart.svelte';
 import BottomNavigation from '$lib/components/navigation/BottomNavigation.svelte';
 import CircularProgress from '$lib/components/progress/CircularProgress.svelte';
 import StatCard from '$lib/components/stat/StatCard.svelte';
+import PullToRefresh from '$lib/components/refresh/PullToRefresh.svelte';
+import Avatar from '$lib/components/avatar/Avatar.svelte';
+import AvatarGroup from '$lib/components/avatar/AvatarGroup.svelte';
+import AvatarPicker from '$lib/components/avatar/AvatarPicker.svelte';
 
 import { AlertType } from './enum/enum.js';
 
@@ -46,6 +53,7 @@ export {
 	AlertBox,
 	ListPicker,
 	OptionCards,
+	SwipeableListItem,
 	RangeInput,
 	ButtonGroup,
 	ModalDialog,
@@ -58,5 +66,9 @@ export {
 	PolarAreaChart,
 	BottomNavigation,
 	CircularProgress,
-	StatCard
+	StatCard,
+	PullToRefresh,
+	Avatar,
+	AvatarGroup,
+	AvatarPicker
 };
