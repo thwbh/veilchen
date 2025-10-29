@@ -62,6 +62,8 @@ export interface BottomNavItem {
 	icon?: Component;
 	/** Optional props to pass to the icon component */
 	iconProps?: Record<string, any>;
+	/** Optional click handler for this specific item */
+	onclick?: () => void;
 }
 
 /**

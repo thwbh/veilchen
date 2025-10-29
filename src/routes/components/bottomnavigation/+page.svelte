@@ -7,15 +7,15 @@
 	const items1 = [
 		{
 			id: 'home',
-			label: 'Home',
+			label: 'Home'
 		},
 		{
 			id: 'search',
-			label: 'Search',
+			label: 'Search'
 		},
 		{
 			id: 'profile',
-			label: 'Profile',
+			label: 'Profile'
 		}
 	];
 
@@ -25,19 +25,19 @@
 	const items2 = [
 		{
 			id: 'feed',
-			label: 'Feed',
+			label: 'Feed'
 		},
 		{
 			id: 'explore',
-			label: 'Explore',
+			label: 'Explore'
 		},
 		{
 			id: 'notifications',
-			label: 'Alerts',
+			label: 'Alerts'
 		},
 		{
 			id: 'settings',
-			label: 'Settings',
+			label: 'Settings'
 		}
 	];
 
@@ -48,23 +48,17 @@
 	const items3 = [
 		{
 			id: 'dashboard',
-			label: 'Dashboard',
+			label: 'Dashboard'
 		},
 		{
 			id: 'analytics',
-			label: 'Analytics',
+			label: 'Analytics'
 		},
 		{
 			id: 'reports',
-			label: 'Reports',
+			label: 'Reports'
 		}
 	];
-
-	function handleTabChange(id: string) {
-		activeTab3 = id;
-		lastAction = `Navigated to ${id} at ${new Date().toLocaleTimeString()}`;
-		console.log('Tab changed to:', id);
-	}
 </script>
 
 <div class="flex flex-col gap-6 p-4 pb-32">
@@ -88,11 +82,7 @@
 						</div>
 					</div>
 
-					<BottomNavigation
-						items={items1}
-						activeId={activeTab1}
-						onitemclick={(id) => (activeTab1 = id)}
-					/>
+					<BottomNavigation items={items1} activeId={activeTab1} />
 				</div>
 			</div>
 		</div>
@@ -120,11 +110,7 @@
 						</div>
 					</div>
 
-					<BottomNavigation
-						items={items2}
-						activeId={activeTab2}
-						onitemclick={(id) => (activeTab2 = id)}
-					/>
+					<BottomNavigation items={items2} activeId={activeTab2} />
 				</div>
 			</div>
 		</div>
@@ -157,7 +143,7 @@
 						{/if}
 					</div>
 
-					<BottomNavigation items={items3} activeId={activeTab3} onitemclick={handleTabChange} />
+					<BottomNavigation items={items3} activeId={activeTab3} />
 				</div>
 			</div>
 		</div>
