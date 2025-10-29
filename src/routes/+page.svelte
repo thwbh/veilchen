@@ -56,6 +56,7 @@
 		{
 			category: 'Layout Components',
 			items: [
+				{ name: 'AppShell', path: '/components/appshell', description: 'Central app navigation' },
 				{ name: 'Stack', path: '/components/stack', description: 'Swipeable card stack' },
 				{ name: 'Stepper', path: '/components/stepper', description: 'Multi-step wizard' }
 			]
@@ -77,6 +78,11 @@
 					name: 'PullToRefresh',
 					path: '/components/pulltorefresh',
 					description: "'Pull down' to refresh an area"
+				},
+				{
+					name: 'Toast',
+					path: '/components/toast',
+					description: 'Toast/Snackbar like user notifications'
 				}
 			]
 		},

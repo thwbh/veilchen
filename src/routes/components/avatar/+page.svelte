@@ -261,7 +261,7 @@
 			<div class="space-y-6">
 				<div>
 					<h3 class="mb-3 font-semibold">Small Group</h3>
-					<AvatarGroup size="md">
+					<AvatarGroup>
 						{#each teamAvatars as teamAvatar}
 							<Avatar size="md" src={teamAvatar.src} />
 						{/each}
@@ -270,7 +270,7 @@
 
 				<div>
 					<h3 class="mb-3 font-semibold">Large Group</h3>
-					<AvatarGroup size="lg">
+					<AvatarGroup>
 						{#each thumbsAvatars as thumbsAvatar}
 							<Avatar size="lg" src={thumbsAvatar.src} />
 						{/each}
@@ -279,7 +279,7 @@
 
 				<div>
 					<h3 class="mb-3 font-semibold">Customized</h3>
-					<AvatarGroup size="md">
+					<AvatarGroup>
 						<Avatar size="md" src="/avatars/avatar1.svg" />
 						<Avatar size="md" placeholder="JD" />
 						<Avatar size="md" src="/avatars/avatar2.svg" />

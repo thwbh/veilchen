@@ -102,16 +102,19 @@ describe('BottomNavigation', () => {
 	});
 
 	test('renders with icons', () => {
+		const iconSnippet = createRawSnippet(() => ({
+			render: () => `<span>🏠</span>`
+		}));
+
 		const itemsWithIcons = [
 			{
 				id: 'home',
 				label: 'Home',
-				icon: () => '🏠'
+				icon: iconSnippet
 			},
 			{
 				id: 'search',
-				label: 'Search',
-				icon: () => '🔍'
+				label: 'Search'
 			}
 		];
 

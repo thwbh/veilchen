@@ -10,6 +10,7 @@ import type {
 	AvatarOption
 } from './types/types.js';
 import type { ChartProps } from './chart/props.js';
+import type { ToastMessage } from './components/toast/toast.svelte.js';
 
 export type {
 	KeyValuePair,
@@ -22,6 +23,7 @@ export type {
 	AvatarOption
 };
 export type { ChartProps };
+export type { ToastMessage };
 
 /** components go here */
 import AlertBox from '$lib/components/alert/AlertBox.svelte';
@@ -45,10 +47,14 @@ import PullToRefresh from '$lib/components/refresh/PullToRefresh.svelte';
 import Avatar from '$lib/components/avatar/Avatar.svelte';
 import AvatarGroup from '$lib/components/avatar/AvatarGroup.svelte';
 import AvatarPicker from '$lib/components/avatar/AvatarPicker.svelte';
+import ToastContainer from '$lib/components/toast/ToastContainer.svelte';
+import AppShell from '$lib/components/layout/AppShell.svelte';
 
 import { AlertType } from './enum/enum.js';
+import { toast } from './components/toast/toast.svelte.js';
 
 export { AlertType };
+export { toast };
 export {
 	AlertBox,
 	ListPicker,
@@ -70,5 +76,7 @@ export {
 	PullToRefresh,
 	Avatar,
 	AvatarGroup,
-	AvatarPicker
+	AvatarPicker,
+	ToastContainer,
+	AppShell
 };

@@ -8,17 +8,14 @@
 		{
 			id: 'home',
 			label: 'Home',
-			icon: () => '🏠'
 		},
 		{
 			id: 'search',
 			label: 'Search',
-			icon: () => '🔍'
 		},
 		{
 			id: 'profile',
 			label: 'Profile',
-			icon: () => '👤'
 		}
 	];
 
@@ -29,22 +26,18 @@
 		{
 			id: 'feed',
 			label: 'Feed',
-			icon: () => '📰'
 		},
 		{
 			id: 'explore',
 			label: 'Explore',
-			icon: () => '🧭'
 		},
 		{
 			id: 'notifications',
 			label: 'Alerts',
-			icon: () => '🔔'
 		},
 		{
 			id: 'settings',
 			label: 'Settings',
-			icon: () => '⚙️'
 		}
 	];
 
@@ -56,17 +49,14 @@
 		{
 			id: 'dashboard',
 			label: 'Dashboard',
-			icon: () => '📊'
 		},
 		{
 			id: 'analytics',
 			label: 'Analytics',
-			icon: () => '📈'
 		},
 		{
 			id: 'reports',
 			label: 'Reports',
-			icon: () => '📋'
 		}
 	];
 
@@ -89,7 +79,7 @@
 					<div class="flex h-full items-center justify-center">
 						<div class="text-center">
 							<p class="mb-4 text-6xl">
-								{items1.find((item) => item.id === activeTab1)?.icon?.() || ''}
+								{activeTab1 || activeTab2 || activeTab3}
 							</p>
 							<p class="text-lg font-semibold">
 								{items1.find((item) => item.id === activeTab1)?.label || ''}
@@ -121,7 +111,7 @@
 					<div class="flex h-full items-center justify-center">
 						<div class="text-center">
 							<p class="mb-4 text-6xl">
-								{items2.find((item) => item.id === activeTab2)?.icon?.() || ''}
+								{activeTab1 || activeTab2 || activeTab3}
 							</p>
 							<p class="text-lg font-semibold">
 								{items2.find((item) => item.id === activeTab2)?.label || ''}
@@ -153,7 +143,7 @@
 					<div class="flex h-full flex-col items-center justify-center gap-4 p-4">
 						<div class="text-center">
 							<p class="mb-4 text-6xl">
-								{items3.find((item) => item.id === activeTab3)?.icon?.() || ''}
+								{activeTab1 || activeTab2 || activeTab3}
 							</p>
 							<p class="text-lg font-semibold">
 								{items3.find((item) => item.id === activeTab3)?.label || ''}

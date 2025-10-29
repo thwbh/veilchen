@@ -1,4 +1,4 @@
-import type { Snippet } from 'svelte';
+import type { Snippet, Component } from 'svelte';
 
 /**
  * A generic key-value pair interface for selection components.
@@ -56,6 +56,12 @@ export interface OptionCardData<T = unknown> {
 export interface BottomNavItem {
 	id: string;
 	label: string;
+	/** Optional href for navigation (uses <a> tag instead of <button>) */
+	href?: string;
+	/** Optional icon component for rendering custom icons */
+	icon?: Component;
+	/** Optional props to pass to the icon component */
+	iconProps?: Record<string, any>;
 }
 
 /**
