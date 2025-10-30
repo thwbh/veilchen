@@ -66,6 +66,24 @@
 		last = $derived(Object.values(restProps).length);
 
 	let direction: 'forward' | 'backward' = $state('forward');
+	let containerHeight = $state(0);
+	let contentElement: HTMLElement | null = null;
+
+	function updateHeight(node: HTMLElement) {
+		contentElement = node;
+		const resizeObserver = new ResizeObserver((entries) => {
+			for (const entry of entries) {
+				containerHeight = entry.contentRect.height;
+			}
+		});
+		resizeObserver.observe(node);
+
+		return {
+			destroy() {
+				resizeObserver.disconnect();
+			}
+		};
+	}
 
 	const move = (inc: number) => {
 		if (inc < 0 && currentStep === first) currentStep = first;
@@ -108,8 +126,17 @@
 		<span class="flex flex-row">
 			{#each { length: currentStep } as _, step (step)}
 				<li
-					in:fly={{ x: 200, duration: animationDuration, delay: step * 50, easing: quintOut }}
-					out:fly={{ x: -200, duration: animationDuration, easing: quintOut }}
+					in:fly={{
+						x: direction === 'forward' ? 200 : -200,
+						duration: animationDuration,
+						delay: step * 50,
+						easing: quintOut
+					}}
+					out:fly={{
+						x: direction === 'forward' ? -200 : 200,
+						duration: animationDuration,
+						easing: quintOut
+					}}
 				>
 					<div class="timeline-middle">
 						{#if currentStep === step + 1}
@@ -124,8 +151,17 @@
 		<span class="flex flex-row">
 			{#each { length: last - currentStep } as _, step (step + currentStep)}
 				<li
-					in:fly={{ x: 200, duration: animationDuration, delay: step * 50, easing: quintOut }}
-					out:fly={{ x: -200, duration: animationDuration, easing: quintOut }}
+					in:fly={{
+						x: direction === 'forward' ? 200 : -200,
+						duration: animationDuration,
+						delay: step * 50,
+						easing: quintOut
+					}}
+					out:fly={{
+						x: direction === 'forward' ? -200 : 200,
+						duration: animationDuration,
+						easing: quintOut
+					}}
 				>
 					<div class="timeline-middle">
 						{#if currentStep === last - step + 1}
@@ -140,11 +176,12 @@
 			{/each}
 		</span>
 	</ul>
-	<div class="step-content-container">
+	<div class="step-content-container" style="height: {containerHeight}px;">
 		{#each steps as step, i (i)}
 			{#if i + 1 === currentStep}
 				<div
 					class="step-content"
+					use:updateHeight
 					in:fly={{
 						x: direction === 'forward' ? 300 : -300,
 						duration: animationDuration,
@@ -214,10 +251,12 @@
 	.step-content-container {
 		position: relative;
 		overflow: hidden;
-		min-height: 200px;
 	}
 
 	.step-content {
+		position: absolute;
 		width: 100%;
+		top: 0;
+		left: 0;
 	}
 </style>

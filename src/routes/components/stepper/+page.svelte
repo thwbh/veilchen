@@ -30,6 +30,7 @@
 			<div class="p-4">
 				<h3 class="font-bold">Step 2: Preferences</h3>
 				<p>Set your preferences</p>
+				<p>Yes, this component does resize!</p>
 			</div>
 		{/snippet}
 
