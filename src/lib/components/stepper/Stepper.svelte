@@ -126,8 +126,9 @@
 	aria-label="Step wizard navigation"
 >
 	<div class="stepper-content-wrapper {stickyButtons ? 'stepper-content-wrapper-sticky' : ''}">
-		<hr class="step-line" />
-		<ul class="timeline timeline-horizontal flex-row justify-between">
+		<div class="timeline-container">
+			<hr class="step-line" />
+			<ul class="timeline timeline-horizontal flex-row justify-between">
 			<span class="flex flex-row">
 				{#each { length: currentStep } as _, step (step)}
 					<li
@@ -180,7 +181,8 @@
 					</li>
 				{/each}
 			</span>
-		</ul>
+			</ul>
+		</div>
 		<div
 			class="step-content-container"
 			style="height: {containerHeight}px;"
@@ -313,6 +315,11 @@
 	}
 
 	.stepper-buttons-wrapper {
+		flex-shrink: 0;
+	}
+
+	.timeline-container {
+		position: relative;
 		flex-shrink: 0;
 	}
 
