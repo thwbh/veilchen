@@ -1,10 +1,12 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
+	import { fly, slide } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
 
 	type StepSnippet = Snippet<[number]>;
 
 	/**
-	 * A multi-step wizard component with navigation controls.
+	 * A multi-step wizard component with navigation controls and smooth animations.
 	 * Pass step content as snippets named step1, step2, etc.
 	 */
 	interface Props {
@@ -32,6 +34,8 @@
 		onfinish?: () => void;
 		/** CSS class for active step badge (default: "badge-neutral") */
 		activeClass?: string;
+		/** Duration of animations in milliseconds (default: 400) */
+		animationDuration?: number;
 		/** Step snippets (step1, step2, etc.) passed as additional props */
 		[key: string]: StepSnippet | number | string | undefined | (() => void);
 	}
@@ -49,6 +53,7 @@
 		onback = () => {},
 		onfinish = () => {},
 		activeClass = 'badge-neutral',
+		animationDuration = 400,
 		...restProps
 	}: Props = $props();
 
@@ -60,10 +65,13 @@
 	let first = 1,
 		last = $derived(Object.values(restProps).length);
 
+	let direction: 'forward' | 'backward' = $state('forward');
+
 	const move = (inc: number) => {
 		if (inc < 0 && currentStep === first) currentStep = first;
 		else if (inc > 0 && currentStep === last) currentStep = last;
 		else {
+			direction = inc > 0 ? 'forward' : 'backward';
 			currentStep += inc;
 
 			if (inc > 0) onnext();
@@ -98,8 +106,11 @@
 	<hr class="step-line" />
 	<ul class="timeline timeline-horizontal flex-row justify-between">
 		<span class="flex flex-row">
-			{#each { length: currentStep }, step}
-				<li>
+			{#each { length: currentStep } as _, step (step)}
+				<li
+					in:fly={{ x: 200, duration: animationDuration, delay: step * 50, easing: quintOut }}
+					out:fly={{ x: -200, duration: animationDuration, easing: quintOut }}
+				>
 					<div class="timeline-middle">
 						{#if currentStep === step + 1}
 							<span class="badge badge-step {activeClass}">{stepLabel} {step + 1}</span>
@@ -111,8 +122,11 @@
 			{/each}
 		</span>
 		<span class="flex flex-row">
-			{#each { length: last - currentStep }, step}
-				<li>
+			{#each { length: last - currentStep } as _, step (step + currentStep)}
+				<li
+					in:fly={{ x: 200, duration: animationDuration, delay: step * 50, easing: quintOut }}
+					out:fly={{ x: -200, duration: animationDuration, easing: quintOut }}
+				>
 					<div class="timeline-middle">
 						{#if currentStep === last - step + 1}
 							<span class="badge badge-step {activeClass}"
@@ -126,10 +140,24 @@
 			{/each}
 		</span>
 	</ul>
-	<div>
-		{#each steps as step, i}
+	<div class="step-content-container">
+		{#each steps as step, i (i)}
 			{#if i + 1 === currentStep}
-				{@render step(i + 1)}
+				<div
+					class="step-content"
+					in:fly={{
+						x: direction === 'forward' ? 300 : -300,
+						duration: animationDuration,
+						easing: quintOut
+					}}
+					out:fly={{
+						x: direction === 'forward' ? -300 : 300,
+						duration: animationDuration,
+						easing: quintOut
+					}}
+				>
+					{@render step(i + 1)}
+				</div>
 			{/if}
 		{/each}
 	</div>
@@ -181,5 +209,15 @@
 		margin-top: 0.8em;
 		width: calc(100% - calc(8 * var(--size-field)));
 		color: var(--color-neutral);
+	}
+
+	.step-content-container {
+		position: relative;
+		overflow: hidden;
+		min-height: 200px;
+	}
+
+	.step-content {
+		width: 100%;
 	}
 </style>
