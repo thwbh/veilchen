@@ -36,8 +36,10 @@
 		activeClass?: string;
 		/** Duration of animations in milliseconds (default: 400) */
 		animationDuration?: number;
+		/** Whether buttons should stick to the bottom with scrollable content (default: false) */
+		stickyButtons?: boolean;
 		/** Step snippets (step1, step2, etc.) passed as additional props */
-		[key: string]: StepSnippet | number | string | undefined | (() => void);
+		[key: string]: StepSnippet | number | string | undefined | (() => void) | boolean;
 	}
 
 	let {
@@ -54,6 +56,7 @@
 		onfinish = () => {},
 		activeClass = 'badge-neutral',
 		animationDuration = 400,
+		stickyButtons = false,
 		...restProps
 	}: Props = $props();
 
@@ -114,128 +117,205 @@
 
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
-	class="flex w-full flex-col gap-4"
+	class="stepper-wrapper {stickyButtons ? 'stepper-sticky' : ''}"
 	onkeydown={handleKeydown}
 	tabindex="0"
 	role="navigation"
 	aria-label="Step wizard navigation"
 >
-	<hr class="step-line" />
-	<ul class="timeline timeline-horizontal flex-row justify-between">
-		<span class="flex flex-row">
-			{#each { length: currentStep } as _, step (step)}
-				<li
-					in:fly={{
-						x: direction === 'forward' ? 200 : -200,
-						duration: animationDuration,
-						delay: step * 50,
-						easing: quintOut
-					}}
-					out:fly={{
-						x: direction === 'forward' ? -200 : 200,
-						duration: animationDuration,
-						easing: quintOut
-					}}
-				>
-					<div class="timeline-middle">
-						{#if currentStep === step + 1}
-							<span class="badge badge-step {activeClass}">{stepLabel} {step + 1}</span>
-						{:else}
-							<span class="badge badge-step">{step + 1}</span>
-						{/if}
-					</div>
-				</li>
-			{/each}
-		</span>
-		<span class="flex flex-row">
-			{#each { length: last - currentStep } as _, step (step + currentStep)}
-				<li
-					in:fly={{
-						x: direction === 'forward' ? 200 : -200,
-						duration: animationDuration,
-						delay: step * 50,
-						easing: quintOut
-					}}
-					out:fly={{
-						x: direction === 'forward' ? -200 : 200,
-						duration: animationDuration,
-						easing: quintOut
-					}}
-				>
-					<div class="timeline-middle">
-						{#if currentStep === last - step + 1}
-							<span class="badge badge-step {activeClass}"
-								>{stepLabel} {step + 1 + currentStep}</span
-							>
-						{:else}
-							<span class="badge badge-step">{step + 1 + currentStep}</span>
-						{/if}
-					</div>
-				</li>
-			{/each}
-		</span>
-	</ul>
-	<div class="step-content-container" style="height: {containerHeight}px;">
-		{#each steps as step, i (i)}
-			{#if i + 1 === currentStep}
-				<div
-					class="step-content"
-					use:updateHeight
-					in:fly={{
-						x: direction === 'forward' ? 300 : -300,
-						duration: animationDuration,
-						easing: quintOut
-					}}
-					out:fly={{
-						x: direction === 'forward' ? -300 : 300,
-						duration: animationDuration,
-						easing: quintOut
-					}}
-				>
-					{@render step(i + 1)}
-				</div>
-			{/if}
-		{/each}
-	</div>
-	<div class="join grid grid-cols-2">
-		<button onclick={() => move(-1)} class="join-item btn flex items-center justify-start">
-			<span>
-				{#if leftCaret}
-					{@render leftCaret()}
-				{/if}
+	<div class="stepper-content-wrapper {stickyButtons ? 'stepper-content-wrapper-sticky' : ''}">
+		<hr class="step-line" />
+		<ul class="timeline timeline-horizontal flex-row justify-between">
+			<span class="flex flex-row">
+				{#each { length: currentStep } as _, step (step)}
+					<li
+						in:fly={{
+							x: direction === 'forward' ? 200 : -200,
+							duration: animationDuration,
+							delay: step * 50,
+							easing: quintOut
+						}}
+						out:fly={{
+							x: direction === 'forward' ? -200 : 200,
+							duration: animationDuration,
+							easing: quintOut
+						}}
+					>
+						<div class="timeline-middle">
+							{#if currentStep === step + 1}
+								<span class="badge badge-step {activeClass}">{stepLabel} {step + 1}</span>
+							{:else}
+								<span class="badge badge-step">{step + 1}</span>
+							{/if}
+						</div>
+					</li>
+				{/each}
 			</span>
-			<span> {backLabel} </span>
-		</button>
-		{#if currentStep < last}
-			<button
-				onclick={() => move(1)}
-				class="join-item btn btn-neutral flex items-center justify-end"
-			>
-				<span> {nextLabel} </span>
-				<span>
-					{#if rightCaret}
-						{@render rightCaret()}
+			<span class="flex flex-row">
+				{#each { length: last - currentStep } as _, step (step + currentStep)}
+					<li
+						in:fly={{
+							x: direction === 'forward' ? 200 : -200,
+							duration: animationDuration,
+							delay: step * 50,
+							easing: quintOut
+						}}
+						out:fly={{
+							x: direction === 'forward' ? -200 : 200,
+							duration: animationDuration,
+							easing: quintOut
+						}}
+					>
+						<div class="timeline-middle">
+							{#if currentStep === last - step + 1}
+								<span class="badge badge-step {activeClass}"
+									>{stepLabel} {step + 1 + currentStep}</span
+								>
+							{:else}
+								<span class="badge badge-step">{step + 1 + currentStep}</span>
+							{/if}
+						</div>
+					</li>
+				{/each}
+			</span>
+		</ul>
+		<div
+			class="step-content-container"
+			style="height: {containerHeight}px;"
+		>
+			{#each steps as step, i (i)}
+				{#if i + 1 === currentStep}
+					<div
+						class="step-content"
+						use:updateHeight
+						in:fly={{
+							x: direction === 'forward' ? 300 : -300,
+							duration: animationDuration,
+							easing: quintOut
+						}}
+						out:fly={{
+							x: direction === 'forward' ? -300 : 300,
+							duration: animationDuration,
+							easing: quintOut
+						}}
+					>
+						{@render step(i + 1)}
+					</div>
+				{/if}
+			{/each}
+		</div>
+		{#if !stickyButtons}
+			<div class="stepper-buttons-wrapper">
+				<div class="join grid grid-cols-2">
+					<button onclick={() => move(-1)} class="join-item btn flex items-center justify-start">
+						<span>
+							{#if leftCaret}
+								{@render leftCaret()}
+							{/if}
+						</span>
+						<span> {backLabel} </span>
+					</button>
+					{#if currentStep < last}
+						<button
+							onclick={() => move(1)}
+							class="join-item btn btn-neutral flex items-center justify-end"
+						>
+							<span> {nextLabel} </span>
+							<span>
+								{#if rightCaret}
+									{@render rightCaret()}
+								{/if}
+							</span>
+						</button>
+					{:else}
+						<button
+							onclick={() => onfinish()}
+							class="join-item btn btn-primary flex items-center justify-end"
+						>
+							<span> {finishLabel} </span>
+							<span>
+								{#if finishCaret}
+									{@render finishCaret()}
+								{/if}
+							</span>
+						</button>
 					{/if}
-				</span>
-			</button>
-		{:else}
-			<button
-				onclick={() => onfinish()}
-				class="join-item btn btn-primary flex items-center justify-end"
-			>
-				<span> {finishLabel} </span>
-				<span>
-					{#if finishCaret}
-						{@render finishCaret()}
-					{/if}
-				</span>
-			</button>
+				</div>
+			</div>
 		{/if}
 	</div>
+	{#if stickyButtons}
+		<div class="stepper-buttons-wrapper">
+			<div class="join grid grid-cols-2">
+				<button onclick={() => move(-1)} class="join-item btn flex items-center justify-start">
+					<span>
+						{#if leftCaret}
+							{@render leftCaret()}
+						{/if}
+					</span>
+					<span> {backLabel} </span>
+				</button>
+				{#if currentStep < last}
+					<button
+						onclick={() => move(1)}
+						class="join-item btn btn-neutral flex items-center justify-end"
+					>
+						<span> {nextLabel} </span>
+						<span>
+							{#if rightCaret}
+								{@render rightCaret()}
+							{/if}
+						</span>
+					</button>
+				{:else}
+					<button
+						onclick={() => onfinish()}
+						class="join-item btn btn-primary flex items-center justify-end"
+					>
+						<span> {finishLabel} </span>
+						<span>
+							{#if finishCaret}
+								{@render finishCaret()}
+							{/if}
+						</span>
+					</button>
+				{/if}
+			</div>
+		</div>
+	{/if}
 </div>
 
 <style>
+	.stepper-wrapper {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		gap: 1rem;
+	}
+
+	.stepper-sticky {
+		height: 100%;
+	}
+
+	.stepper-content-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.stepper-content-wrapper-sticky {
+		flex: 1;
+		overflow-y: auto;
+		overflow-x: hidden;
+		min-height: 0;
+	}
+
+	.stepper-buttons-wrapper {
+		flex-shrink: 0;
+	}
+
 	.badge-step {
 		font-size: calc(var(--size-field) * 3);
 	}
@@ -251,6 +331,7 @@
 	.step-content-container {
 		position: relative;
 		overflow: hidden;
+		flex-shrink: 0;
 	}
 
 	.step-content {
