@@ -54,6 +54,22 @@
 			]
 		},
 		{
+			category: 'Navigation Components',
+			items: [
+				{
+					name: 'BottomNavigation',
+					path: '/components/bottomnavigation',
+					description: 'Bottom navigation bar'
+				},
+				{
+					name: 'Breadcrumbs',
+					path: '/components/breadcrumbs',
+					description: 'Hierarchical navigation path'
+				},
+				{ name: 'Menu', path: '/components/menu', description: 'Vertical or horizontal menu' }
+			]
+		},
+		{
 			category: 'Layout Components',
 			items: [
 				{ name: 'AppShell', path: '/components/appshell', description: 'Central app navigation' },

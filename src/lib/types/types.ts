@@ -78,3 +78,113 @@ export interface AvatarOption {
 	/** Optional alt text for accessibility */
 	alt?: string;
 }
+
+/**
+ * Data structure for Breadcrumbs component items.
+ */
+export interface BreadcrumbItem {
+	/** Unique identifier for the breadcrumb */
+	id: string;
+	/** Label text to display */
+	label: string;
+	/** Optional href for navigation */
+	href?: string;
+	/** Optional click handler */
+	onclick?: () => void;
+	/** Optional icon component for rendering custom icons */
+	icon?: Component;
+	/** Optional props to pass to the icon component */
+	iconProps?: Record<string, any>;
+}
+
+/**
+ * Data structure for Menu component items.
+ */
+export interface MenuItem {
+	/** Unique identifier for the menu item */
+	id: string;
+	/** Label text to display */
+	label: string;
+	/** Optional href for navigation */
+	href?: string;
+	/** Optional click handler */
+	onclick?: () => void;
+	/** Optional icon component for rendering custom icons */
+	icon?: Component;
+	/** Optional props to pass to the icon component */
+	iconProps?: Record<string, any>;
+	/** Mark this item as active */
+	active?: boolean;
+	/** Mark this item as disabled */
+	disabled?: boolean;
+	/** Optional nested submenu items */
+	submenu?: MenuItem[];
+	/** For submenu parents - whether to show submenu by default */
+	submenuOpen?: boolean;
+}
+
+/**
+ * Data structure for Menu component section titles.
+ */
+export interface MenuTitle {
+	/** Unique identifier for the title */
+	id: string;
+	/** Title text to display */
+	title: string;
+	/** Optional menu items under this title */
+	items?: MenuItem[];
+}
+
+/**
+ * Data structure for NavBar component items.
+ */
+export interface NavBarItem {
+	/** Unique identifier for the navbar item */
+	id: string;
+	/** Label text to display */
+	label?: string;
+	/** Optional href for navigation */
+	href?: string;
+	/** Optional click handler */
+	onclick?: () => void;
+	/** Optional icon component for rendering custom icons */
+	icon?: Component;
+	/** Optional props to pass to the icon component */
+	iconProps?: Record<string, any>;
+	/** Mark this item as active */
+	active?: boolean;
+	/** Mark this item as disabled */
+	disabled?: boolean;
+	/** Type of navbar item: 'button', 'link', 'dropdown', or 'custom' */
+	type?: 'button' | 'link' | 'dropdown' | 'custom';
+	/** For dropdown items - submenu items */
+	submenu?: NavBarItem[];
+	/** Custom content snippet for advanced use cases */
+	content?: Snippet;
+}
+
+/**
+ * Configuration for NavBar component.
+ */
+export interface NavBarConfig {
+	/** Items to display in the start section (left side) */
+	start?: NavBarItem[];
+	/** Items to display in the center section */
+	center?: NavBarItem[];
+	/** Items to display in the end section (right side) */
+	end?: NavBarItem[];
+	/** Optional brand/logo text */
+	brand?: string;
+	/** Optional brand href */
+	brandHref?: string;
+	/** Optional brand icon */
+	brandIcon?: Component;
+	/** Optional brand icon props */
+	brandIconProps?: Record<string, any>;
+	/** Background color class (e.g., 'bg-base-100', 'bg-neutral') */
+	bgClass?: string;
+	/** Text color class (e.g., 'text-neutral-content') */
+	textClass?: string;
+	/** Additional CSS classes */
+	class?: string;
+}

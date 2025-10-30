@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import type { BottomNavItem } from '$lib/types/types.js';
+	import type { BottomNavItem, NavBarConfig } from '$lib/types/types.js';
 	import BottomNavigation from '$lib/components/navigation/BottomNavigation.svelte';
+	import NavBar from '$lib/components/navigation/NavBar.svelte';
 
 	/**
-	 * AppShell component provides a mobile app layout structure with bottom navigation.
+	 * AppShell component provides a mobile app layout structure with optional top navbar and bottom navigation.
 	 * Designed to be used in SvelteKit layouts with automatic active state management.
 	 */
 	interface Props {
@@ -14,6 +15,8 @@
 		activeId?: string;
 		/** Content to display in the main area */
 		children: Snippet;
+		/** Optional navbar configuration for top navigation */
+		navbar?: NavBarConfig;
 		/** Additional CSS classes for the shell container */
 		class?: string;
 		/** Additional CSS classes for the content area */
@@ -26,6 +29,7 @@
 		items,
 		activeId = undefined,
 		children,
+		navbar = undefined,
 		class: className = '',
 		contentClass = '',
 		navClass = ''
@@ -33,6 +37,10 @@
 </script>
 
 <div class="app-shell {className}">
+	{#if navbar}
+		<NavBar config={navbar} />
+	{/if}
+
 	<main class="app-shell-content {contentClass}">
 		{@render children()}
 	</main>

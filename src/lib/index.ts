@@ -1,26 +1,36 @@
 /** types go here */
 import type {
-	KeyValuePair,
-	ListPickerData,
-	ListPickerLabel,
-	OptionCardData,
-	OptionCardBadge,
-	OptionCardMetric,
-	BottomNavItem,
-	AvatarOption
+  KeyValuePair,
+  ListPickerData,
+  ListPickerLabel,
+  OptionCardData,
+  OptionCardBadge,
+  OptionCardMetric,
+  BottomNavItem,
+  AvatarOption,
+  BreadcrumbItem,
+  MenuItem,
+  MenuTitle,
+  NavBarItem,
+  NavBarConfig
 } from './types/types.js';
 import type { ChartProps } from './chart/props.js';
 import type { ToastMessage } from './components/toast/toast.svelte.js';
 
 export type {
-	KeyValuePair,
-	ListPickerData,
-	ListPickerLabel,
-	OptionCardData,
-	OptionCardBadge,
-	OptionCardMetric,
-	BottomNavItem,
-	AvatarOption
+  KeyValuePair,
+  ListPickerData,
+  ListPickerLabel,
+  OptionCardData,
+  OptionCardBadge,
+  OptionCardMetric,
+  BottomNavItem,
+  AvatarOption,
+  BreadcrumbItem,
+  MenuItem,
+  MenuTitle,
+  NavBarItem,
+  NavBarConfig
 };
 export type { ChartProps };
 export type { ToastMessage };
@@ -41,6 +51,8 @@ import LineChart from '$lib/components/chart/LineChart.svelte';
 import BarChart from '$lib/components/chart/BarChart.svelte';
 import PolarAreaChart from '$lib/components/chart/PolarAreaChart.svelte';
 import BottomNavigation from '$lib/components/navigation/BottomNavigation.svelte';
+import NavBar from '$lib/components/navigation/NavBar.svelte';
+import Breadcrumbs from '$lib/components/navigation/Breadcrumbs.svelte';
 import CircularProgress from '$lib/components/progress/CircularProgress.svelte';
 import StatCard from '$lib/components/stat/StatCard.svelte';
 import PullToRefresh from '$lib/components/refresh/PullToRefresh.svelte';
@@ -49,34 +61,38 @@ import AvatarGroup from '$lib/components/avatar/AvatarGroup.svelte';
 import AvatarPicker from '$lib/components/avatar/AvatarPicker.svelte';
 import ToastContainer from '$lib/components/toast/ToastContainer.svelte';
 import AppShell from '$lib/components/layout/AppShell.svelte';
+import Menu from '$lib/components/menu/Menu.svelte';
 
-import { AlertType } from './enum/enum.js';
+import { AlertType, TextSize, MenuSize } from './enum/enum.js';
 import { toast } from './components/toast/toast.svelte.js';
 
-export { AlertType };
+export { AlertType, TextSize, MenuSize };
 export { toast };
 export {
-	AlertBox,
-	ListPicker,
-	OptionCards,
-	SwipeableListItem,
-	RangeInput,
-	ButtonGroup,
-	ModalDialog,
-	Stepper,
-	Stack,
-	StackCard,
-	ValidatedInput,
-	LineChart,
-	BarChart,
-	PolarAreaChart,
-	BottomNavigation,
-	CircularProgress,
-	StatCard,
-	PullToRefresh,
-	Avatar,
-	AvatarGroup,
-	AvatarPicker,
-	ToastContainer,
-	AppShell
+  AlertBox,
+  ListPicker,
+  OptionCards,
+  SwipeableListItem,
+  RangeInput,
+  ButtonGroup,
+  ModalDialog,
+  Stepper,
+  Stack,
+  StackCard,
+  ValidatedInput,
+  LineChart,
+  BarChart,
+  PolarAreaChart,
+  BottomNavigation,
+  NavBar,
+  Breadcrumbs,
+  CircularProgress,
+  StatCard,
+  PullToRefresh,
+  Avatar,
+  AvatarGroup,
+  AvatarPicker,
+  ToastContainer,
+  AppShell,
+  Menu
 };
