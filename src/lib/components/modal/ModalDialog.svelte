@@ -15,9 +15,9 @@
 		/** Optional footer snippet (defaults to Confirm/Cancel buttons) */
 		footer?: Snippet;
 		/** Callback fired when confirm button is clicked */
-		onconfirm?: () => void;
+		onconfirm?: (e?: Event) => void;
 		/** Callback fired when cancel button is clicked */
-		oncancel?: () => void;
+		oncancel?: (e?: Event) => void;
 	}
 
 	let {
@@ -29,14 +29,14 @@
 		oncancel = () => {}
 	}: Props = $props();
 
-	const confirm = () => {
-		onconfirm?.();
+	const confirm = (e: Event) => {
+		onconfirm?.(e);
 
 		dialog?.close();
 	};
 
-	const cancel = () => {
-		oncancel?.();
+	const cancel = (e: Event) => {
+		oncancel?.(e);
 
 		dialog?.close();
 	};
