@@ -3,6 +3,7 @@
 	import type { BottomNavItem, NavBarConfig } from '$lib/types/types.js';
 	import BottomNavigation from '$lib/components/navigation/BottomNavigation.svelte';
 	import NavBar from '$lib/components/navigation/NavBar.svelte';
+	import PullToRefresh from '$lib/components/refresh/PullToRefresh.svelte';
 
 	/**
 	 * AppShell component provides a mobile app layout structure with optional top navbar and bottom navigation.
@@ -23,6 +24,24 @@
 		contentClass?: string;
 		/** Additional CSS classes for the bottom navigation */
 		navClass?: string;
+		/** Controls visibility of the loading progress bar */
+		loading?: boolean;
+		/** Loading progress bar color */
+		loadingColor?:
+			| 'progress-primary'
+			| 'progress-secondary'
+			| 'progress-accent'
+			| 'progress-info'
+			| 'progress-success'
+			| 'progress-warning'
+			| 'progress-error'
+			| 'progress-neutral';
+		/** Callback fired when pull-to-refresh is triggered. If provided, enables pull-to-refresh functionality */
+		onrefresh?: () => void | Promise<void>;
+		/** Whether a refresh is currently in progress */
+		refreshing?: boolean;
+		/** Custom refresh indicator snippet */
+		refreshIndicator?: Snippet<[number]>;
 	}
 
 	let {
@@ -32,7 +51,12 @@
 		navbar = undefined,
 		class: className = '',
 		contentClass = '',
-		navClass = ''
+		navClass = '',
+		loading = false,
+		loadingColor = 'progress-primary',
+		onrefresh = undefined,
+		refreshing = $bindable(false),
+		refreshIndicator = undefined
 	}: Props = $props();
 </script>
 
@@ -41,9 +65,19 @@
 		<NavBar config={navbar} />
 	{/if}
 
-	<main class="app-shell-content {contentClass}">
-		{@render children()}
-	</main>
+	{#if loading}
+		<progress class="progress {loadingColor} w-full p-0"></progress>
+	{/if}
+
+	{#if onrefresh}
+		<PullToRefresh {onrefresh} bind:refreshing indicator={refreshIndicator} class="app-shell-content {contentClass}">
+			{@render children()}
+		</PullToRefresh>
+	{:else}
+		<main class="app-shell-content {contentClass}">
+			{@render children()}
+		</main>
+	{/if}
 
 	<BottomNavigation {items} {activeId} class={navClass} />
 </div>

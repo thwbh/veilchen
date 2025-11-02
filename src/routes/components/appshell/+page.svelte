@@ -6,6 +6,9 @@
 	import UserIcon from './icons/UserIcon.svelte';
 
 	let activeId = $state('home');
+	let isLoading = $state(false);
+	let isRefreshing = $state(false);
+	let lastRefreshTime = $state<string>('Never');
 
 	const demoNavItems: BottomNavItem[] = [
 		{
@@ -24,6 +27,21 @@
 			icon: UserIcon
 		}
 	];
+
+	function simulateLoading() {
+		isLoading = true;
+		setTimeout(() => {
+			isLoading = false;
+		}, 2000);
+	}
+
+	async function handleRefresh() {
+		isRefreshing = true;
+		// Simulate API call
+		await new Promise(resolve => setTimeout(resolve, 1500));
+		lastRefreshTime = new Date().toLocaleTimeString();
+		isRefreshing = false;
+	}
 </script>
 
 <div class="flex flex-col gap-6 p-4">
@@ -51,10 +69,21 @@
 
 	<div>
 		<h2 class="mb-2 text-xl font-bold">Preview</h2>
+		<div class="mb-4 flex gap-2">
+			<button class="btn btn-primary btn-sm" onclick={simulateLoading}>
+				Simulate Loading
+			</button>
+			<span class="text-sm opacity-70 self-center">
+				{isLoading ? 'Loading...' : 'Click to see loading indicator'}
+			</span>
+		</div>
 		<div class="mockup-phone border-primary">
 			<div class="mockup-phone-camera"></div>
 			<div class="mockup-phone-display bg-base-200">
 				<div class="h-fit w-fit">
+					{#if isLoading}
+						<progress class="progress progress-primary w-full"></progress>
+					{/if}
 					<div class="p-4">
 						<h3 class="text-xl font-bold">Active: {activeId}</h3>
 						<p class="mt-2 text-sm opacity-70">
@@ -248,10 +277,25 @@
 			<ul class="mb-4 list-inside list-disc space-y-1 opacity-70">
 				<li><code>items: BottomNavItem[]</code> - Navigation items</li>
 				<li><code>activeId?: string</code> - Currently active item ID</li>
-				<li><code>onitemclick?: (id: string) => void</code> - Click callback</li>
+				<li><code>navbar?: NavBarConfig</code> - Optional navbar configuration for top navigation</li>
 				<li><code>class?: string</code> - Additional CSS classes for shell</li>
 				<li><code>contentClass?: string</code> - Additional CSS classes for content area</li>
 				<li><code>navClass?: string</code> - Additional CSS classes for navigation</li>
+				<li><code>loading?: boolean</code> - Show/hide loading progress bar (default: false)</li>
+				<li>
+					<code
+						>loadingColor?: 'progress-primary' | 'progress-secondary' | 'progress-accent' |
+						...</code
+					> - Progress bar color (default: 'progress-primary')
+				</li>
+				<li>
+					<code>onrefresh?: () => void | Promise&lt;void&gt;</code> - Callback for pull-to-refresh.
+					If provided, enables pull-to-refresh
+				</li>
+				<li><code>refreshing?: boolean</code> - Whether a refresh is in progress (bindable)</li>
+				<li>
+					<code>refreshIndicator?: Snippet&lt;[number]&gt;</code> - Custom refresh indicator snippet
+				</li>
 			</ul>
 
 			<p class="mb-2 font-semibold">BottomNavItem:</p>
@@ -271,6 +315,111 @@
 					<code>onclick?: () => void</code> - Click handler for this specific item (optional)
 				</li>
 			</ul>
+		</div>
+	</div>
+
+	<div class="bg-base-200 rounded-lg p-4">
+		<h3 class="mb-2 font-bold">Loading Indicator Example</h3>
+		<pre class="bg-base-300 rounded p-3 text-xs"><code
+				>&lt;script lang="ts"&gt;
+  import {`{`} AppShell {`}`} from '@thwbh/veilchen';
+  import {`{`} navigating {`}`} from '$app/stores';
+
+  // Automatically show loading during navigation
+  const isLoading = $derived(!!$navigating);
+&lt;/script&gt;
+
+&lt;AppShell
+  items={`{`}navItems{`}`}
+  {`{`}activeId{`}`}
+  loading={`{`}isLoading{`}`}
+  loadingColor="progress-primary"
+&gt;
+  {`{`}@render children(){`}`}
+&lt;/AppShell&gt;</code
+			></pre>
+	</div>
+
+	<div class="bg-base-200 rounded-lg p-4">
+		<h3 class="mb-2 font-bold">Pull-to-Refresh with SvelteKit Routing</h3>
+		<p class="mb-3 text-sm opacity-70">
+			Since AppShell is used in layouts, child routes need to communicate their refresh handler to
+			the parent. Use the provided context utilities:
+		</p>
+
+		<div class="space-y-4">
+			<div>
+				<p class="mb-2 text-sm font-semibold">1. In your layout with AppShell:</p>
+				<pre class="bg-base-300 rounded p-3 text-xs"><code
+						>&lt;!-- src/routes/(app)/+layout.svelte --&gt;
+&lt;script lang="ts"&gt;
+  import {`{`} AppShell, createRefreshContext {`}`} from '@thwbh/veilchen';
+
+  const refresh = createRefreshContext();
+&lt;/script&gt;
+
+&lt;AppShell
+  items={`{`}navItems{`}`}
+  {`{`}activeId{`}`}
+  onrefresh={`{`}refresh.handler{`}`}
+  bind:refreshing={`{`}refresh.isRefreshing{`}`}
+&gt;
+  {`{`}@render children(){`}`}
+&lt;/AppShell&gt;</code
+					></pre>
+			</div>
+
+			<div>
+				<p class="mb-2 text-sm font-semibold">2. In your page route:</p>
+				<pre class="bg-base-300 rounded p-3 text-xs"><code
+						>&lt;!-- src/routes/(app)/home/+page.svelte --&gt;
+&lt;script lang="ts"&gt;
+  import {`{`} useRefresh {`}`} from '@thwbh/veilchen';
+
+  let data = $state([]);
+
+  async function refreshData() {`{`}
+    const response = await fetch('/api/home-data');
+    data = await response.json();
+  {`}`}
+
+  // Register refresh handler for this page
+  const {`{`} isRefreshing {`}`} = useRefresh(refreshData);
+&lt;/script&gt;
+
+&lt;div&gt;
+  {`{`}#if isRefreshing{`}`}
+    &lt;p&gt;Refreshing...&lt;/p&gt;
+  {`{`}/if{`}`}
+
+  &lt;!-- Your page content --&gt;
+&lt;/div&gt;</code
+					></pre>
+			</div>
+
+			<div class="alert alert-success text-xs">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="h-5 w-5 shrink-0 stroke-current"
+					fill="none"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+					/>
+				</svg>
+				<div>
+					<span class="font-semibold">Benefits:</span>
+					<ul class="mt-1 list-inside list-disc">
+						<li>Each page can define its own refresh logic</li>
+						<li>Handler automatically cleans up when navigating away</li>
+						<li>Pages without refresh handlers won't enable pull-to-refresh</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
