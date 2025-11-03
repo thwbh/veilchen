@@ -22,6 +22,8 @@
 		children: Snippet;
 		/** Additional CSS classes */
 		class?: string;
+		/** Bottom padding in rem for bottom navigation */
+		bottomPadding?: number;
 	}
 
 	let {
@@ -32,7 +34,8 @@
 		resistance = 2.5,
 		indicator = undefined,
 		children,
-		class: className = ''
+		class: className = '',
+		bottomPadding = 0
 	}: Props = $props();
 
 	let containerElement: HTMLDivElement | undefined = $state();
@@ -199,6 +202,7 @@
 		style="
 			transform: translateY({refreshing || isReleasing ? threshold : pullDistance}px);
 			transition: {isPulling ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)'};
+			padding-bottom: calc({bottomPadding}rem + env(safe-area-inset-bottom));
 		"
 	>
 		{@render children()}

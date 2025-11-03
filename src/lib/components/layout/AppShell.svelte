@@ -81,6 +81,7 @@
 			{onrefresh}
 			bind:refreshing
 			indicator={refreshIndicator}
+			bottomPadding={dockHeight}
 			class="app-shell-content {contentClass}"
 		>
 			{@render children()}
