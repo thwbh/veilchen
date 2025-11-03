@@ -65,11 +65,11 @@ import Menu from '$lib/components/menu/Menu.svelte';
 import LoadingIndicator from '$lib/components/loading/LoadingIndicator.svelte';
 import LongPressContainer from '$lib/components/gesture/LongPressContainer.svelte';
 
-import { AlertType, TextSize, MenuSize } from './enum/enum.js';
+import { AlertType, TextSize, MenuSize, DockSize } from './enum/enum.js';
 import { toast } from './components/toast/toast.svelte.js';
 import { createRefreshContext, useRefresh } from './utils/refresh.svelte.js';
 
-export { AlertType, TextSize, MenuSize };
+export { AlertType, TextSize, MenuSize, DockSize };
 export { toast };
 export { createRefreshContext, useRefresh };
 export {

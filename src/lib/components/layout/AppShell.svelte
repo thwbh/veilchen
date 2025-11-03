@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { BottomNavItem, NavBarConfig } from '$lib/types/types.js';
+	import { DockSize, DOCK_HEIGHT_MAP } from '$lib/enum/enum.js';
 	import BottomNavigation from '$lib/components/navigation/BottomNavigation.svelte';
 	import NavBar from '$lib/components/navigation/NavBar.svelte';
 	import PullToRefresh from '$lib/components/refresh/PullToRefresh.svelte';
@@ -42,6 +43,8 @@
 		refreshing?: boolean;
 		/** Custom refresh indicator snippet */
 		refreshIndicator?: Snippet<[number]>;
+		/** Size of the bottom dock navigation */
+		dockSize?: DockSize;
 	}
 
 	let {
@@ -56,8 +59,12 @@
 		loadingColor = 'progress-primary',
 		onrefresh = undefined,
 		refreshing = $bindable(false),
-		refreshIndicator = undefined
+		refreshIndicator = undefined,
+		dockSize = DockSize.MD
 	}: Props = $props();
+
+	// Calculate the bottom padding based on dock size
+	const dockHeight = $derived(DOCK_HEIGHT_MAP[dockSize]);
 </script>
 
 <div class="app-shell {className}">
@@ -70,16 +77,24 @@
 	{/if}
 
 	{#if onrefresh}
-		<PullToRefresh {onrefresh} bind:refreshing indicator={refreshIndicator} class="app-shell-content {contentClass}">
+		<PullToRefresh
+			{onrefresh}
+			bind:refreshing
+			indicator={refreshIndicator}
+			class="app-shell-content {contentClass}"
+		>
 			{@render children()}
 		</PullToRefresh>
 	{:else}
-		<main class="app-shell-content {contentClass}">
+		<main
+			class="app-shell-content {contentClass}"
+			style="padding-bottom: calc({dockHeight}rem + env(safe-area-inset-bottom));"
+		>
 			{@render children()}
 		</main>
 	{/if}
 
-	<BottomNavigation {items} {activeId} class={navClass} />
+	<BottomNavigation {items} {activeId} size={dockSize} class={navClass} />
 </div>
 
 <style>
@@ -95,7 +110,6 @@
 		flex: 1;
 		overflow-y: auto;
 		overflow-x: hidden;
-		/* Reserve space for dock navigation */
-		padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+		/* Padding is set dynamically via inline style based on dockSize prop */
 	}
 </style>

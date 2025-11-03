@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { BottomNavItem } from '$lib/types/types.js';
+	import { DockSize } from '$lib/enum/enum.js';
 
 	/**
 	 * A bottom navigation component for mobile apps.
@@ -12,9 +13,11 @@
 		activeId?: string;
 		/** CSS class to apply to the navigation container */
 		class?: string;
+		/** Size of the dock navigation */
+		size?: DockSize;
 	}
 
-	let { items, activeId = undefined, class: className = '' }: Props = $props();
+	let { items, activeId = undefined, class: className = '', size = DockSize.MD }: Props = $props();
 
 	function handleClick(item: BottomNavItem) {
 		// Call the item's specific onclick handler if provided
@@ -24,7 +27,7 @@
 	}
 </script>
 
-<div class="dock dock-bottom {className}">
+<div class="dock dock-bottom {size} {className}">
 	{#each items as item}
 		{#if item.href}
 			<a
