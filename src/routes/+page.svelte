@@ -17,6 +17,11 @@
 					name: 'ValidatedInput',
 					path: '/components/validatedinput',
 					description: 'Input with validation'
+				},
+				{
+					name: 'NumberStepper',
+					path: '/components/numberstepper',
+					description: 'Quick number input with steps'
 				}
 			]
 		},

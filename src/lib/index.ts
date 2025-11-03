@@ -41,6 +41,9 @@ import ListPicker from '$lib/components/list/ListPicker.svelte';
 import OptionCards from '$lib/components/list/OptionCards.svelte';
 import SwipeableListItem from '$lib/components/list/SwipeableListItem.svelte';
 import RangeInput from '$lib/components/input/RangeInput.svelte';
+import NumberStepper from '$lib/components/input/NumberStepper.svelte';
+import NumberWheel from '$lib/components/input/NumberWheel.svelte';
+import InlineNumberWheel from '$lib/components/input/InlineNumberWheel.svelte';
 import ButtonGroup from '$lib/components/control/ButtonGroup.svelte';
 import Stepper from '$lib/components/stepper/Stepper.svelte';
 import Stack from '$lib/components/stack/Stack.svelte';
@@ -78,6 +81,9 @@ export {
   OptionCards,
   SwipeableListItem,
   RangeInput,
+  NumberStepper,
+  NumberWheel,
+  InlineNumberWheel,
   ButtonGroup,
   ModalDialog,
   Stepper,
