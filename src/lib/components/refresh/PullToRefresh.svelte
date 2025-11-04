@@ -51,6 +51,37 @@
 	function handleTouchStart(event: TouchEvent) {
 		if (refreshing) return;
 
+		// Check if touch originated from within a dialog, modal, or nested scrollable element
+		const target = event.target as HTMLElement;
+		let element = target;
+
+		while (element && element !== containerElement) {
+			// Check if element is a dialog or inside a modal
+			if (
+				element.tagName === 'DIALOG' ||
+				element.classList.contains('modal-box') ||
+				element.classList.contains('modal') ||
+				element.hasAttribute('data-no-pull-refresh')
+			) {
+				startY = 0;
+				return;
+			}
+
+			const style = window.getComputedStyle(element);
+			const overflowY = style.overflowY;
+			const isScrollable =
+				(overflowY === 'auto' || overflowY === 'scroll' || overflowY === 'overlay') &&
+				element.scrollHeight > element.clientHeight;
+
+			// If we find a scrollable ancestor, don't activate pull-to-refresh
+			if (isScrollable) {
+				startY = 0;
+				return;
+			}
+
+			element = element.parentElement as HTMLElement;
+		}
+
 		const scrollTop = containerElement?.scrollTop ?? 0;
 
 		// Only allow pull-to-refresh when at the top of the scroll container
