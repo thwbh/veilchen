@@ -18,6 +18,12 @@
 
 	// Example 6: Required Field with Validation
 	let age = $state(0);
+
+	// Example 7: Only Left Wheel
+	let leftOnly = $state(50);
+
+	// Example 8: Only Right Wheel
+	let rightOnly = $state(50);
 </script>
 
 <div class="flex flex-col gap-6 p-4">
@@ -165,13 +171,73 @@
 
 	<div class="divider"></div>
 
+	<div>
+		<h2 class="mb-2 text-2xl font-bold">Example 7: Only Left Wheel</h2>
+		<p class="mb-4 text-sm opacity-70">
+			Single number wheel on the left - both buttons use the same step value
+		</p>
+
+		<NumberStepper
+			bind:value={leftOnly}
+			label="Counter (Left Wheel Only)"
+			min={0}
+			max={100}
+			showLeftWheel={true}
+			showRightWheel={false}
+			incrementSteps={[1, 5, 10, 25]}
+			decrementSteps={[1, 5, 10, 25]}
+		/>
+
+		<div class="bg-base-200 rounded-box mt-4 p-4">
+			<p class="text-sm">
+				<strong>Value:</strong>
+				{leftOnly}
+			</p>
+			<p class="mt-1 text-xs opacity-70">
+				Both increment and decrement use the same step size from the left wheel
+			</p>
+		</div>
+	</div>
+
+	<div class="divider"></div>
+
+	<div>
+		<h2 class="mb-2 text-2xl font-bold">Example 8: Only Right Wheel</h2>
+		<p class="mb-4 text-sm opacity-70">
+			Single number wheel on the right - both buttons use the same step value
+		</p>
+
+		<NumberStepper
+			bind:value={rightOnly}
+			label="Counter (Right Wheel Only)"
+			min={0}
+			max={100}
+			showLeftWheel={false}
+			showRightWheel={true}
+			incrementSteps={[1, 2, 5, 10]}
+			decrementSteps={[1, 2, 5, 10]}
+		/>
+
+		<div class="bg-base-200 rounded-box mt-4 p-4">
+			<p class="text-sm">
+				<strong>Value:</strong>
+				{rightOnly}
+			</p>
+			<p class="mt-1 text-xs opacity-70">
+				Both increment and decrement use the same step size from the right wheel
+			</p>
+		</div>
+	</div>
+
+	<div class="divider"></div>
+
 	<div class="bg-info/20 rounded-box p-4">
 		<h3 class="mb-2 text-lg font-bold">How to Use:</h3>
 		<ul class="list-inside list-disc space-y-1 text-sm opacity-80">
 			<li>Click the minus (-) or plus (+) buttons to decrement/increment the value</li>
-			<li>Click the step size buttons (e.g., "-1", "+5") to open the iOS-style wheel picker</li>
-			<li>In the wheel picker, scroll or tap to select a different step size</li>
+			<li>Swipe up/down on the number wheels to change the step size</li>
 			<li>The selected step size will be used for subsequent increment/decrement operations</li>
+			<li>When only one wheel is visible, both buttons use the same step value</li>
 			<li>You can also type directly into the number field</li>
 		</ul>
 	</div>

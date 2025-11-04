@@ -34,6 +34,10 @@
 		initialIncrementStep?: number;
 		/** Initial step size for decrement (default: first in decrementSteps) */
 		initialDecrementStep?: number;
+		/** Whether to show the left (decrement) number wheel (default: true) */
+		showLeftWheel?: boolean;
+		/** Whether to show the right (increment) number wheel (default: true) */
+		showRightWheel?: boolean;
 		/** Children snippet for error/help text */
 		children?: Snippet;
 	}
@@ -52,15 +56,31 @@
 		decrementSteps = [1, 5, 10],
 		initialIncrementStep = incrementSteps[0],
 		initialDecrementStep = decrementSteps[0],
+		showLeftWheel = true,
+		showRightWheel = true,
 		children,
 		...props
 	}: Props = $props();
 
+	// When only one wheel is visible, use a shared step value
+	const useSingleStep = !showLeftWheel || !showRightWheel;
+	const sharedSteps = useSingleStep ? (showLeftWheel ? decrementSteps : incrementSteps) : [];
+	const sharedInitialStep = useSingleStep
+		? showLeftWheel
+			? initialDecrementStep
+			: initialIncrementStep
+		: 0;
+
+	let sharedStep = $state(sharedInitialStep);
 	let incrementStep = $state(initialIncrementStep);
 	let decrementStep = $state(initialDecrementStep);
 
+	// Use shared step when only one wheel is visible
+	const activeIncrementStep = $derived(useSingleStep ? sharedStep : incrementStep);
+	const activeDecrementStep = $derived(useSingleStep ? sharedStep : decrementStep);
+
 	function increment() {
-		const newValue = value + incrementStep;
+		const newValue = value + activeIncrementStep;
 		if (max !== undefined) {
 			value = Math.min(newValue, max);
 		} else {
@@ -69,7 +89,7 @@
 	}
 
 	function decrement() {
-		const newValue = value - decrementStep;
+		const newValue = value - activeDecrementStep;
 		if (min !== undefined) {
 			value = Math.max(newValue, min);
 		} else {
@@ -94,13 +114,19 @@
 	<div class="number-stepper-container">
 		<!-- Decrement Section -->
 		<div class="stepper-section">
-			<InlineNumberWheel numbers={decrementSteps} bind:value={decrementStep} />
+			{#if showLeftWheel}
+				{#if useSingleStep}
+					<InlineNumberWheel numbers={sharedSteps} bind:value={sharedStep} />
+				{:else}
+					<InlineNumberWheel numbers={decrementSteps} bind:value={decrementStep} />
+				{/if}
+			{/if}
 			<button
 				type="button"
 				class="btn btn-primary stepper-button"
 				onclick={decrement}
 				disabled={min !== undefined && value <= min}
-				aria-label="Decrement by {decrementStep}"
+				aria-label="Decrement by {activeDecrementStep}"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +174,7 @@
 				class="btn btn-primary stepper-button"
 				onclick={increment}
 				disabled={max !== undefined && value >= max}
-				aria-label="Increment by {incrementStep}"
+				aria-label="Increment by {activeIncrementStep}"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -160,7 +186,13 @@
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
 				</svg>
 			</button>
-			<InlineNumberWheel numbers={incrementSteps} bind:value={incrementStep} />
+			{#if showRightWheel}
+				{#if useSingleStep}
+					<InlineNumberWheel numbers={sharedSteps} bind:value={sharedStep} />
+				{:else}
+					<InlineNumberWheel numbers={incrementSteps} bind:value={incrementStep} />
+				{/if}
+			{/if}
 		</div>
 	</div>
 </label>

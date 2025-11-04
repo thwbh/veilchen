@@ -45,23 +45,50 @@
 		wheelElement.scrollTop = scrollTop + walk;
 	}
 
+	let isScrolling = $state(false);
+	let scrollTimeout: ReturnType<typeof setTimeout>;
+
 	function handleScroll() {
 		if (!wheelElement) return;
-		// Snap to nearest item after scrolling
+
+		isScrolling = true;
+		clearTimeout(scrollTimeout);
+
+		// Update the visual selection immediately during scroll
 		const index = Math.round(wheelElement.scrollTop / ITEM_HEIGHT);
 		const clampedIndex = Math.max(0, Math.min(numbers.length - 1, index));
 
 		if (clampedIndex !== selectedIndex) {
 			selectedIndex = clampedIndex;
-			value = numbers[clampedIndex];
-			onchange?.(numbers[clampedIndex]);
+		}
+
+		// After scrolling stops, snap to the selected item
+		scrollTimeout = setTimeout(() => {
+			snapToIndex(clampedIndex);
+			isScrolling = false;
+		}, 150);
+	}
+
+	function snapToIndex(index: number) {
+		if (!wheelElement) return;
+
+		const targetScroll = index * ITEM_HEIGHT;
+		wheelElement.scrollTo({
+			top: targetScroll,
+			behavior: 'smooth'
+		});
+
+		if (numbers[index] !== value) {
+			value = numbers[index];
+			onchange?.(numbers[index]);
 		}
 	}
 
-	let scrollTimeout: ReturnType<typeof setTimeout>;
-	function debouncedHandleScroll() {
-		clearTimeout(scrollTimeout);
-		scrollTimeout = setTimeout(handleScroll, 100);
+	function handleTouchEnd() {
+		if (!wheelElement) return;
+		const index = Math.round(wheelElement.scrollTop / ITEM_HEIGHT);
+		const clampedIndex = Math.max(0, Math.min(numbers.length - 1, index));
+		snapToIndex(clampedIndex);
 	}
 
 	$effect(() => {
@@ -77,7 +104,8 @@
 		bind:this={wheelElement}
 		ontouchstart={handleTouchStart}
 		ontouchmove={handleTouchMove}
-		onscroll={debouncedHandleScroll}
+		ontouchend={handleTouchEnd}
+		onscroll={handleScroll}
 		role="listbox"
 		aria-label="Number selector"
 	>
@@ -114,6 +142,8 @@
 		scroll-snap-type: y mandatory;
 		scrollbar-width: none;
 		-ms-overflow-style: none;
+		scroll-behavior: auto;
+		-webkit-overflow-scrolling: touch;
 	}
 
 	.inline-number-wheel::-webkit-scrollbar {
@@ -132,7 +162,12 @@
 		justify-content: center;
 		font-size: 0.875rem;
 		scroll-snap-align: center;
-		transition: all 0.15s ease;
+		scroll-snap-stop: always;
+		transition:
+			opacity 0.2s ease,
+			font-size 0.2s ease,
+			font-weight 0.2s ease,
+			color 0.2s ease;
 		opacity: 0.3;
 		width: 100%;
 		background: transparent;
