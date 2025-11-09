@@ -37,6 +37,7 @@ export type { ToastMessage };
 
 /** components go here */
 import AlertBox from '$lib/components/alert/AlertBox.svelte';
+import Card from '$lib/components/card/Card.svelte';
 import ListPicker from '$lib/components/list/ListPicker.svelte';
 import OptionCards from '$lib/components/list/OptionCards.svelte';
 import SwipeableListItem from '$lib/components/list/SwipeableListItem.svelte';
@@ -77,6 +78,7 @@ export { toast };
 export { createRefreshContext, useRefresh };
 export {
   AlertBox,
+  Card,
   ListPicker,
   OptionCards,
   SwipeableListItem,

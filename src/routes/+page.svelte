@@ -50,6 +50,7 @@
 			items: [
 				{ name: 'AlertBox', path: '/components/alert', description: 'Alert messages' },
 				{ name: 'ModalDialog', path: '/components/modal', description: 'Modal dialogs' },
+				{ name: 'Card', path: '/components/card', description: 'Card display component' },
 				{
 					name: 'CircularProgress',
 					path: '/components/circularprogress',

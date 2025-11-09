@@ -26,6 +26,8 @@
 		onswipe?: (direction: 'left' | 'right') => void;
 		/** Callback fired when the active card changes */
 		onchange?: (updatedIndex: number) => void;
+		/** Additional CSS classes for the card */
+		class?: string;
 	}
 
 	let {
@@ -37,7 +39,8 @@
 		minSwipeDistance = 60,
 		swipeTimeframe = 300,
 		onswipe = undefined,
-		onchange = undefined
+		onchange = undefined,
+		class: className = ''
 	}: Props = $props();
 
 	let direction = $state(0);
@@ -148,7 +151,7 @@
 	}
 </script>
 
-<div class="flex flex-col items-center gap-2">
+<div class="flex flex-col items-center gap-2 {className}">
 	{#if indicator}
 		{@render indicator()}
 	{:else}
