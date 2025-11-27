@@ -69,11 +69,15 @@
 
 <div class="app-shell {className}">
 	{#if navbar}
-		<NavBar config={navbar} />
+		<div class="app-shell-navbar">
+			<NavBar config={navbar} />
+		</div>
 	{/if}
 
 	{#if loading}
-		<progress class="progress {loadingColor} w-full p-0"></progress>
+		<div class="app-shell-loading">
+			<progress class="progress {loadingColor} w-full p-0"></progress>
+		</div>
 	{/if}
 
 	{#if onrefresh}
@@ -81,21 +85,20 @@
 			{onrefresh}
 			bind:refreshing
 			indicator={refreshIndicator}
-			bottomPadding={dockHeight}
+			bottomPadding={0}
 			class="app-shell-content {contentClass}"
 		>
 			{@render children()}
 		</PullToRefresh>
 	{:else}
-		<main
-			class="app-shell-content {contentClass}"
-			style="padding-bottom: calc({dockHeight}rem + env(safe-area-inset-bottom));"
-		>
+		<main class="app-shell-content {contentClass}">
 			{@render children()}
 		</main>
 	{/if}
 
-	<BottomNavigation {items} {activeId} size={dockSize} class={navClass} />
+	<div class="app-shell-bottom-nav">
+		<BottomNavigation {items} {activeId} size={dockSize} class={navClass} />
+	</div>
 </div>
 
 <style>
@@ -105,12 +108,42 @@
 		height: 100vh;
 		height: 100dvh; /* Use dynamic viewport height for mobile browsers */
 		overflow: hidden;
+		position: relative;
+	}
+
+	.app-shell-navbar {
+		flex-shrink: 0;
+		position: sticky;
+		top: 0;
+		z-index: 20;
+		background: inherit;
+	}
+
+	.app-shell-loading {
+		flex-shrink: 0;
+		position: sticky;
+		top: 0;
+		z-index: 30;
 	}
 
 	.app-shell-content {
 		flex: 1;
 		overflow-y: auto;
 		overflow-x: hidden;
-		/* Padding is set dynamically via inline style based on dockSize prop */
+		min-height: 0; /* Important: allows flex child to shrink below content size */
+	}
+
+	.app-shell-bottom-nav {
+		flex-shrink: 0;
+		/* Override DaisyUI's dock-bottom fixed positioning to keep it in document flow */
+		position: relative !important;
+		/* Add safe area inset for devices with home indicators */
+		padding-bottom: env(safe-area-inset-bottom);
+	}
+
+	/* Override the fixed positioning from DaisyUI's dock-bottom class within AppShell */
+	.app-shell-bottom-nav :global(.dock-bottom) {
+		position: relative !important;
+		bottom: auto !important;
 	}
 </style>
