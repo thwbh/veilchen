@@ -56,7 +56,12 @@
 					path: '/components/circularprogress',
 					description: 'Circular progress indicator'
 				},
-				{ name: 'StatCard', path: '/components/statcard', description: 'Stat/Metrics display' }
+				{ name: 'StatCard', path: '/components/statcard', description: 'Stat/Metrics display' },
+				{
+					name: 'LoadingIndicator',
+					path: '/components/loadingindicator',
+					description: 'Loading state indicator'
+				}
 			]
 		},
 		{
@@ -72,7 +77,8 @@
 					path: '/components/breadcrumbs',
 					description: 'Hierarchical navigation path'
 				},
-				{ name: 'Menu', path: '/components/menu', description: 'Vertical or horizontal menu' }
+				{ name: 'Menu', path: '/components/menu', description: 'Vertical or horizontal menu' },
+				{ name: 'FAB', path: '/components/fab', description: 'Floating Action Button' }
 			]
 		},
 		{
