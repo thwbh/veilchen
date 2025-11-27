@@ -188,3 +188,27 @@ export interface NavBarConfig {
   /** Additional CSS classes */
   class?: string;
 }
+
+/**
+ * Data structure for FAB (Floating Action Button) action items.
+ */
+export interface FABAction {
+  /** Unique identifier for the action */
+  id: string;
+  /** Label text to display next to the action button */
+  label?: string;
+  /** Optional href for navigation (uses <a> tag instead of <button>) */
+  href?: string;
+  /** Optional click handler */
+  onclick?: () => void;
+  /** Optional icon component for rendering custom icons */
+  icon?: Component;
+  /** Optional props to pass to the icon component */
+  iconProps?: Record<string, any>;
+  /** Mark this action as disabled */
+  disabled?: boolean;
+  /** Button color variant */
+  color?: 'primary' | 'secondary' | 'accent' | 'neutral' | 'info' | 'success' | 'warning' | 'error';
+  /** Whether this is the main action shown when FAB is open (replaces trigger) */
+  isMainAction?: boolean;
+}

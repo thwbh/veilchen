@@ -12,7 +12,8 @@ import type {
   MenuItem,
   MenuTitle,
   NavBarItem,
-  NavBarConfig
+  NavBarConfig,
+  FABAction
 } from './types/types.js';
 import type { ChartProps } from './chart/props.js';
 import type { ToastMessage } from './components/toast/toast.svelte.js';
@@ -30,7 +31,8 @@ export type {
   MenuItem,
   MenuTitle,
   NavBarItem,
-  NavBarConfig
+  NavBarConfig,
+  FABAction
 };
 export type { ChartProps };
 export type { ToastMessage };
@@ -68,6 +70,7 @@ import AppShell from '$lib/components/layout/AppShell.svelte';
 import Menu from '$lib/components/menu/Menu.svelte';
 import LoadingIndicator from '$lib/components/loading/LoadingIndicator.svelte';
 import LongPressContainer from '$lib/components/gesture/LongPressContainer.svelte';
+import FAB from '$lib/components/fab/FAB.svelte';
 
 import { AlertType, TextSize, MenuSize, DockSize } from './enum/enum.js';
 import { toast } from './components/toast/toast.svelte.js';
@@ -108,5 +111,6 @@ export {
   AppShell,
   Menu,
   LoadingIndicator,
-  LongPressContainer
+  LongPressContainer,
+  FAB
 };

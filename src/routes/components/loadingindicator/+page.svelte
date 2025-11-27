@@ -3,6 +3,30 @@
 
 	let visible1 = $state(true);
 	let visible2 = $state(true);
+	let finished1 = $state(false);
+	let finished2 = $state(false);
+	let error1 = $state(false);
+
+	function simulateLoading() {
+		finished1 = false;
+		setTimeout(() => {
+			finished1 = true;
+		}, 2000);
+	}
+
+	function simulateLoadingCustom() {
+		finished2 = false;
+		setTimeout(() => {
+			finished2 = true;
+		}, 2000);
+	}
+
+	function simulateError() {
+		error1 = false;
+		setTimeout(() => {
+			error1 = true;
+		}, 2000);
+	}
 </script>
 
 <div class="flex flex-col gap-6 p-4">
@@ -166,6 +190,91 @@
 
 	<div class="divider"></div>
 
+	<div>
+		<h2 class="mb-2 text-2xl font-bold">Example 6: Finished & Error States</h2>
+		<p class="mb-4 text-sm opacity-70">Show completion or error messages when loading finishes</p>
+
+		<div class="space-y-4">
+			<div class="flex items-center gap-4">
+				<button class="btn btn-primary" onclick={simulateLoading}>
+					Start Loading
+				</button>
+				<LoadingIndicator
+					variant="spinner"
+					size="lg"
+					label="Loading..."
+					finished={finished1}
+				/>
+			</div>
+
+			<div class="flex items-center gap-4">
+				<button class="btn btn-secondary" onclick={simulateLoadingCustom}>
+					Start Loading
+				</button>
+				<LoadingIndicator
+					variant="dots"
+					size="lg"
+					label="Processing..."
+					finished={finished2}
+				>
+					{#snippet finishedContent()}
+						<div class="flex flex-col items-center justify-center gap-2">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-6 w-6 text-success"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+								/>
+							</svg>
+							<span class="text-sm opacity-70">Upload complete!</span>
+						</div>
+					{/snippet}
+				</LoadingIndicator>
+			</div>
+
+			<div class="flex items-center gap-4">
+				<button class="btn btn-error" onclick={simulateError}>
+					Simulate Error
+				</button>
+				<LoadingIndicator
+					variant="ring"
+					size="lg"
+					label="Connecting..."
+					error={error1}
+				>
+					{#snippet errorContent()}
+						<div class="flex flex-col items-center justify-center gap-2">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-6 w-6 text-error"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+								/>
+							</svg>
+							<span class="text-sm opacity-70">Connection failed</span>
+						</div>
+					{/snippet}
+				</LoadingIndicator>
+			</div>
+		</div>
+	</div>
+
+	<div class="divider"></div>
+
 	<div class="bg-base-200 rounded-lg p-4">
 		<h3 class="mb-2 font-bold">Props</h3>
 		<ul class="list-inside list-disc space-y-1 text-sm opacity-70">
@@ -179,6 +288,10 @@
 			<li><code>color?: string</code> - Color class (default: 'text-primary')</li>
 			<li><code>label?: string</code> - Optional text to display below the indicator</li>
 			<li><code>visible?: boolean</code> - Controls visibility (default: true)</li>
+			<li><code>finished?: boolean</code> - When true, shows finished state (default: false)</li>
+			<li><code>finishedContent?: Snippet</code> - Custom snippet for finished state</li>
+			<li><code>error?: boolean</code> - When true, shows error state (default: false)</li>
+			<li><code>errorContent?: Snippet</code> - Custom snippet for error state</li>
 			<li><code>class?: string</code> - Additional CSS classes</li>
 		</ul>
 	</div>
@@ -190,11 +303,14 @@
   import {`{`} LoadingIndicator {`}`} from '@thwbh/veilchen';
 
   let isLoading = $state(false);
+  let isFinished = $state(false);
 
   async function fetchData() {`{`}
     isLoading = true;
+    isFinished = false;
     try {`{`}
       await fetch('/api/data');
+      isFinished = true;
     {`}`} finally {`{`}
       isLoading = false;
     {`}`}
@@ -204,9 +320,17 @@
 &lt;LoadingIndicator
   variant="spinner"
   size="lg"
-  visible={`{`}isLoading{`}`}
+  visible={`{`}isLoading || isFinished{`}`}
+  finished={`{`}isFinished{`}`}
   label="Loading data..."
-/&gt;</code
+&gt;
+  {`{`}#snippet finishedContent(){`}`}
+    &lt;div class="flex flex-col items-center gap-2"&gt;
+      &lt;span class="text-success text-2xl"&gt;✓&lt;/span&gt;
+      &lt;span&gt;Data loaded!&lt;/span&gt;
+    &lt;/div&gt;
+  {`{`}/snippet{`}`}
+&lt;/LoadingIndicator&gt;</code
 			></pre>
 	</div>
 </div>
