@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { AlertType } from '$lib/enum/enum.js';
+	import { AlertType, AlertVariant } from '$lib/enum/enum.js';
 	import type { Snippet } from 'svelte';
 
 	/**
@@ -9,6 +9,8 @@
 	interface Props {
 		/** The type of alert (info, error, warning, success) */
 		type?: AlertType;
+		/** Display variant (default, callout) */
+		variant?: AlertVariant;
 		/** CSS class to apply to the alert element */
 		class?: string;
 		/** Optional custom icon snippet to replace the default icon */
@@ -19,6 +21,7 @@
 
 	let {
 		type = AlertType.Info,
+		variant = AlertVariant.Box,
 		class: className = '',
 		icon = undefined,
 		children,
@@ -26,7 +29,7 @@
 	}: Props = $props();
 </script>
 
-<span role="alert" class="alert alert-horizontal {type} {className}" {...props}>
+<span role="alert" class="{variant} {type} {className}" {...props}>
 	{#if icon}
 		{@render icon()}
 	{:else if type === AlertType.Info}
