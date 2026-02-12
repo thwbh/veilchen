@@ -1,3 +1,4 @@
+import type { BadgeColor } from '$lib/enum/enum.js';
 import type { Snippet, Component } from 'svelte';
 
 /**
@@ -29,7 +30,7 @@ export interface ListPickerData<T = unknown> {
 
 export interface OptionCardBadge {
   text: string;
-  color?: 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'error' | 'info';
+  color?: BadgeColor;
 }
 
 export interface OptionCardMetric {

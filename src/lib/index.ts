@@ -72,11 +72,11 @@ import LoadingIndicator from '$lib/components/loading/LoadingIndicator.svelte';
 import LongPressContainer from '$lib/components/gesture/LongPressContainer.svelte';
 import FAB from '$lib/components/fab/FAB.svelte';
 
-import { AlertType, AlertVariant, TextSize, MenuSize, DockSize } from './enum/enum.js';
+import { AlertType, AlertVariant, TextSize, MenuSize, DockSize, BadgeColor } from './enum/enum.js';
 import { toast } from './components/toast/toast.svelte.js';
 import { createRefreshContext, useRefresh } from './utils/refresh.svelte.js';
 
-export { AlertType, AlertVariant, TextSize, MenuSize, DockSize };
+export { AlertType, AlertVariant, TextSize, MenuSize, DockSize, BadgeColor };
 export { toast };
 export { createRefreshContext, useRefresh };
 export {

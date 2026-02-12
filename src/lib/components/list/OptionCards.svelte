@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { BadgeColor } from '$lib/enum/enum.js';
 	import type { OptionCardData } from '$lib/types/types.js';
 	import type { Snippet } from 'svelte';
 
@@ -73,14 +74,14 @@
 									<h3 class="text-base-content text-base font-bold sm:text-lg">{option.header}</h3>
 									{#if option.highlight}
 										<span
-											class="badge badge-{option.highlight.color || 'primary'} badge-sm text-xs"
+											class="badge {option.highlight.color || BadgeColor.Primary} badge-sm text-xs"
 										>
 											{option.highlight.text}
 										</span>
 									{/if}
 								</div>
 								{#if option.badge}
-									<span class="badge badge-{option.badge.color || 'neutral'} badge-sm text-xs">
+									<span class="badge {option.badge.color || BadgeColor.Neutral} badge-sm text-xs">
 										{option.badge.text}
 									</span>
 								{/if}

@@ -45,3 +45,17 @@ export const DOCK_HEIGHT_MAP: Record<DockSize, number> = {
   [DockSize.LG]: 6,
   [DockSize.XL]: 6.5
 };
+
+/**
+ * Provides badge css classes
+ */
+export enum BadgeColor {
+  Primary = 'badge-primary',
+  Secondary = 'badge-secondary',
+  Accent = 'badge-accent',
+  Warning = 'badge-warning',
+  Success = 'badge-success',
+  Error = 'badge-error',
+  Neutral = 'badge-neutral',
+  Info = 'badge-info'
+}
