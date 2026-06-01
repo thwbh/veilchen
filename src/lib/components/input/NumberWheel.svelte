@@ -111,8 +111,8 @@
 				{#each numbers as num, index}
 					<button
 						class="wheel-item {selectedIndex === index ? 'selected' : ''}"
-						onclick={() => handleSelect(num, index)}
 						type="button"
+						pointer-events="none"
 					>
 						{num}
 					</button>
@@ -160,6 +160,7 @@
 	.wheel-spacer {
 		height: 80px;
 		flex-shrink: 0;
+		pointer-events: none;
 	}
 
 	.wheel-item {

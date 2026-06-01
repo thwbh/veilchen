@@ -30,7 +30,7 @@ describe('InlineNumberWheel', () => {
 		expect(selectedItem?.textContent).toBe('10');
 	});
 
-	test('calls onchange when item is clicked', async () => {
+	test('wheel items do not respond to clicks (scroll-only interaction)', async () => {
 		const handleChange = vi.fn();
 		const { container } = render(InlineNumberWheel, {
 			props: {
@@ -43,7 +43,8 @@ describe('InlineNumberWheel', () => {
 		const item50 = screen.getByText('100');
 		await fireEvent.click(item50);
 
-		expect(handleChange).toHaveBeenCalledWith(100);
+		// Wheel items should not respond to clicks - interaction is scroll-only
+		expect(handleChange).not.toHaveBeenCalled();
 	});
 
 	test('scrolls selected value into view when clientHeight is available', async () => {
