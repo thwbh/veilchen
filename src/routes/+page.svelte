@@ -136,7 +136,7 @@
 	<div class="mb-8">
 		<div class="flex flex-row items-center gap-4">
 			<span>
-				<img src="/logo_64.svg" alt="Veilchen logo" class="h-10 w-10" />
+				<img src="/logo_128.png" alt="Veilchen logo" class="h-10 w-10" />
 			</span>
 			<h1 class="mb-2 text-4xl font-bold">veilchen</h1>
 		</div>
