@@ -17,7 +17,9 @@
 	let wheelElement = $state<HTMLDivElement>();
 	let startY = 0;
 	let scrollTop = 0;
-	let selectedIndex = $state(numbers.indexOf(value ?? numbers[0]));
+	
+	// Update selectedIndex whenever value or numbers change
+	let selectedIndex = $derived(numbers.indexOf(value ?? numbers[0]));
 
 	// Each item height in pixels
 	const ITEM_HEIGHT = 32;
@@ -92,8 +94,19 @@
 	}
 
 	$effect(() => {
-		if (wheelElement && selectedIndex >= 0) {
-			wheelElement.scrollTop = selectedIndex * ITEM_HEIGHT;
+		if (!wheelElement || selectedIndex < 0) return;
+
+		wheelElement.scrollTop = selectedIndex * ITEM_HEIGHT;
+
+		if (wheelElement.clientHeight === 0) {
+			const ro = new ResizeObserver(() => {
+				if (wheelElement && wheelElement.clientHeight > 0) {
+					wheelElement.scrollTop = selectedIndex * ITEM_HEIGHT;
+					ro.disconnect();
+				}
+			});
+			ro.observe(wheelElement);
+			return () => ro.disconnect();
 		}
 	});
 </script>
