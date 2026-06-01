@@ -21,7 +21,11 @@
 	let scrollTop = 0;
 	
 	// Update selectedIndex whenever value or numbers change
-	let selectedIndex = $derived(numbers.indexOf(value ?? numbers[0]));
+	// Ensure it's always a valid index
+	let selectedIndex = $derived(() => {
+		const index = numbers.indexOf(value ?? numbers[0]);
+		return Math.max(0, Math.min(index, numbers.length - 1));
+	});
 
 	// Each item height in pixels
 	const ITEM_HEIGHT = 40;
