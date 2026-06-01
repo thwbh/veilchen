@@ -32,6 +32,12 @@
 		onback?: () => void;
 		/** Callback when finish button is clicked */
 		onfinish?: () => void;
+		/** Pre-advance hook for the next button. Return `false` (or `Promise<false>`) to veto the transition. */
+		onbeforenext?: (from: number, to: number) => boolean | Promise<boolean> | void;
+		/** Pre-advance hook for the back button. Return `false` (or `Promise<false>`) to veto the transition. */
+		onbeforeback?: (from: number, to: number) => boolean | Promise<boolean> | void;
+		/** Pre-advance hook for the finish button. Return `false` (or `Promise<false>`) to veto the transition. */
+		onbeforefinish?: () => boolean | Promise<boolean> | void;
 		/** CSS class for active step badge (default: "badge-neutral") */
 		activeClass?: string;
 		/** Duration of animations in milliseconds (default: 400) */
@@ -54,6 +60,9 @@
 		onnext = () => {},
 		onback = () => {},
 		onfinish = () => {},
+		onbeforenext = undefined,
+		onbeforeback = undefined,
+		onbeforefinish = undefined,
 		activeClass = 'badge-neutral',
 		animationDuration = 400,
 		stickyButtons = false,
@@ -88,19 +97,24 @@
 		};
 	}
 
-	const move = (inc: number) => {
-		if (inc < 0 && currentStep === first) currentStep = first;
-		else if (inc > 0 && currentStep === last) currentStep = last;
-		else {
-			direction = inc > 0 ? 'forward' : 'backward';
-			currentStep += inc;
+	const move = async (inc: number) => {
+		if (inc < 0 && currentStep === first) return;
+		if (inc > 0 && currentStep === last) return;
 
-			if (inc > 0) onnext();
-			if (inc < 0) onback();
-		}
+		const from = currentStep;
+		const to = from + inc;
+
+		const guard = inc > 0 ? onbeforenext : onbeforeback;
+		if ((await guard?.(from, to)) === false) return;
+
+		direction = inc > 0 ? 'forward' : 'backward';
+		currentStep = to;
+
+		if (inc > 0) onnext();
+		if (inc < 0) onback();
 	};
 
-	function handleKeydown(event: KeyboardEvent) {
+	async function handleKeydown(event: KeyboardEvent) {
 		if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
 			event.preventDefault();
 			move(-1);
@@ -109,6 +123,7 @@
 			if (currentStep < last) {
 				move(1);
 			} else {
+				if ((await onbeforefinish?.()) === false) return;
 				onfinish();
 			}
 		}
@@ -233,7 +248,7 @@
 						</button>
 					{:else}
 						<button
-							onclick={() => onfinish()}
+							onclick={async () => { if ((await onbeforefinish?.()) !== false) onfinish(); }}
 							class="join-item btn btn-primary flex items-center justify-end"
 						>
 							<span> {finishLabel} </span>
@@ -273,7 +288,7 @@
 					</button>
 				{:else}
 					<button
-						onclick={() => onfinish()}
+						onclick={async () => { if ((await onbeforefinish?.()) !== false) onfinish(); }}
 						class="join-item btn btn-primary flex items-center justify-end"
 					>
 						<span> {finishLabel} </span>
