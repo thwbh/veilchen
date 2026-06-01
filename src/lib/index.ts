@@ -71,12 +71,13 @@ import Menu from '$lib/components/menu/Menu.svelte';
 import LoadingIndicator from '$lib/components/loading/LoadingIndicator.svelte';
 import LongPressContainer from '$lib/components/gesture/LongPressContainer.svelte';
 import FAB from '$lib/components/fab/FAB.svelte';
+import SearchBar from '$lib/components/input/SearchBar.svelte';
 
-import { AlertType, AlertVariant, TextSize, MenuSize, DockSize, BadgeColor } from './enum/enum.js';
+import { AlertType, AlertVariant, TextSize, MenuSize, DockSize, BadgeColor, InputSize } from './enum/enum.js';
 import { toast } from './components/toast/toast.svelte.js';
 import { createRefreshContext, useRefresh } from './utils/refresh.svelte.js';
 
-export { AlertType, AlertVariant, TextSize, MenuSize, DockSize, BadgeColor };
+export { AlertType, AlertVariant, TextSize, MenuSize, DockSize, BadgeColor, InputSize };
 export { toast };
 export { createRefreshContext, useRefresh };
 export {
@@ -112,5 +113,6 @@ export {
   Menu,
   LoadingIndicator,
   LongPressContainer,
-  FAB
+  FAB,
+  SearchBar
 };

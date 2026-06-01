@@ -46,6 +46,13 @@ export const DOCK_HEIGHT_MAP: Record<DockSize, number> = {
   [DockSize.XL]: 6.5
 };
 
+export enum InputSize {
+  XS = 'input-xs',
+  SM = 'input-sm',
+  MD = 'input-md',
+  LG = 'input-lg'
+}
+
 /**
  * Provides badge css classes
  */

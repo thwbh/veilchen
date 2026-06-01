@@ -22,6 +22,11 @@
 					name: 'NumberStepper',
 					path: '/components/numberstepper',
 					description: 'Quick number input with steps'
+				},
+				{
+					name: 'SearchBar',
+					path: '/components/searchbar',
+					description: 'Headless search bar with debounce'
 				}
 			]
 		},
