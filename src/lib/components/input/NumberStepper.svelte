@@ -104,6 +104,16 @@
 			value = parsed;
 		}
 	}
+
+	function handleInputCommit() {
+		// Clamp the value to min/max bounds on commit (blur/change)
+		// This allows multi-digit entry without premature clamping
+		if (min !== undefined && value < min) {
+			value = min;
+		} else if (max !== undefined && value > max) {
+			value = max;
+		}
+	}
 </script>
 
 <label class="flex flex-col gap-2">
@@ -147,6 +157,8 @@
 				type="number"
 				bind:value
 				oninput={handleInputChange}
+                onchange={handleInputCommit}
+                onblur={handleInputCommit}
 				{name}
 				{min}
 				{max}

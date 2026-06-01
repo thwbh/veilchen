@@ -74,6 +74,91 @@ describe('NumberStepper', () => {
 		expect(input.value).toBe('100'); // Should not go above max
 	});
 
+	it('clamps typed value to min on blur', async () => {
+		const { container, getByRole } = render(NumberStepper, {
+			label: 'Amount',
+			value: 50,
+			min: 30,
+			max: 100
+		});
+
+		const input = getByRole('spinbutton');
+		
+		// Type a value below min
+		await fireEvent.input(input, { target: { value: '25' } });
+		expect(input).toHaveValue(25); // Should allow typing below min
+
+		// Blur the input - this should clamp to min
+		await fireEvent.blur(input);
+		expect(input).toHaveValue(30); // Should be clamped to min
+	});
+
+	it('clamps typed value to max on blur', async () => {
+		const { container, getByRole } = render(NumberStepper, {
+			label: 'Amount',
+			value: 50,
+			min: 30,
+			max: 100
+		});
+
+		const input = getByRole('spinbutton');
+		
+		// Type a value above max
+		await fireEvent.input(input, { target: { value: '150' } });
+		expect(input).toHaveValue(150); // Should allow typing above max
+
+		// Blur the input - this should clamp to max
+		await fireEvent.blur(input);
+		expect(input).toHaveValue(100); // Should be clamped to max
+	});
+
+	it('allows multi-digit entry without premature clamping', async () => {
+		const { container, getByRole } = render(NumberStepper, {
+			label: 'Amount',
+			value: 50,
+			min: 30,
+			max: 100
+		});
+
+		const input = getByRole('spinbutton');
+		
+		// Type digits one by one to test multi-digit entry
+		await fireEvent.input(input, { target: { value: '2' } });
+		expect(input).toHaveValue(2); // Should not clamp prematurely
+
+		await fireEvent.input(input, { target: { value: '25' } });
+		expect(input).toHaveValue(25); // Should not clamp prematurely
+
+		await fireEvent.input(input, { target: { value: '250' } });
+		expect(input).toHaveValue(250); // Should not clamp prematurely
+
+		// Only clamp on blur
+		await fireEvent.blur(input);
+		expect(input).toHaveValue(100); // Should be clamped to max on blur
+	});
+
+	it('button increment/decrement still respect min/max', async () => {
+		const { container, getByLabelText, getByRole } = render(NumberStepper, {
+			label: 'Amount',
+			value: 30,
+			min: 30,
+			max: 100
+		});
+
+		const input = getByRole('spinbutton');
+		const decrementButton = getByLabelText('Decrement by 1');
+		const incrementButton = getByLabelText('Increment by 1');
+
+		// Decrement should respect min
+		await fireEvent.click(decrementButton);
+		expect(input).toHaveValue(30); // Should not go below min
+
+		// Increment should respect max
+		await fireEvent.input(input, { target: { value: '100' } });
+		await fireEvent.click(incrementButton);
+		expect(input).toHaveValue(100); // Should not go above max
+	});
+
 	it('updates value when input changes', async () => {
 		const { getByRole } = render(NumberStepper, {
 			label: 'Amount',
