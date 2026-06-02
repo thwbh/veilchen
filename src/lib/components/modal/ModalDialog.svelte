@@ -14,10 +14,10 @@
 		content?: Snippet;
 		/** Optional footer snippet (defaults to Confirm/Cancel buttons) */
 		footer?: Snippet;
-		/** Callback fired when confirm button is clicked */
-		onconfirm?: (e?: Event) => void;
-		/** Callback fired when cancel button is clicked */
-		oncancel?: (e?: Event) => void;
+		/** Callback fired when confirm button is clicked. Return false to keep dialog open. */
+		onconfirm?: (e?: Event) => void | boolean | Promise<void | boolean>;
+		/** Callback fired when cancel button is clicked. Return false to keep dialog open. */
+		oncancel?: (e?: Event) => void | boolean | Promise<void | boolean>;
 	}
 
 	let {
@@ -29,16 +29,18 @@
 		oncancel = () => {}
 	}: Props = $props();
 
-	const confirm = (e: Event) => {
-		onconfirm?.(e);
-
-		dialog?.close();
+	const confirm = async (e: Event) => {
+		const shouldKeepOpen = (await onconfirm?.(e)) === false;
+		if (!shouldKeepOpen) {
+			dialog?.close();
+		}
 	};
 
-	const cancel = (e: Event) => {
-		oncancel?.(e);
-
-		dialog?.close();
+	const cancel = async (e: Event) => {
+		const shouldKeepOpen = (await oncancel?.(e)) === false;
+		if (!shouldKeepOpen) {
+			dialog?.close();
+		}
 	};
 </script>
 
