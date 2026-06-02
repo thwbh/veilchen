@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/vitest';
-import { vi } from 'vitest';
+import { vi, beforeAll } from 'vitest';
 
 // required for svelte5 + jsdom as jsdom does not support matchMedia
 Object.defineProperty(window, 'matchMedia', {
@@ -16,12 +16,16 @@ Object.defineProperty(window, 'matchMedia', {
 });
 
 // add more mocks here if you need them
-Object.defineProperty(window, 'ResizeObserver', {
-  value: vi.fn().mockImplementation(() => ({
-    observe: vi.fn(),
-    unobserve: vi.fn(),
-    disconnect: vi.fn()
-  }))
+beforeAll(() => {
+  // ResizeObserver polyfill for jsdom — Vitest 4 can break vi.fn()-based mock constructors
+  if (typeof globalThis.ResizeObserver === 'undefined') {
+    class ResizeObserverPolyfill {
+      observe() {}
+      unobserve() {}
+      disconnect() {}
+    }
+    (globalThis as { ResizeObserver: unknown }).ResizeObserver = ResizeObserverPolyfill;
+  }
 });
 
 Element.prototype.animate = vi.fn().mockImplementation(() => ({
