@@ -83,7 +83,7 @@ describe('NumberStepper', () => {
 		});
 
 		const input = getByRole('spinbutton');
-		
+
 		// Type a value below min
 		await fireEvent.input(input, { target: { value: '25' } });
 		expect(input).toHaveValue(25); // Should allow typing below min
@@ -102,7 +102,7 @@ describe('NumberStepper', () => {
 		});
 
 		const input = getByRole('spinbutton');
-		
+
 		// Type a value above max
 		await fireEvent.input(input, { target: { value: '150' } });
 		expect(input).toHaveValue(150); // Should allow typing above max
@@ -121,7 +121,7 @@ describe('NumberStepper', () => {
 		});
 
 		const input = getByRole('spinbutton');
-		
+
 		// Type digits one by one to test multi-digit entry
 		await fireEvent.input(input, { target: { value: '2' } });
 		expect(input).toHaveValue(2); // Should not clamp prematurely
@@ -192,7 +192,7 @@ describe('NumberStepper', () => {
 		if (wheelItems.length > 0) {
 			const initialValue = (container.querySelector('input') as HTMLInputElement).value;
 			await fireEvent.click(wheelItems[0]);
-			
+
 			// The wheel item click should change the step size, not the main value
 			const input = container.querySelector('input') as HTMLInputElement;
 			expect(input.value).toBe(initialValue); // Main value should not change from wheel item click

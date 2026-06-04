@@ -196,32 +196,18 @@
 
 		<div class="space-y-4">
 			<div class="flex items-center gap-4">
-				<button class="btn btn-primary" onclick={simulateLoading}>
-					Start Loading
-				</button>
-				<LoadingIndicator
-					variant="spinner"
-					size="lg"
-					label="Loading..."
-					finished={finished1}
-				/>
+				<button class="btn btn-primary" onclick={simulateLoading}> Start Loading </button>
+				<LoadingIndicator variant="spinner" size="lg" label="Loading..." finished={finished1} />
 			</div>
 
 			<div class="flex items-center gap-4">
-				<button class="btn btn-secondary" onclick={simulateLoadingCustom}>
-					Start Loading
-				</button>
-				<LoadingIndicator
-					variant="dots"
-					size="lg"
-					label="Processing..."
-					finished={finished2}
-				>
+				<button class="btn btn-secondary" onclick={simulateLoadingCustom}> Start Loading </button>
+				<LoadingIndicator variant="dots" size="lg" label="Processing..." finished={finished2}>
 					{#snippet finishedContent()}
 						<div class="flex flex-col items-center justify-center gap-2">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								class="h-6 w-6 text-success"
+								class="text-success h-6 w-6"
 								fill="none"
 								viewBox="0 0 24 24"
 								stroke="currentColor"
@@ -240,20 +226,13 @@
 			</div>
 
 			<div class="flex items-center gap-4">
-				<button class="btn btn-error" onclick={simulateError}>
-					Simulate Error
-				</button>
-				<LoadingIndicator
-					variant="ring"
-					size="lg"
-					label="Connecting..."
-					error={error1}
-				>
+				<button class="btn btn-error" onclick={simulateError}> Simulate Error </button>
+				<LoadingIndicator variant="ring" size="lg" label="Connecting..." error={error1}>
 					{#snippet errorContent()}
 						<div class="flex flex-col items-center justify-center gap-2">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
-								class="h-6 w-6 text-error"
+								class="text-error h-6 w-6"
 								fill="none"
 								viewBox="0 0 24 24"
 								stroke="currentColor"

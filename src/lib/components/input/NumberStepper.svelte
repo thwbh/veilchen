@@ -63,21 +63,27 @@
 	}: Props = $props();
 
 	// When only one wheel is visible, use a shared step value
+	// svelte-ignore state_referenced_locally
 	const useSingleStep = !showLeftWheel || !showRightWheel;
+	// svelte-ignore state_referenced_locally
 	const sharedSteps = useSingleStep ? (showLeftWheel ? decrementSteps : incrementSteps) : [];
+	// svelte-ignore state_referenced_locally
 	const sharedInitialStep = useSingleStep
 		? showLeftWheel
 			? initialDecrementStep
 			: initialIncrementStep
 		: 0;
 
+	// svelte-ignore state_referenced_locally
 	let sharedStep = $state(sharedInitialStep);
+	// svelte-ignore state_referenced_locally
 	let incrementStep = $state(initialIncrementStep);
+	// svelte-ignore state_referenced_locally
 	let decrementStep = $state(initialDecrementStep);
 
 	// Use shared step when only one wheel is visible
-	const activeIncrementStep = $derived(useSingleStep ? sharedStep : incrementStep);
-	const activeDecrementStep = $derived(useSingleStep ? sharedStep : decrementStep);
+	let activeIncrementStep = $derived(useSingleStep ? sharedStep : incrementStep);
+	let activeDecrementStep = $derived(useSingleStep ? sharedStep : decrementStep);
 
 	function increment() {
 		const newValue = value + activeIncrementStep;
@@ -157,8 +163,8 @@
 				type="number"
 				bind:value
 				oninput={handleInputChange}
-                onchange={handleInputCommit}
-                onblur={handleInputCommit}
+				onchange={handleInputCommit}
+				onblur={handleInputCommit}
 				{name}
 				{min}
 				{max}
@@ -195,7 +201,12 @@
 					viewBox="0 0 24 24"
 					stroke="currentColor"
 				>
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M12 4v16m8-8H4"
+					/>
 				</svg>
 			</button>
 			{#if showRightWheel}

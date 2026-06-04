@@ -92,7 +92,9 @@
 <div
 	class="fab {variant === 'flower' ? 'fab-flower' : ''} {className}"
 	class:absolute={!fixed}
-	style="{!fixed ? `${position.includes('right') ? 'right' : 'left'}: 1rem; ${position.includes('bottom') ? 'bottom' : 'top'}: 1rem;` : ''}"
+	style={!fixed
+		? `${position.includes('right') ? 'right' : 'left'}: 1rem; ${position.includes('bottom') ? 'bottom' : 'top'}: 1rem;`
+		: ''}
 	role="group"
 	aria-label="Floating action button"
 >
@@ -267,4 +269,3 @@
 		{/if}
 	{/each}
 </div>
-

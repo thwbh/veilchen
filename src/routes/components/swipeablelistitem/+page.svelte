@@ -71,11 +71,12 @@
 
 	<div class="prose mb-6">
 		<p>
-			A swipeable list item component that automatically executes actions when swiped. Supports
-			both touch and pointer events (mouse, pen).
+			A swipeable list item component that automatically executes actions when swiped. Supports both
+			touch and pointer events (mouse, pen).
 		</p>
 		<p class="text-base-content/70 text-sm">
-			Swipe left or right past the threshold to trigger the action automatically. No button press needed!
+			Swipe left or right past the threshold to trigger the action automatically. No button press
+			needed!
 		</p>
 	</div>
 
@@ -94,7 +95,7 @@
 						onright={() => archiveEmail(email.id)}
 					>
 						{#snippet leftAction()}
-							<div class="flex items-center gap-2 text-success">
+							<div class="text-success flex items-center gap-2">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									class="h-6 w-6"
@@ -114,7 +115,7 @@
 						{/snippet}
 
 						{#snippet rightAction()}
-							<div class="flex items-center gap-2 text-warning">
+							<div class="text-warning flex items-center gap-2">
 								<span class="font-semibold">Archive</span>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +174,7 @@
 						onright={() => console.log(`Deleted item ${item}`)}
 					>
 						{#snippet leftAction()}
-							<div class="flex items-center gap-2 text-success">
+							<div class="text-success flex items-center gap-2">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									class="h-6 w-6"
@@ -193,7 +194,7 @@
 						{/snippet}
 
 						{#snippet rightAction()}
-							<div class="flex items-center gap-2 text-error">
+							<div class="text-error flex items-center gap-2">
 								<span class="font-semibold">Delete</span>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -230,7 +231,7 @@
 			<div class="divide-base-300 divide-y">
 				<SwipeableListItem onright={() => console.log('Deleted')}>
 					{#snippet rightAction()}
-						<div class="flex items-center gap-2 text-error">
+						<div class="text-error flex items-center gap-2">
 							<span class="font-semibold">Delete</span>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -257,7 +258,7 @@
 
 				<SwipeableListItem onleft={() => console.log('Info shown')}>
 					{#snippet leftAction()}
-						<div class="flex items-center gap-2 text-info">
+						<div class="text-info flex items-center gap-2">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								class="h-6 w-6"
@@ -370,7 +371,7 @@
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 24 24"
-					class="stroke-current shrink-0 w-6 h-6"
+					class="h-6 w-6 shrink-0 stroke-current"
 				>
 					<path
 						stroke-linecap="round"

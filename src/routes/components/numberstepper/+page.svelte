@@ -35,7 +35,9 @@
 
 	<div>
 		<h2 class="mb-2 text-2xl font-bold">Example 1: Basic Number Stepper</h2>
-		<p class="mb-4 text-sm opacity-70">Simple quantity counter with default step sizes (1, 5, 10)</p>
+		<p class="mb-4 text-sm opacity-70">
+			Simple quantity counter with default step sizes (1, 5, 10)
+		</p>
 
 		<NumberStepper bind:value={quantity} label="Quantity" min={0} />
 

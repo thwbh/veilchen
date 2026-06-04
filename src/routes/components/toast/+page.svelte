@@ -59,9 +59,7 @@
 
 <div class="flex flex-col gap-6 p-4">
 	<h1 class="mb-2 text-3xl font-bold">Toast / Snackbar Examples</h1>
-	<p class="mb-4 text-sm opacity-70">
-		Programmatic notifications with swipe-to-dismiss support
-	</p>
+	<p class="mb-4 text-sm opacity-70">Programmatic notifications with swipe-to-dismiss support</p>
 
 	<div class="alert alert-info">
 		<svg
@@ -126,7 +124,7 @@
 		<button class="btn btn-ghost" onclick={clearAll}>Clear All Notifications</button>
 	</div>
 
-	<div class="mt-4 rounded-lg bg-base-200 p-4">
+	<div class="bg-base-200 mt-4 rounded-lg p-4">
 		<h3 class="mb-2 font-bold">Features</h3>
 		<ul class="mb-4 list-inside list-disc space-y-1 text-sm">
 			<li>Auto-dismiss with configurable duration</li>
@@ -139,19 +137,18 @@
 		<h3 class="mb-2 font-bold">Usage</h3>
 		<div class="text-sm">
 			<p class="mb-2">1. Add the ToastContainer to your root layout:</p>
-			<pre class="mb-4 rounded bg-base-300 p-2"><code
+			<pre class="bg-base-300 mb-4 rounded p-2"><code
 					>&lt;ToastContainer position="top" align="center" /&gt;</code
 				></pre>
 
 			<p class="mb-2">2. Trigger toasts programmatically from anywhere:</p>
-			<pre class="mb-2 rounded bg-base-300 p-2"><code>import &#123; toast &#125; from '@thwbh/veilchen';</code
+			<pre class="bg-base-300 mb-2 rounded p-2"><code
+					>import &#123; toast &#125; from '@thwbh/veilchen';</code
 				></pre>
-			<pre class="mb-2 rounded bg-base-300 p-2"><code>toast.success('Success message');</code></pre>
-			<pre class="mb-2 rounded bg-base-300 p-2"><code>toast.error('Error message');</code></pre>
-			<pre class="mb-2 rounded bg-base-300 p-2"><code
-					>toast.warning('Warning message');</code
-				></pre>
-			<pre class="rounded bg-base-300 p-2"><code>toast.info('Info message');</code></pre>
+			<pre class="bg-base-300 mb-2 rounded p-2"><code>toast.success('Success message');</code></pre>
+			<pre class="bg-base-300 mb-2 rounded p-2"><code>toast.error('Error message');</code></pre>
+			<pre class="bg-base-300 mb-2 rounded p-2"><code>toast.warning('Warning message');</code></pre>
+			<pre class="bg-base-300 rounded p-2"><code>toast.info('Info message');</code></pre>
 		</div>
 	</div>
 </div>

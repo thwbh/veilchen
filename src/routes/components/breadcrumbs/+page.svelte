@@ -20,7 +20,6 @@
 		{ id: '3', label: 'Add Document', icon: DocumentIcon }
 	];
 
-
 	const longBreadcrumbs: BreadcrumbItem[] = [
 		{ id: '1', label: 'Home', href: '/' },
 		{ id: '2', label: 'Products', href: '/products' },
@@ -56,8 +55,8 @@
 
 	<div class="prose mb-6">
 		<p>
-			Breadcrumbs show the current location within a hierarchy and allow navigation to parent
-			pages. Perfect for multi-level navigation structures.
+			Breadcrumbs show the current location within a hierarchy and allow navigation to parent pages.
+			Perfect for multi-level navigation structures.
 		</p>
 	</div>
 

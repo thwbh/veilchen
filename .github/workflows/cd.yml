@@ -1,0 +1,105 @@
+name: 'Release and Publish'
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'Version bump type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    name: 'Publish to npm'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 'Set up Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 'Install dependencies'
+        run: npm ci
+
+      - name: 'Build package'
+        run: npm run build
+
+      - name: 'Run tests'
+        run: npm test
+
+      - name: 'Generate Changelog'
+        id: changelog
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [[ -n "$LAST_TAG" ]]; then
+            CHANGES=$(git log --pretty=format:"* %s" "$LAST_TAG"..HEAD)
+          else
+            CHANGES=$(git log --pretty=format:"* %s" HEAD)
+          fi
+
+          echo "changes<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: 'Determine next version'
+        id: version
+        run: |
+          # Source of truth is the latest published npm version
+          CURRENT_NPM_VERSION=$(npm view @thwbh/veilchen@latest version 2>/dev/null || echo "0.0.0")
+          echo "Latest npm version: $CURRENT_NPM_VERSION"
+
+          # Base package.json on the npm version, then bump
+          npm version "$CURRENT_NPM_VERSION" --no-git-tag-version --allow-same-version
+          npm version "${{ github.event.inputs.version_bump }}" --no-git-tag-version
+
+          NEW_VERSION=$(node -p "require('./package.json').version")
+          echo "New version: $NEW_VERSION"
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "tag=v$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: 'Publish to npm'
+        run: npm publish --access public
+
+      - name: 'Create GitHub Release'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: 'v${{ steps.version.outputs.version }}'
+          body: |
+            🎉 Veilchen v${{ steps.version.outputs.version }} has been released!
+
+            ## What's Changed
+            - Automatic release based on ${{ github.event.inputs.version_bump }} version bump
+
+            ## Installation
+            ```bash
+            npm install @thwbh/veilchen@${{ steps.version.outputs.version }}
+            # or
+            yarn add @thwbh/veilchen@${{ steps.version.outputs.version }}
+            ```
+
+            ## Changes Since Last Release
+            ${{ steps.changelog.outputs.changes }}
+          draft: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 'Output release information'
+        run: |
+          echo "✅ Successfully published v${{ steps.version.outputs.version }} to npm"
+          echo "Package: @thwbh/veilchen@${{ steps.version.outputs.version }}"
+          echo "Install: npm install @thwbh/veilchen@${{ steps.version.outputs.version }}"

@@ -17,7 +17,11 @@
 	let { max = undefined, children, class: className = '' }: Props = $props();
 </script>
 
-<div class="avatar-group -space-x-6 rtl:space-x-reverse {className}" role="group" aria-label="Avatar group">
+<div
+	class="avatar-group -space-x-6 rtl:space-x-reverse {className}"
+	role="group"
+	aria-label="Avatar group"
+>
 	{@render children()}
 </div>
 

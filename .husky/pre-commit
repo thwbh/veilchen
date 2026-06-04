@@ -1,0 +1,3 @@
+# Run lint-staged for JavaScript/TypeScript/Svelte files
+echo "🎨 Formatting staged files with Prettier..."
+npx lint-staged

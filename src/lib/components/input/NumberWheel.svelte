@@ -19,7 +19,7 @@
 	let wheelElement = $state<HTMLDivElement | undefined>();
 	let startY = 0;
 	let scrollTop = 0;
-	
+
 	// Update selectedIndex whenever value or numbers change
 	// Ensure it's always a valid index
 	let selectedIndex = $derived(numbers.indexOf(value ?? numbers[0]));
@@ -109,6 +109,9 @@
 				ontouchstart={handleTouchStart}
 				ontouchmove={handleTouchMove}
 				onscroll={debouncedHandleScroll}
+				role="listbox"
+				tabindex="0"
+				aria-label="Number selector"
 			>
 				<div class="wheel-spacer"></div>
 				{#each numbers as num, index}

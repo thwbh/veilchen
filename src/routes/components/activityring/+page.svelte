@@ -60,8 +60,9 @@
 
 			<div class="flex flex-col gap-3">
 				<div>
-					<label class="label-text text-sm opacity-70">Current: {steps}</label>
+					<label for="current-steps" class="label-text text-sm opacity-70">Current: {steps}</label>
 					<input
+						id="current-steps"
 						type="range"
 						min="0"
 						max={stepsGoal}
@@ -70,8 +71,9 @@
 					/>
 				</div>
 				<div>
-					<label class="label-text text-sm opacity-70">Goal: {stepsGoal}</label>
+					<label for="goal-steps" class="label-text text-sm opacity-70">Goal: {stepsGoal}</label>
 					<input
+						id="goal-steps"
 						type="range"
 						min="100"
 						max="10000"

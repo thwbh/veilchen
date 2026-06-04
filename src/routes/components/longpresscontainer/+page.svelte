@@ -65,7 +65,7 @@
 			{#each ['Item A', 'Item B', 'Item C'] as item}
 				<LongPressContainer
 					onlongpress={() => handleLongPress(item)}
-					class="card bg-base-200 p-4 hover:bg-base-300 transition-colors cursor-pointer"
+					class="card bg-base-200 hover:bg-base-300 cursor-pointer p-4 transition-colors"
 				>
 					<div class="flex items-center justify-between">
 						<div>
@@ -100,7 +100,7 @@
 		<h2 class="mb-2 text-2xl font-bold">Example 4: List Items</h2>
 		<p class="mb-4 text-sm opacity-70">Long press list items for context menu</p>
 
-		<ul class="menu bg-base-200 w-full rounded-box">
+		<ul class="menu bg-base-200 rounded-box w-full">
 			{#each [1, 2, 3, 4] as num}
 				<li>
 					<LongPressContainer
@@ -139,10 +139,10 @@
 			{#each ['nature', 'architecture', 'food', 'technology'] as category}
 				<LongPressContainer
 					onlongpress={() => handleLongPress(`Image: ${category}`)}
-					class="card bg-base-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+					class="card bg-base-200 cursor-pointer overflow-hidden transition-shadow hover:shadow-lg"
 				>
-					<figure class="aspect-square bg-base-300">
-						<div class="flex items-center justify-center h-full w-full">
+					<figure class="bg-base-300 aspect-square">
+						<div class="flex h-full w-full items-center justify-center">
 							<span class="text-4xl opacity-30">🖼️</span>
 						</div>
 					</figure>
