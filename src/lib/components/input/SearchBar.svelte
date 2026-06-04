@@ -48,7 +48,7 @@
 		...props
 	}: Props = $props();
 
-		let timer: ReturnType<typeof setTimeout> | undefined;
+	let timer: ReturnType<typeof setTimeout> | undefined;
 
 	onDestroy(() => {
 		if (timer !== undefined) {
@@ -90,18 +90,13 @@
 		onclear?.();
 	}
 
-	const inputSizeClass = inputSize ?? InputSize.MD;
-	const inputColorClass = color ? `input-${color}` : '';
+	let inputSizeClass = $derived(inputSize ?? InputSize.MD);
+	let inputColorClass = $derived(color ? `input-${color}` : '');
 </script>
 
 <div class="search-bar flex w-full items-center gap-2">
 	<!-- Magnifier icon (leading button) -->
-	<button
-		type="button"
-		class="btn btn-ghost btn-square"
-		aria-hidden="true"
-		tabindex="-1"
-	>
+	<button type="button" class="btn btn-ghost btn-square" aria-hidden="true" tabindex="-1">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			class="h-5 w-5"

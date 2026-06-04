@@ -64,10 +64,20 @@
 		xl: { diameter: 260, fontSize: '3.5rem', labelFontSize: '1rem' }
 	};
 
-	const config = SIZE_MAP[size];
+	let config = $derived(SIZE_MAP[size]);
 
 	// Stroke width handling
-	const strokeWidth = $derived(typeof baseStrokeWidth === 'number' ? baseStrokeWidth : size === 'sm' ? 8 : size === 'md' ? 12 : size === 'lg' ? 14 : 16);
+	const strokeWidth = $derived(
+		typeof baseStrokeWidth === 'number'
+			? baseStrokeWidth
+			: size === 'sm'
+				? 8
+				: size === 'md'
+					? 12
+					: size === 'lg'
+						? 14
+						: 16
+	);
 
 	// Color handling
 	function isColorClass(c: string): boolean {
@@ -75,13 +85,14 @@
 	}
 
 	// Animation state
-	let currentValues = $state(rings.map(r => 0));
+	// svelte-ignore state_referenced_locally
+	let currentValues = $state(rings.map((r) => 0));
 	let animated = $state(false);
 	let animationFrame = $state<number | null>(null);
 
 	$effect(() => {
 		// Reset values when rings prop changes
-		currentValues = rings.map(r => 0);
+		currentValues = rings.map((r) => 0);
 		animated = false;
 		if (animationFrame) {
 			cancelAnimationFrame(animationFrame);
@@ -92,7 +103,7 @@
 	$effect(() => {
 		if (animated) return;
 
-		const targetValues = rings.map(r => Math.min(r.current, r.goal));
+		const targetValues = rings.map((r) => Math.min(r.current, r.goal));
 
 		const start = performance.now();
 		const duration = animationDuration;
@@ -150,8 +161,15 @@
 	}
 </script>
 
-<div class="activity-ring-container {className}" role="group" aria-label={subtitle || label || 'Activity rings'}>
-	<div class="activity-ring-wrapper" style="width: {config.diameter}px; height: {config.diameter}px;">
+<div
+	class="activity-ring-container {className}"
+	role="group"
+	aria-label={subtitle || label || 'Activity rings'}
+>
+	<div
+		class="activity-ring-wrapper"
+		style="width: {config.diameter}px; height: {config.diameter}px;"
+	>
 		<svg
 			class="activity-ring-svg"
 			viewBox={`0 0 ${config.diameter} ${config.diameter}`}
@@ -185,7 +203,7 @@
 					stroke-linecap="round"
 					stroke-dasharray={circumference}
 					stroke-dashoffset={offset}
-					opacity={opacity}
+					{opacity}
 					transform={`rotate(-90 ${config.diameter / 2} ${config.diameter / 2})`}
 					style="stroke: {resolveColor(color)}; transition: none;"
 					role="progressbar"
@@ -215,9 +233,7 @@
 			{#each rings as ring, index}
 				{@const { color } = getRingProps(index)}
 				<div class="activity-ring-legend-item">
-					<span
-						class="activity-ring-legend-dot"
-						style="background-color: {resolveColor(color)};"
+					<span class="activity-ring-legend-dot" style="background-color: {resolveColor(color)};"
 					></span>
 					<span class="activity-ring-legend-label" style="font-size: {config.labelFontSize};">
 						{ring.label}

@@ -32,8 +32,8 @@
 		width = 'w-56'
 	}: Props = $props();
 
-	const orientationClass = orientation === 'horizontal' ? 'menu-horizontal' : '';
-	const roundedClass = rounded ? 'rounded-box' : '';
+	let orientationClass = $derived(orientation === 'horizontal' ? 'menu-horizontal' : '');
+	let roundedClass = $derived(rounded ? 'rounded-box' : '');
 
 	function handleClick(item: MenuItem, event: MouseEvent) {
 		if (item.disabled) {

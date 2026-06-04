@@ -70,7 +70,7 @@
 		rounded: 'rounded-xl'
 	};
 
-	const isClickable = onclick !== undefined;
+	let isClickable = $derived(onclick !== undefined);
 </script>
 
 <button

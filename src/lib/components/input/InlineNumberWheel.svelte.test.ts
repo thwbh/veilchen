@@ -58,13 +58,13 @@ describe('InlineNumberWheel', () => {
 		});
 
 		const wheelElement = container.querySelector('.inline-number-wheel') as HTMLElement;
-		
+
 		// The selected item (10) should be scrolled into view
 		const selectedIndex = 2; // 10 is at index 2
 		const expectedScrollTop = selectedIndex * 32; // ITEM_HEIGHT = 32
 
 		// Wait a bit for any ResizeObserver callbacks to fire
-		await new Promise(resolve => setTimeout(resolve, 50));
+		await new Promise((resolve) => setTimeout(resolve, 50));
 
 		// Check that the scroll position is correct
 		const actualScrollTop = wheelElement.scrollTop;
@@ -80,7 +80,7 @@ describe('InlineNumberWheel', () => {
 		});
 
 		const wheelElement = container.querySelector('.inline-number-wheel') as HTMLElement;
-		
+
 		// Change the value to 100 (index 3)
 		await rerender({
 			numbers: [1, 5, 10, 100, 250],
@@ -88,7 +88,7 @@ describe('InlineNumberWheel', () => {
 		});
 
 		// Wait for the scroll to happen
-		await new Promise(resolve => setTimeout(resolve, 50));
+		await new Promise((resolve) => setTimeout(resolve, 50));
 
 		// The scroll position should be at index 3
 		const expectedScrollTop = 3 * 32; // ITEM_HEIGHT = 32
@@ -107,13 +107,13 @@ describe('InlineNumberWheel', () => {
 		});
 
 		const wheelElement = container.querySelector('.inline-number-wheel') as HTMLElement;
-		
+
 		// The component should have scrolled to the selected value (10 at index 2)
 		const selectedIndex = 2;
 		const expectedScrollTop = selectedIndex * 32;
-		
+
 		// Wait for any ResizeObserver callbacks to complete
-		await new Promise(resolve => setTimeout(resolve, 100));
+		await new Promise((resolve) => setTimeout(resolve, 100));
 
 		const actualScrollTop = wheelElement.scrollTop;
 		expect(actualScrollTop).toBe(expectedScrollTop);

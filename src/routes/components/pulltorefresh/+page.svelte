@@ -29,16 +29,15 @@
 </script>
 
 <div class="container mx-auto p-4">
-	<h1 class="text-3xl font-bold mb-4">Pull to Refresh</h1>
+	<h1 class="mb-4 text-3xl font-bold">Pull to Refresh</h1>
 
 	<div class="prose mb-6">
 		<p>
 			A mobile-optimized pull-to-refresh component. Pull down on the content area to trigger a
 			refresh action.
 		</p>
-		<p class="text-sm text-base-content/70">
-			Note: This component is touch-only and works best on mobile devices or touch-enabled
-			screens.
+		<p class="text-base-content/70 text-sm">
+			Note: This component is touch-only and works best on mobile devices or touch-enabled screens.
 		</p>
 	</div>
 
@@ -47,15 +46,11 @@
 			<h2 class="card-title px-6 pt-6">Demo: Pull to Add Items</h2>
 
 			<!-- Pull to Refresh Container -->
-			<PullToRefresh
-				onrefresh={handleRefresh}
-				bind:refreshing
-				class="h-[500px] px-6 pb-6"
-			>
+			<PullToRefresh onrefresh={handleRefresh} bind:refreshing class="h-[500px] px-6 pb-6">
 				<div class="space-y-2">
 					{#each items as item, i (item)}
 						<div
-							class="p-4 bg-base-100 rounded-lg shadow"
+							class="bg-base-100 rounded-lg p-4 shadow"
 							style="animation: slideIn 0.3s ease-out;"
 						>
 							<div class="flex items-center justify-between">
@@ -70,15 +65,11 @@
 	</div>
 
 	<!-- Custom Indicator Example -->
-	<div class="card bg-base-200 shadow-xl mt-8">
+	<div class="card bg-base-200 mt-8 shadow-xl">
 		<div class="card-body p-0">
 			<h2 class="card-title px-6 pt-6">Custom Indicator</h2>
 
-			<PullToRefresh
-				onrefresh={handleRefresh}
-				bind:refreshing
-				class="h-[400px] px-6 pb-6"
-			>
+			<PullToRefresh onrefresh={handleRefresh} bind:refreshing class="h-[400px] px-6 pb-6">
 				{#snippet indicator(progress)}
 					<div
 						class="custom-indicator"
@@ -95,7 +86,7 @@
 							box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 						"
 					>
-						<span class="text-white text-2xl">↓</span>
+						<span class="text-2xl text-white">↓</span>
 					</div>
 				{/snippet}
 
@@ -104,7 +95,7 @@
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
 						viewBox="0 0 24 24"
-						class="stroke-current shrink-0 w-6 h-6"
+						class="h-6 w-6 shrink-0 stroke-current"
 					>
 						<path
 							stroke-linecap="round"
@@ -116,9 +107,9 @@
 					<span>Pull down to see the custom indicator!</span>
 				</div>
 
-				<div class="grid grid-cols-2 gap-4 mt-4">
+				<div class="mt-4 grid grid-cols-2 gap-4">
 					{#each [1, 2, 3, 4, 5, 6] as num}
-						<div class="stat bg-base-100 shadow rounded-lg">
+						<div class="stat bg-base-100 rounded-lg shadow">
 							<div class="stat-title">Card {num}</div>
 							<div class="stat-value text-primary">{num * 100}</div>
 							<div class="stat-desc">Sample data</div>
@@ -130,12 +121,12 @@
 	</div>
 
 	<!-- API Documentation -->
-	<div class="card bg-base-200 shadow-xl mt-8">
+	<div class="card bg-base-200 mt-8 shadow-xl">
 		<div class="card-body">
 			<h2 class="card-title">Props</h2>
 
 			<div class="overflow-x-auto">
-				<table class="table table-zebra">
+				<table class="table-zebra table">
 					<thead>
 						<tr>
 							<th>Prop</th>

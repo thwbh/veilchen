@@ -69,7 +69,7 @@
 			{#each config.start as item}
 				{#if item.type === 'dropdown' && item.submenu}
 					<div class="dropdown">
-						<div tabindex="0" role="button" class="btn btn-ghost">
+						<div role="button" class="btn btn-ghost">
 							{#if item.icon}
 								{@const IconComponent = item.icon}
 								{#if item.iconProps}
@@ -83,7 +83,6 @@
 							{/if}
 						</div>
 						<ul
-							tabindex="0"
 							class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
 						>
 							{#each item.submenu as subitem}
@@ -176,7 +175,7 @@
 			{#each config.center as item}
 				{#if item.type === 'dropdown' && item.submenu}
 					<div class="dropdown">
-						<div tabindex="0" role="button" class="btn btn-ghost">
+						<div role="button" class="btn btn-ghost">
 							{#if item.icon}
 								{@const IconComponent = item.icon}
 								{#if item.iconProps}
@@ -190,7 +189,6 @@
 							{/if}
 						</div>
 						<ul
-							tabindex="0"
 							class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
 						>
 							{#each item.submenu as subitem}
@@ -283,7 +281,7 @@
 			{#each config.end as item}
 				{#if item.type === 'dropdown' && item.submenu}
 					<div class="dropdown dropdown-end">
-						<div tabindex="0" role="button" class="btn btn-ghost">
+						<div role="button" class="btn btn-ghost">
 							{#if item.icon}
 								{@const IconComponent = item.icon}
 								{#if item.iconProps}
@@ -297,7 +295,6 @@
 							{/if}
 						</div>
 						<ul
-							tabindex="0"
 							class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
 						>
 							{#each item.submenu as subitem}

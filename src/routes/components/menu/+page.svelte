@@ -51,7 +51,11 @@
 			label: 'Projects',
 			submenuOpen: true,
 			submenu: [
-				{ id: 'all-projects', label: 'All Projects', onclick: () => handleItemClick('All Projects') },
+				{
+					id: 'all-projects',
+					label: 'All Projects',
+					onclick: () => handleItemClick('All Projects')
+				},
 				{ id: 'active', label: 'Active', onclick: () => handleItemClick('Active') },
 				{ id: 'archived', label: 'Archived', onclick: () => handleItemClick('Archived') }
 			]
@@ -156,7 +160,7 @@
 		<div class="card-body">
 			<h2 class="card-title">With Section Titles</h2>
 			<p class="text-base-content/70 mb-4 text-sm">Organized menu with section headers</p>
-			<Menu sections={sections} />
+			<Menu {sections} />
 		</div>
 	</div>
 

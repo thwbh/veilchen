@@ -144,64 +144,61 @@
 		<div class="timeline-container">
 			<hr class="step-line" />
 			<ul class="timeline timeline-horizontal flex-row justify-between">
-			<span class="flex flex-row">
-				{#each { length: currentStep } as _, step (step)}
-					<li
-						in:fly={{
-							x: direction === 'forward' ? 200 : -200,
-							duration: animationDuration,
-							delay: step * 50,
-							easing: quintOut
-						}}
-						out:fly={{
-							x: direction === 'forward' ? -200 : 200,
-							duration: animationDuration,
-							easing: quintOut
-						}}
-					>
-						<div class="timeline-middle">
-							{#if currentStep === step + 1}
-								<span class="badge badge-step {activeClass}">{stepLabel} {step + 1}</span>
-							{:else}
-								<span class="badge badge-step">{step + 1}</span>
-							{/if}
-						</div>
-					</li>
-				{/each}
-			</span>
-			<span class="flex flex-row">
-				{#each { length: last - currentStep } as _, step (step + currentStep)}
-					<li
-						in:fly={{
-							x: direction === 'forward' ? 200 : -200,
-							duration: animationDuration,
-							delay: step * 50,
-							easing: quintOut
-						}}
-						out:fly={{
-							x: direction === 'forward' ? -200 : 200,
-							duration: animationDuration,
-							easing: quintOut
-						}}
-					>
-						<div class="timeline-middle">
-							{#if currentStep === last - step + 1}
-								<span class="badge badge-step {activeClass}"
-									>{stepLabel} {step + 1 + currentStep}</span
-								>
-							{:else}
-								<span class="badge badge-step">{step + 1 + currentStep}</span>
-							{/if}
-						</div>
-					</li>
-				{/each}
-			</span>
+				<span class="flex flex-row">
+					{#each { length: currentStep } as _, step (step)}
+						<li
+							in:fly={{
+								x: direction === 'forward' ? 200 : -200,
+								duration: animationDuration,
+								delay: step * 50,
+								easing: quintOut
+							}}
+							out:fly={{
+								x: direction === 'forward' ? -200 : 200,
+								duration: animationDuration,
+								easing: quintOut
+							}}
+						>
+							<div class="timeline-middle">
+								{#if currentStep === step + 1}
+									<span class="badge badge-step {activeClass}">{stepLabel} {step + 1}</span>
+								{:else}
+									<span class="badge badge-step">{step + 1}</span>
+								{/if}
+							</div>
+						</li>
+					{/each}
+				</span>
+				<span class="flex flex-row">
+					{#each { length: last - currentStep } as _, step (step + currentStep)}
+						<li
+							in:fly={{
+								x: direction === 'forward' ? 200 : -200,
+								duration: animationDuration,
+								delay: step * 50,
+								easing: quintOut
+							}}
+							out:fly={{
+								x: direction === 'forward' ? -200 : 200,
+								duration: animationDuration,
+								easing: quintOut
+							}}
+						>
+							<div class="timeline-middle">
+								{#if currentStep === last - step + 1}
+									<span class="badge badge-step {activeClass}"
+										>{stepLabel} {step + 1 + currentStep}</span
+									>
+								{:else}
+									<span class="badge badge-step">{step + 1 + currentStep}</span>
+								{/if}
+							</div>
+						</li>
+					{/each}
+				</span>
 			</ul>
 		</div>
-		<div
-			class="step-content-container"
-			style="height: {containerHeight}px;"
-		>
+		<div class="step-content-container" style="height: {containerHeight}px;">
 			{#each steps as step, i (i)}
 				{#if i + 1 === currentStep}
 					<div
@@ -248,7 +245,9 @@
 						</button>
 					{:else}
 						<button
-							onclick={async () => { if ((await onbeforefinish?.()) !== false) onfinish(); }}
+							onclick={async () => {
+								if ((await onbeforefinish?.()) !== false) onfinish();
+							}}
 							class="join-item btn btn-primary flex items-center justify-end"
 						>
 							<span> {finishLabel} </span>
@@ -288,7 +287,9 @@
 					</button>
 				{:else}
 					<button
-						onclick={async () => { if ((await onbeforefinish?.()) !== false) onfinish(); }}
+						onclick={async () => {
+							if ((await onbeforefinish?.()) !== false) onfinish();
+						}}
 						class="join-item btn btn-primary flex items-center justify-end"
 					>
 						<span> {finishLabel} </span>

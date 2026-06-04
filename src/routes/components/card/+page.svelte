@@ -4,9 +4,7 @@
 
 <div class="flex flex-col gap-6 p-4">
 	<h1 class="mb-4 text-3xl font-bold">Card Examples</h1>
-	<p class="mb-2 text-sm opacity-70">
-		DaisyUI-based card component for mobile applications
-	</p>
+	<p class="mb-2 text-sm opacity-70">DaisyUI-based card component for mobile applications</p>
 
 	<div>
 		<h2 class="mb-2 text-2xl font-bold">Example 1: Basic Card</h2>
@@ -81,7 +79,7 @@
 		<h2 class="mb-2 text-2xl font-bold">Example 5: Glass Card</h2>
 		<p class="mb-4 text-sm opacity-70">Glassmorphism effect</p>
 
-		<div class="hero min-h-[300px] bg-base-200 rounded-box">
+		<div class="hero bg-base-200 rounded-box min-h-[300px]">
 			<div class="hero-content">
 				<Card variant="glass" class="w-96">
 					{#snippet title()}

@@ -1,40 +1,40 @@
 /** types go here */
 import type {
-  KeyValuePair,
-  ListPickerData,
-  ListPickerLabel,
-  OptionCardData,
-  OptionCardBadge,
-  OptionCardMetric,
-  BottomNavItem,
-  AvatarOption,
-  BreadcrumbItem,
-  MenuItem,
-  MenuTitle,
-  NavBarItem,
-  NavBarConfig,
-  FABAction,
-  ActivityRingEntry
+	KeyValuePair,
+	ListPickerData,
+	ListPickerLabel,
+	OptionCardData,
+	OptionCardBadge,
+	OptionCardMetric,
+	BottomNavItem,
+	AvatarOption,
+	BreadcrumbItem,
+	MenuItem,
+	MenuTitle,
+	NavBarItem,
+	NavBarConfig,
+	FABAction,
+	ActivityRingEntry
 } from './types/types.js';
 import type { ChartProps } from './chart/props.js';
 import type { ToastMessage } from './components/toast/toast.svelte.js';
 
 export type {
-  KeyValuePair,
-  ListPickerData,
-  ListPickerLabel,
-  OptionCardData,
-  OptionCardBadge,
-  OptionCardMetric,
-  BottomNavItem,
-  AvatarOption,
-  BreadcrumbItem,
-  MenuItem,
-  MenuTitle,
-  NavBarItem,
-  NavBarConfig,
-  FABAction,
-  ActivityRingEntry
+	KeyValuePair,
+	ListPickerData,
+	ListPickerLabel,
+	OptionCardData,
+	OptionCardBadge,
+	OptionCardMetric,
+	BottomNavItem,
+	AvatarOption,
+	BreadcrumbItem,
+	MenuItem,
+	MenuTitle,
+	NavBarItem,
+	NavBarConfig,
+	FABAction,
+	ActivityRingEntry
 };
 export type { ChartProps };
 export type { ToastMessage };
@@ -76,7 +76,15 @@ import FAB from '$lib/components/fab/FAB.svelte';
 import SearchBar from '$lib/components/input/SearchBar.svelte';
 import ActivityRing from '$lib/components/activity/ActivityRing.svelte';
 
-import { AlertType, AlertVariant, TextSize, MenuSize, DockSize, BadgeColor, InputSize } from './enum/enum.js';
+import {
+	AlertType,
+	AlertVariant,
+	TextSize,
+	MenuSize,
+	DockSize,
+	BadgeColor,
+	InputSize
+} from './enum/enum.js';
 import { toast } from './components/toast/toast.svelte.js';
 import { createRefreshContext, useRefresh } from './utils/refresh.svelte.js';
 
@@ -84,39 +92,39 @@ export { AlertType, AlertVariant, TextSize, MenuSize, DockSize, BadgeColor, Inpu
 export { toast };
 export { createRefreshContext, useRefresh };
 export {
-  AlertBox,
-  Card,
-  ListPicker,
-  OptionCards,
-  SwipeableListItem,
-  RangeInput,
-  NumberStepper,
-  NumberWheel,
-  InlineNumberWheel,
-  ButtonGroup,
-  ModalDialog,
-  Stepper,
-  Stack,
-  StackCard,
-  ValidatedInput,
-  LineChart,
-  BarChart,
-  PolarAreaChart,
-  BottomNavigation,
-  NavBar,
-  Breadcrumbs,
-  CircularProgress,
-  StatCard,
-  PullToRefresh,
-  Avatar,
-  AvatarGroup,
-  AvatarPicker,
-  ToastContainer,
-  AppShell,
-  Menu,
-  LoadingIndicator,
-  LongPressContainer,
-  FAB,
-  SearchBar,
-  ActivityRing
+	AlertBox,
+	Card,
+	ListPicker,
+	OptionCards,
+	SwipeableListItem,
+	RangeInput,
+	NumberStepper,
+	NumberWheel,
+	InlineNumberWheel,
+	ButtonGroup,
+	ModalDialog,
+	Stepper,
+	Stack,
+	StackCard,
+	ValidatedInput,
+	LineChart,
+	BarChart,
+	PolarAreaChart,
+	BottomNavigation,
+	NavBar,
+	Breadcrumbs,
+	CircularProgress,
+	StatCard,
+	PullToRefresh,
+	Avatar,
+	AvatarGroup,
+	AvatarPicker,
+	ToastContainer,
+	AppShell,
+	Menu,
+	LoadingIndicator,
+	LongPressContainer,
+	FAB,
+	SearchBar,
+	ActivityRing
 };

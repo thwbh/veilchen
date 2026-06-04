@@ -35,13 +35,15 @@
 		imageFull = false
 	}: Props = $props();
 
-	const variantClasses = $derived({
-		normal: 'card',
-		compact: 'card card-compact',
-		side: 'card card-side',
-		glass: 'card glass',
-		bordered: 'card card-bordered'
-	}[variant]);
+	const variantClasses = $derived(
+		{
+			normal: 'card',
+			compact: 'card card-compact',
+			side: 'card card-side',
+			glass: 'card glass',
+			bordered: 'card card-bordered'
+		}[variant]
+	);
 
 	const imageClasses = $derived(imageFull ? '' : 'px-4 pt-4');
 </script>

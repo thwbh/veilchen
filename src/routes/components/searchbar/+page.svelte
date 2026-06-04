@@ -1,6 +1,6 @@
 <script lang="ts">
 	import SearchBar from '$lib/components/input/SearchBar.svelte';
-import { InputSize } from '$lib/enum/enum.js';
+	import { InputSize } from '$lib/enum/enum.js';
 
 	// Example 1: Basic search
 	let query1 = $state('');
@@ -28,9 +28,7 @@ import { InputSize } from '$lib/enum/enum.js';
 	];
 
 	let filtered = $derived(
-		query4.length > 0
-			? exercises.filter(e => e.toLowerCase().includes(query4.toLowerCase()))
-			: []
+		query4.length > 0 ? exercises.filter((e) => e.toLowerCase().includes(query4.toLowerCase())) : []
 	);
 
 	// Example 5: Size variants
@@ -56,18 +54,15 @@ import { InputSize } from '$lib/enum/enum.js';
 <div class="flex flex-col gap-6 p-4">
 	<h1 class="mb-4 text-3xl font-bold">SearchBar Examples</h1>
 	<p class="mb-2 text-sm opacity-70">
-		A headless search input component with magnifier icon, clear button, and optional debounce.
-		The consumer handles filtering and displaying results.
+		A headless search input component with magnifier icon, clear button, and optional debounce. The
+		consumer handles filtering and displaying results.
 	</p>
 
 	<div>
 		<h2 class="mb-2 text-2xl font-bold">Example 1: Basic Search</h2>
 		<p class="mb-4 text-sm opacity-70">Simple search input with two-way binding</p>
 
-		<SearchBar
-			bind:value={query1}
-			placeholder="Search..."
-		/>
+		<SearchBar bind:value={query1} placeholder="Search..." />
 
 		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
@@ -107,11 +102,7 @@ import { InputSize } from '$lib/enum/enum.js';
 		<h2 class="mb-2 text-2xl font-bold">Example 3: Clear Callback</h2>
 		<p class="mb-4 text-sm opacity-70">Fires a custom callback when the clear button is clicked</p>
 
-		<SearchBar
-			bind:value={query3}
-			placeholder="Type to search..."
-			onclear={handleClear3}
-		/>
+		<SearchBar bind:value={query3} placeholder="Type to search..." onclear={handleClear3} />
 
 		<div class="bg-base-200 rounded-box mt-4 p-4">
 			<p class="text-sm">
@@ -125,12 +116,11 @@ import { InputSize } from '$lib/enum/enum.js';
 
 	<div>
 		<h2 class="mb-2 text-2xl font-bold">Example 4: Suffix Slot — Result Count</h2>
-		<p class="mb-4 text-sm opacity-70">Use the children slot to display result count (exercise library)</p>
+		<p class="mb-4 text-sm opacity-70">
+			Use the children slot to display result count (exercise library)
+		</p>
 
-		<SearchBar
-			bind:value={query4}
-			placeholder="Search exercises..."
-		>
+		<SearchBar bind:value={query4} placeholder="Search exercises...">
 			{#if filtered.length > 0}
 				<span class="text-xs opacity-70">{filtered.length} results</span>
 			{:else if query4.length > 0}
@@ -163,35 +153,19 @@ import { InputSize } from '$lib/enum/enum.js';
 		<div class="flex flex-col gap-4">
 			<div>
 				<p class="mb-1 text-xs opacity-70">XS</p>
-				<SearchBar
-					bind:value={query5}
-					placeholder="XS input..."
-					inputSize={InputSize.XS}
-				/>
+				<SearchBar bind:value={query5} placeholder="XS input..." inputSize={InputSize.XS} />
 			</div>
 			<div>
 				<p class="mb-1 text-xs opacity-70">SM</p>
-				<SearchBar
-					bind:value={query6}
-					placeholder="SM input..."
-					inputSize={InputSize.SM}
-				/>
+				<SearchBar bind:value={query6} placeholder="SM input..." inputSize={InputSize.SM} />
 			</div>
 			<div>
 				<p class="mb-1 text-xs opacity-70">MD (default)</p>
-				<SearchBar
-					bind:value={query7}
-					placeholder="MD input..."
-					inputSize={InputSize.MD}
-				/>
+				<SearchBar bind:value={query7} placeholder="MD input..." inputSize={InputSize.MD} />
 			</div>
 			<div>
 				<p class="mb-1 text-xs opacity-70">LG</p>
-				<SearchBar
-					bind:value={query8}
-					placeholder="LG input..."
-					inputSize={InputSize.LG}
-				/>
+				<SearchBar bind:value={query8} placeholder="LG input..." inputSize={InputSize.LG} />
 			</div>
 		</div>
 	</div>
@@ -205,27 +179,15 @@ import { InputSize } from '$lib/enum/enum.js';
 		<div class="flex flex-col gap-4">
 			<div>
 				<p class="mb-1 text-xs opacity-70">Primary</p>
-				<SearchBar
-					bind:value={query9}
-					placeholder="Primary..."
-					color="primary"
-				/>
+				<SearchBar bind:value={query9} placeholder="Primary..." color="primary" />
 			</div>
 			<div>
 				<p class="mb-1 text-xs opacity-70">Secondary</p>
-				<SearchBar
-					bind:value={query10}
-					placeholder="Secondary..."
-					color="secondary"
-				/>
+				<SearchBar bind:value={query10} placeholder="Secondary..." color="secondary" />
 			</div>
 			<div>
 				<p class="mb-1 text-xs opacity-70">Accent</p>
-				<SearchBar
-					bind:value={query11}
-					placeholder="Accent..."
-					color="accent"
-				/>
+				<SearchBar bind:value={query11} placeholder="Accent..." color="accent" />
 			</div>
 		</div>
 	</div>
@@ -236,11 +198,7 @@ import { InputSize } from '$lib/enum/enum.js';
 		<h2 class="mb-2 text-2xl font-bold">Example 7: Without Clear Button</h2>
 		<p class="mb-4 text-sm opacity-70">Set clearable=false to hide the clear button</p>
 
-		<SearchBar
-			bind:value={query1}
-			placeholder="Search without clear button..."
-			clearable={false}
-		/>
+		<SearchBar bind:value={query1} placeholder="Search without clear button..." clearable={false} />
 	</div>
 
 	<div class="divider"></div>

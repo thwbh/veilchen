@@ -102,7 +102,7 @@
 				translateX = maxSwipeDistance;
 
 				// Small delay to show the action before executing
-				await new Promise(resolve => setTimeout(resolve, 200));
+				await new Promise((resolve) => setTimeout(resolve, 200));
 				await onleft();
 				close();
 				isExecuting = false;
@@ -112,7 +112,7 @@
 				translateX = -maxSwipeDistance;
 
 				// Small delay to show the action before executing
-				await new Promise(resolve => setTimeout(resolve, 200));
+				await new Promise((resolve) => setTimeout(resolve, 200));
 				await onright();
 				close();
 				isExecuting = false;

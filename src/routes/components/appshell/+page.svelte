@@ -38,7 +38,7 @@
 	async function handleRefresh() {
 		isRefreshing = true;
 		// Simulate API call
-		await new Promise(resolve => setTimeout(resolve, 1500));
+		await new Promise((resolve) => setTimeout(resolve, 1500));
 		lastRefreshTime = new Date().toLocaleTimeString();
 		isRefreshing = false;
 	}
@@ -70,10 +70,8 @@
 	<div>
 		<h2 class="mb-2 text-xl font-bold">Preview</h2>
 		<div class="mb-4 flex gap-2">
-			<button class="btn btn-primary btn-sm" onclick={simulateLoading}>
-				Simulate Loading
-			</button>
-			<span class="text-sm opacity-70 self-center">
+			<button class="btn btn-primary btn-sm" onclick={simulateLoading}> Simulate Loading </button>
+			<span class="self-center text-sm opacity-70">
 				{isLoading ? 'Loading...' : 'Click to see loading indicator'}
 			</span>
 		</div>
@@ -277,20 +275,21 @@
 			<ul class="mb-4 list-inside list-disc space-y-1 opacity-70">
 				<li><code>items: BottomNavItem[]</code> - Navigation items</li>
 				<li><code>activeId?: string</code> - Currently active item ID</li>
-				<li><code>navbar?: NavBarConfig</code> - Optional navbar configuration for top navigation</li>
+				<li>
+					<code>navbar?: NavBarConfig</code> - Optional navbar configuration for top navigation
+				</li>
 				<li><code>class?: string</code> - Additional CSS classes for shell</li>
 				<li><code>contentClass?: string</code> - Additional CSS classes for content area</li>
 				<li><code>navClass?: string</code> - Additional CSS classes for navigation</li>
 				<li><code>loading?: boolean</code> - Show/hide loading progress bar (default: false)</li>
 				<li>
 					<code
-						>loadingColor?: 'progress-primary' | 'progress-secondary' | 'progress-accent' |
-						...</code
+						>loadingColor?: 'progress-primary' | 'progress-secondary' | 'progress-accent' | ...</code
 					> - Progress bar color (default: 'progress-primary')
 				</li>
 				<li>
-					<code>onrefresh?: () => void | Promise&lt;void&gt;</code> - Callback for pull-to-refresh.
-					If provided, enables pull-to-refresh
+					<code>onrefresh?: () => void | Promise&lt;void&gt;</code> - Callback for pull-to-refresh. If
+					provided, enables pull-to-refresh
 				</li>
 				<li><code>refreshing?: boolean</code> - Whether a refresh is in progress (bindable)</li>
 				<li>

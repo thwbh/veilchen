@@ -13,12 +13,7 @@
 		scrollable?: boolean;
 	}
 
-	let {
-		items,
-		class: className = '',
-		size = TextSize.SM,
-		scrollable = false
-	}: Props = $props();
+	let { items, class: className = '', size = TextSize.SM, scrollable = false }: Props = $props();
 
 	function handleClick(item: BreadcrumbItem, event: MouseEvent) {
 		if (item.onclick) {
