@@ -5,8 +5,8 @@
 			items: [
 				{
 					name: 'ButtonGroup',
-					path: '/components/button',
-					description: 'Segmented control for selections'
+					path: '/components/buttongroup',
+					description: 'Segmented control with mobile optimizations'
 				},
 				{
 					name: 'RangeInput',
