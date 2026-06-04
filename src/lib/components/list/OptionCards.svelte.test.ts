@@ -2,6 +2,7 @@ import { render, fireEvent } from '@testing-library/svelte';
 import { expect, test, describe, vi } from 'vitest';
 import OptionCards from './OptionCards.svelte';
 import type { OptionCardData } from '$lib/types/types.js';
+import { BadgeColor } from '$lib/enum/enum.js';
 
 describe('OptionCards', () => {
 	const mockData: OptionCardData<string>[] = [
@@ -14,7 +15,7 @@ describe('OptionCards', () => {
 			header: 'Pro Plan',
 			badge: {
 				text: '$29/mo',
-				color: 'primary'
+				color: BadgeColor.Primary
 			}
 		},
 		{
@@ -22,11 +23,11 @@ describe('OptionCards', () => {
 			header: 'Enterprise Plan',
 			badge: {
 				text: '$99/mo',
-				color: 'secondary'
+				color: BadgeColor.Secondary
 			},
 			highlight: {
 				text: 'Popular',
-				color: 'success'
+				color: BadgeColor.Success
 			}
 		}
 	];

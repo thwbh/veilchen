@@ -14,7 +14,7 @@
 
 	let { numbers, value = $bindable(numbers[0]), onchange }: Props = $props();
 
-	let wheelElement = $state<HTMLDivElement>();
+	let wheelElement = $state<HTMLDivElement | undefined>();
 	let startY = 0;
 	let scrollTop = 0;
 	
@@ -120,6 +120,7 @@
 		ontouchend={handleTouchEnd}
 		onscroll={handleScroll}
 		role="listbox"
+			tabindex="0"
 		aria-label="Number selector"
 	>
 		<div class="wheel-spacer"></div>
@@ -129,7 +130,7 @@
 				type="button"
 				role="option"
 				aria-selected={selectedIndex === index}
-				pointer-events="none"
+				style="pointer-events: none"
 			>
 				{num}
 			</button>

@@ -16,15 +16,15 @@
 
 	let { numbers, value = $bindable(numbers[0]), onchange, visible = false }: Props = $props();
 
-	let wheelElement = $state<HTMLDivElement>();
+	let wheelElement = $state<HTMLDivElement | undefined>();
 	let startY = 0;
 	let scrollTop = 0;
 	
 	// Update selectedIndex whenever value or numbers change
 	// Ensure it's always a valid index
-	let selectedIndex = $derived(() => {
-		const index = numbers.indexOf(value ?? numbers[0]);
-		return Math.max(0, Math.min(index, numbers.length - 1));
+	let selectedIndex = $derived(numbers.indexOf(value ?? numbers[0]));
+	$effect(() => {
+		selectedIndex = Math.max(0, Math.min(selectedIndex, numbers.length - 1));
 	});
 
 	// Each item height in pixels
@@ -37,17 +37,20 @@
 	}
 
 	function handleTouchStart(e: TouchEvent) {
+		if (!wheelElement) return;
 		startY = e.touches[0].pageY;
 		scrollTop = wheelElement.scrollTop;
 	}
 
 	function handleTouchMove(e: TouchEvent) {
+		if (!wheelElement) return;
 		const y = e.touches[0].pageY;
 		const walk = startY - y;
 		wheelElement.scrollTop = scrollTop + walk;
 	}
 
 	function handleScroll() {
+		if (!wheelElement) return;
 		// Snap to nearest item after scrolling
 		const index = Math.round(wheelElement.scrollTop / ITEM_HEIGHT);
 		const clampedIndex = Math.max(0, Math.min(numbers.length - 1, index));
@@ -112,7 +115,7 @@
 					<button
 						class="wheel-item {selectedIndex === index ? 'selected' : ''}"
 						type="button"
-						pointer-events="none"
+						style="pointer-events: none"
 					>
 						{num}
 					</button>

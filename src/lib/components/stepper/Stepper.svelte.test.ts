@@ -1,13 +1,20 @@
 import { render, fireEvent } from '@testing-library/svelte';
 import { expect, test, describe, vi } from 'vitest';
+import { createRawSnippet } from 'svelte';
 import Stepper from './Stepper.svelte';
 
 describe('Stepper', () => {
   test('renders with default first step', () => {
     const { container } = render(Stepper, {
-      step1: () => { },
-      step2: () => { },
-      step3: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+      step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
     });
 
     const navigation = container.querySelector('[role="navigation"]');
@@ -17,9 +24,15 @@ describe('Stepper', () => {
   test('renders correct number of step badges', () => {
     const { container } = render(Stepper, {
       currentStep: 1,
-      step1: () => { },
-      step2: () => { },
-      step3: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+      step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
     });
 
     const badges = container.querySelectorAll('.badge-step');
@@ -30,9 +43,15 @@ describe('Stepper', () => {
     const { container } = render(Stepper, {
       currentStep: 2,
       activeClass: 'badge-primary',
-      step1: () => { },
-      step2: () => { },
-      step3: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+      step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
     });
 
     const badges = container.querySelectorAll('.badge-step');
@@ -43,8 +62,12 @@ describe('Stepper', () => {
     const { container } = render(Stepper, {
       currentStep: 1,
       stepLabel: 'Phase',
-      step1: () => { },
-      step2: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				}))
     });
 
     const badge = container.querySelector('.badge-step');
@@ -56,8 +79,12 @@ describe('Stepper', () => {
       currentStep: 1,
       backLabel: 'Go Back',
       nextLabel: 'Continue',
-      step1: () => { },
-      step2: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				}))
     });
 
     expect(container.textContent).toContain('Go Back');
@@ -68,8 +95,12 @@ describe('Stepper', () => {
     const { container } = render(Stepper, {
       currentStep: 2,
       finishLabel: 'Complete',
-      step1: () => { },
-      step2: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				}))
     });
 
     expect(container.textContent).toContain('Complete');
@@ -81,9 +112,15 @@ describe('Stepper', () => {
       currentStep: 1,
       onnext,
       nextLabel: 'Next Step',
-      step1: () => { },
-      step2: () => { },
-      step3: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+      step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
     });
 
     const nextButton = Array.from(container.querySelectorAll('button')).find((btn) =>
@@ -100,9 +137,15 @@ describe('Stepper', () => {
       currentStep: 2,
       onback,
       backLabel: 'Previous',
-      step1: () => { },
-      step2: () => { },
-      step3: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+      step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
     });
 
     const backButton = Array.from(container.querySelectorAll('button')).find((btn) =>
@@ -119,9 +162,15 @@ describe('Stepper', () => {
       currentStep: 3,
       onfinish,
       finishLabel: 'Finish',
-      step1: () => { },
-      step2: () => { },
-      step3: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+      step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
     });
 
     const finishButton = Array.from(container.querySelectorAll('button')).find((btn) =>
@@ -138,8 +187,12 @@ describe('Stepper', () => {
       currentStep: 1,
       onback,
       backLabel: 'Previous',
-      step1: () => { },
-      step2: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				}))
     });
 
     const backButton = Array.from(container.querySelectorAll('button')).find((btn) =>
@@ -152,8 +205,12 @@ describe('Stepper', () => {
 
   test('has proper ARIA attributes', () => {
     const { container } = render(Stepper, {
-      step1: () => { },
-      step2: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				}))
     });
 
     const navigation = container.querySelector('[role="navigation"]');
@@ -163,8 +220,12 @@ describe('Stepper', () => {
 
   test('is keyboard focusable', () => {
     const { container } = render(Stepper, {
-      step1: () => { },
-      step2: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				}))
     });
 
     const navigation = container.querySelector('[role="navigation"]');
@@ -176,9 +237,15 @@ describe('Stepper', () => {
     const { container } = render(Stepper, {
       currentStep: 1,
       onnext,
-      step1: () => { },
-      step2: () => { },
-      step3: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+      step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
     });
 
     const navigation = container.querySelector('[role="navigation"]') as HTMLElement;
@@ -192,9 +259,15 @@ describe('Stepper', () => {
     const { container } = render(Stepper, {
       currentStep: 2,
       onback,
-      step1: () => { },
-      step2: () => { },
-      step3: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+      step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
     });
 
     const navigation = container.querySelector('[role="navigation"]') as HTMLElement;
@@ -208,8 +281,12 @@ describe('Stepper', () => {
     const { container } = render(Stepper, {
       currentStep: 1,
       onnext,
-      step1: () => { },
-      step2: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				}))
     });
 
     const navigation = container.querySelector('[role="navigation"]') as HTMLElement;
@@ -223,8 +300,12 @@ describe('Stepper', () => {
     const { container } = render(Stepper, {
       currentStep: 2,
       onback,
-      step1: () => { },
-      step2: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				}))
     });
 
     const navigation = container.querySelector('[role="navigation"]') as HTMLElement;
@@ -238,9 +319,15 @@ describe('Stepper', () => {
     const { container } = render(Stepper, {
       currentStep: 3,
       onfinish,
-      step1: () => { },
-      step2: () => { },
-      step3: () => { }
+      step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+      step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+      step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
     });
 
     const navigation = container.querySelector('[role="navigation"]') as HTMLElement;
@@ -259,9 +346,15 @@ describe('Stepper', () => {
         onbeforenext,
         onnext,
         nextLabel: 'Next',
-        step1: () => { },
-        step2: () => { },
-        step3: () => { }
+        step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+        step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+        step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
       });
 
       const nextButton = Array.from(container.querySelectorAll('button')).find((btn) =>
@@ -281,9 +374,15 @@ describe('Stepper', () => {
         onbeforenext,
         onnext,
         nextLabel: 'Next',
-        step1: () => { },
-        step2: () => { },
-        step3: () => { }
+        step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+        step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+        step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
       });
 
       const nextButton = Array.from(container.querySelectorAll('button')).find((btn) =>
@@ -303,9 +402,15 @@ describe('Stepper', () => {
         onbeforenext,
         onnext,
         nextLabel: 'Next',
-        step1: () => { },
-        step2: () => { },
-        step3: () => { }
+        step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+        step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+        step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
       });
 
       const nextButton = Array.from(container.querySelectorAll('button')).find((btn) =>
@@ -326,9 +431,15 @@ describe('Stepper', () => {
         onbeforeback,
         onback,
         backLabel: 'Previous',
-        step1: () => { },
-        step2: () => { },
-        step3: () => { }
+        step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+        step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+        step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
       });
 
       const backButton = Array.from(container.querySelectorAll('button')).find((btn) =>
@@ -348,9 +459,15 @@ describe('Stepper', () => {
         onbeforeback,
         onback,
         backLabel: 'Previous',
-        step1: () => { },
-        step2: () => { },
-        step3: () => { }
+        step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+        step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+        step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
       });
 
       const backButton = Array.from(container.querySelectorAll('button')).find((btn) =>
@@ -370,9 +487,15 @@ describe('Stepper', () => {
         onbeforeback,
         onback,
         backLabel: 'Previous',
-        step1: () => { },
-        step2: () => { },
-        step3: () => { }
+        step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+        step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+        step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
       });
 
       const backButton = Array.from(container.querySelectorAll('button')).find((btn) =>
@@ -393,9 +516,15 @@ describe('Stepper', () => {
         onbeforefinish,
         onfinish,
         finishLabel: 'Finish',
-        step1: () => { },
-        step2: () => { },
-        step3: () => { }
+        step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+        step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+        step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
       });
 
       const finishButton = Array.from(container.querySelectorAll('button')).find((btn) =>
@@ -415,9 +544,15 @@ describe('Stepper', () => {
         onbeforefinish,
         onfinish,
         finishLabel: 'Finish',
-        step1: () => { },
-        step2: () => { },
-        step3: () => { }
+        step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+        step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+        step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
       });
 
       const finishButton = Array.from(container.querySelectorAll('button')).find((btn) =>
@@ -437,9 +572,15 @@ describe('Stepper', () => {
         onbeforefinish,
         onfinish,
         finishLabel: 'Finish',
-        step1: () => { },
-        step2: () => { },
-        step3: () => { }
+        step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+        step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+        step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
       });
 
       const finishButton = Array.from(container.querySelectorAll('button')).find((btn) =>
@@ -459,9 +600,15 @@ describe('Stepper', () => {
         currentStep: 1,
         onbeforenext,
         onnext,
-        step1: () => { },
-        step2: () => { },
-        step3: () => { }
+        step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+        step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+        step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
       });
 
       const navigation = container.querySelector('[role="navigation"]') as HTMLElement;
@@ -478,9 +625,15 @@ describe('Stepper', () => {
         currentStep: 2,
         onbeforeback,
         onback,
-        step1: () => { },
-        step2: () => { },
-        step3: () => { }
+        step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+        step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+        step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
       });
 
       const navigation = container.querySelector('[role="navigation"]') as HTMLElement;
@@ -497,9 +650,15 @@ describe('Stepper', () => {
         currentStep: 3,
         onbeforefinish,
         onfinish,
-        step1: () => { },
-        step2: () => { },
-        step3: () => { }
+        step1: createRawSnippet(() => ({
+					render: () => `<div>Step 1</div>`
+				})),
+        step2: createRawSnippet(() => ({
+					render: () => `<div>Step 2</div>`
+				})),
+        step3: createRawSnippet(() => ({
+					render: () => `<div>Step 3</div>`
+				}))
       });
 
       const navigation = container.querySelector('[role="navigation"]') as HTMLElement;

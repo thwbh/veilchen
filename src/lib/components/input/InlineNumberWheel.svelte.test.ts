@@ -83,10 +83,8 @@ describe('InlineNumberWheel', () => {
 		
 		// Change the value to 100 (index 3)
 		await rerender({
-			props: {
-				numbers: [1, 5, 10, 100, 250],
-				value: 100
-			}
+			numbers: [1, 5, 10, 100, 250],
+			value: 100
 		});
 
 		// Wait for the scroll to happen

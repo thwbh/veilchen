@@ -3,6 +3,12 @@ import { svelteTesting } from '@testing-library/svelte/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
+declare module 'vite' {
+	interface UserConfig {
+		test?: any;
+	}
+}
+
 export default defineConfig({
 	plugins: [tailwindcss(), sveltekit()],
 	test: {

@@ -258,6 +258,8 @@
 		onpointermove={handlePointerMove}
 		onpointerup={handlePointerUp}
 		onpointercancel={handlePointerCancel}
+		role="button"
+		tabindex="0"
 		style="
 			position: relative;
 			transform: translateX({translateX}px);

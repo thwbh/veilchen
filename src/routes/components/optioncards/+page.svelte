@@ -1,6 +1,7 @@
 <script lang="ts">
 	import OptionCards from '$lib/components/list/OptionCards.svelte';
 	import type { OptionCardData } from '$lib/types/types.js';
+	import { BadgeColor } from '$lib/enum/enum.js';
 
 	// Example 1: With Emoji Icons
 	let selected = $state('plan-a');
@@ -9,7 +10,7 @@
 		{
 			value: 'plan-a',
 			header: 'Starter',
-			badge: { text: 'Free', color: 'success' },
+			badge: { text: 'Free', color: BadgeColor.Success },
 			metrics: [
 				{ label: 'Users', value: '5' },
 				{ label: 'Storage', value: '10GB' }
@@ -19,8 +20,8 @@
 			value: 'plan-b',
 			header: 'Professional',
 			text: "I'd buy that for a dollar!",
-			highlight: { text: 'Recommended', color: 'primary' },
-			badge: { text: '$29/mo', color: 'primary' },
+			highlight: { text: 'Recommended', color: BadgeColor.Primary },
+			badge: { text: '$29/mo', color: BadgeColor.Primary },
 			metrics: [
 				{ label: 'Users', value: '50' },
 				{ label: 'Storage', value: '500GB' },

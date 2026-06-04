@@ -45,7 +45,7 @@
 		/** Whether buttons should stick to the bottom with scrollable content (default: false) */
 		stickyButtons?: boolean;
 		/** Step snippets (step1, step2, etc.) passed as additional props */
-		[key: string]: StepSnippet | number | string | undefined | (() => void) | boolean;
+		[key: `step${number}`]: StepSnippet | undefined;
 	}
 
 	let {
