@@ -13,7 +13,8 @@ import type {
   MenuTitle,
   NavBarItem,
   NavBarConfig,
-  FABAction
+  FABAction,
+  ActivityRingEntry
 } from './types/types.js';
 import type { ChartProps } from './chart/props.js';
 import type { ToastMessage } from './components/toast/toast.svelte.js';
@@ -32,7 +33,8 @@ export type {
   MenuTitle,
   NavBarItem,
   NavBarConfig,
-  FABAction
+  FABAction,
+  ActivityRingEntry
 };
 export type { ChartProps };
 export type { ToastMessage };
@@ -72,6 +74,7 @@ import LoadingIndicator from '$lib/components/loading/LoadingIndicator.svelte';
 import LongPressContainer from '$lib/components/gesture/LongPressContainer.svelte';
 import FAB from '$lib/components/fab/FAB.svelte';
 import SearchBar from '$lib/components/input/SearchBar.svelte';
+import ActivityRing from '$lib/components/activity/ActivityRing.svelte';
 
 import { AlertType, AlertVariant, TextSize, MenuSize, DockSize, BadgeColor, InputSize } from './enum/enum.js';
 import { toast } from './components/toast/toast.svelte.js';
@@ -114,5 +117,6 @@ export {
   LoadingIndicator,
   LongPressContainer,
   FAB,
-  SearchBar
+  SearchBar,
+  ActivityRing
 };

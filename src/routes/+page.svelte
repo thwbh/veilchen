@@ -61,6 +61,11 @@
 					path: '/components/circularprogress',
 					description: 'Circular progress indicator'
 				},
+				{
+					name: 'ActivityRing',
+					path: '/components/activityring',
+					description: 'Concentric activity rings'
+				},
 				{ name: 'StatCard', path: '/components/statcard', description: 'Stat/Metrics display' },
 				{
 					name: 'LoadingIndicator',

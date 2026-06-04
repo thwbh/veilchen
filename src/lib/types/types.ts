@@ -213,3 +213,22 @@ export interface FABAction {
   /** Whether this is the main action shown when FAB is open (replaces trigger) */
   isMainAction?: boolean;
 }
+
+/**
+ * Data structure for a single activity ring entry.
+ * Supports DaisyUI/Tailwind color names or raw color values.
+ */
+export interface ActivityRingEntry {
+  /** Unique identifier for this ring */
+  key: string;
+  /** Label displayed below the ring */
+  label: string;
+  /** Current value (must be ≤ goal) */
+  current: number;
+  /** Target/goal value */
+  goal: number;
+  /** Color — accepts Tailwind/DaisyUI color names or hex values */
+  color: string;
+  /** Optional icon name or component for the ring label */
+  icon?: string;
+}
