@@ -51,8 +51,8 @@
 		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
-		"@dicebear/collection": "^9.2.4",
 		"@dicebear/core": "^10.0.2",
+		"@dicebear/styles": "^10.1.0",
 		"@eslint/compat": "^2.1.0",
 		"@eslint/js": "^10.0.1",
 		"@sveltejs/adapter-auto": "^7.0.1",
@@ -73,7 +73,7 @@
 		"lint-staged": "^17.0.7",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^4.1.0",
-		"prettier-plugin-tailwindcss": "^0.6.11",
+		"prettier-plugin-tailwindcss": "^0.8.0",
 		"publint": "^0.3.2",
 		"svelte": "^5.56.1",
 		"svelte-check": "^4.0.0",
