@@ -3,8 +3,10 @@
 	import AvatarGroup from '$lib/components/avatar/AvatarGroup.svelte';
 	import AvatarPicker from '$lib/components/avatar/AvatarPicker.svelte';
 
-	import { createAvatar } from '@dicebear/core';
-	import { thumbs, lorelei } from '@dicebear/collection';
+	import { Style, Avatar as DicebearAvatar } from '@dicebear/core';
+	import lorelei from '@dicebear/styles/lorelei.json' with { type: 'json' };
+	import thumbs from '@dicebear/styles/thumbs.json' with { type: 'json' };
+
 	import type { AvatarOption } from '$lib/types/types.js';
 	import AlertBox from '$lib/components/alert/AlertBox.svelte';
 	import { AlertType } from '$lib/index.js';
@@ -13,27 +15,30 @@
 	let selectedAvatar = $state<string | undefined>(undefined);
 	let selectedAvatarCustom = $state<string | undefined>(undefined);
 
+	const loreleiStyle = new Style(lorelei);
+	const thumbsStyle = new Style(thumbs);
+
 	const teamAvatars = [
 		{
-			src: createAvatar(lorelei, {
+			src: new DicebearAvatar(loreleiStyle, {
 				seed: 'John',
 				backgroundColor: ['ece9f8']
 			}).toDataUri()
 		},
 		{
-			src: createAvatar(lorelei, {
+			src: new DicebearAvatar(loreleiStyle, {
 				seed: 'Jane Smith',
 				backgroundColor: ['ece9f8']
 			}).toDataUri()
 		},
 		{
-			src: createAvatar(lorelei, {
+			src: new DicebearAvatar(loreleiStyle, {
 				seed: 'Bob W',
 				backgroundColor: ['ece9f8']
 			}).toDataUri()
 		},
 		{
-			src: createAvatar(lorelei, {
+			src: new DicebearAvatar(loreleiStyle, {
 				seed: 'Alice J',
 				backgroundColor: ['ece9f8']
 			}).toDataUri()
@@ -42,26 +47,26 @@
 
 	// DiceBear avatars - lorelei style
 	const loreleiAvatars: AvatarOption[] = [
-		{ id: 'felix', src: createAvatar(lorelei, { seed: 'Felix' }).toDataUri() },
-		{ id: 'aneka', src: createAvatar(lorelei, { seed: 'Aneka' }).toDataUri() },
-		{ id: 'luna', src: createAvatar(lorelei, { seed: 'Luna' }).toDataUri() },
-		{ id: 'max', src: createAvatar(lorelei, { seed: 'Max' }).toDataUri() },
-		{ id: 'bella', src: createAvatar(lorelei, { seed: 'Bella' }).toDataUri() },
-		{ id: 'charlie', src: createAvatar(lorelei, { seed: 'Charlie' }).toDataUri() },
-		{ id: 'daisy', src: createAvatar(lorelei, { seed: 'Daisy' }).toDataUri() },
-		{ id: 'oscar', src: createAvatar(lorelei, { seed: 'Oscar' }).toDataUri() }
+		{ id: 'felix', src: new DicebearAvatar(loreleiStyle, { seed: 'Felix' }).toDataUri() },
+		{ id: 'aneka', src: new DicebearAvatar(loreleiStyle, { seed: 'Aneka' }).toDataUri() },
+		{ id: 'luna', src: new DicebearAvatar(loreleiStyle, { seed: 'Luna' }).toDataUri() },
+		{ id: 'max', src: new DicebearAvatar(loreleiStyle, { seed: 'Max' }).toDataUri() },
+		{ id: 'bella', src: new DicebearAvatar(loreleiStyle, { seed: 'Bella' }).toDataUri() },
+		{ id: 'charlie', src: new DicebearAvatar(loreleiStyle, { seed: 'Charlie' }).toDataUri() },
+		{ id: 'daisy', src: new DicebearAvatar(loreleiStyle, { seed: 'Daisy' }).toDataUri() },
+		{ id: 'oscar', src: new DicebearAvatar(loreleiStyle, { seed: 'Oscar' }).toDataUri() }
 	];
 
 	// DiceBear avatars - thumbs style
 	const thumbsAvatars: AvatarOption[] = [
-		{ id: 'avatar1', src: createAvatar(thumbs, { seed: 'Felix' }).toDataUri() },
-		{ id: 'avatar2', src: createAvatar(thumbs, { seed: 'Aneka' }).toDataUri() },
-		{ id: 'avatar3', src: createAvatar(thumbs, { seed: 'Luna' }).toDataUri() },
-		{ id: 'avatar4', src: createAvatar(thumbs, { seed: 'Max' }).toDataUri() },
-		{ id: 'avatar5', src: createAvatar(thumbs, { seed: 'Bella' }).toDataUri() },
-		{ id: 'avatar6', src: createAvatar(thumbs, { seed: 'Charlie' }).toDataUri() },
-		{ id: 'avatar7', src: createAvatar(thumbs, { seed: 'Daisy' }).toDataUri() },
-		{ id: 'avatar8', src: createAvatar(thumbs, { seed: 'Oscar' }).toDataUri() }
+		{ id: 'avatar1', src: new DicebearAvatar(thumbsStyle, { seed: 'Felix' }).toDataUri() },
+		{ id: 'avatar2', src: new DicebearAvatar(thumbsStyle, { seed: 'Aneka' }).toDataUri() },
+		{ id: 'avatar3', src: new DicebearAvatar(thumbsStyle, { seed: 'Luna' }).toDataUri() },
+		{ id: 'avatar4', src: new DicebearAvatar(thumbsStyle, { seed: 'Max' }).toDataUri() },
+		{ id: 'avatar5', src: new DicebearAvatar(thumbsStyle, { seed: 'Bella' }).toDataUri() },
+		{ id: 'avatar6', src: new DicebearAvatar(thumbsStyle, { seed: 'Charlie' }).toDataUri() },
+		{ id: 'avatar7', src: new DicebearAvatar(thumbsStyle, { seed: 'Daisy' }).toDataUri() },
+		{ id: 'avatar8', src: new DicebearAvatar(thumbsStyle, { seed: 'Oscar' }).toDataUri() }
 	];
 
 	function handleAvatarClick(name: string) {
@@ -199,9 +204,7 @@
 				</div>
 				<div class="flex flex-col items-center gap-2">
 					<Avatar size="lg">
-						{#snippet placeholderContent()}
-							<div class="text-warning font-bold">A1</div>
-						{/snippet}
+						<div class="text-warning font-bold">A1</div>
 					</Avatar>
 					<span class="text-sm">Custom</span>
 				</div>
