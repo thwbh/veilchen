@@ -18,6 +18,10 @@ import type {
 } from './types/types.js';
 import type { ChartProps } from './chart/props.js';
 import type { ToastMessage } from './components/toast/toast.svelte.js';
+import type {
+	SnackbarMessage,
+	SnackbarDismissReason
+} from './components/snackbar/snackbar.svelte.js';
 
 export type {
 	KeyValuePair,
@@ -38,6 +42,7 @@ export type {
 };
 export type { ChartProps };
 export type { ToastMessage };
+export type { SnackbarMessage, SnackbarDismissReason };
 
 /** components go here */
 import AlertBox from '$lib/components/alert/AlertBox.svelte';
@@ -68,6 +73,7 @@ import Avatar from '$lib/components/avatar/Avatar.svelte';
 import AvatarGroup from '$lib/components/avatar/AvatarGroup.svelte';
 import AvatarPicker from '$lib/components/avatar/AvatarPicker.svelte';
 import ToastContainer from '$lib/components/toast/ToastContainer.svelte';
+import SnackbarContainer from '$lib/components/snackbar/SnackbarContainer.svelte';
 import AppShell from '$lib/components/layout/AppShell.svelte';
 import Menu from '$lib/components/menu/Menu.svelte';
 import LoadingIndicator from '$lib/components/loading/LoadingIndicator.svelte';
@@ -75,6 +81,10 @@ import LongPressContainer from '$lib/components/gesture/LongPressContainer.svelt
 import FAB from '$lib/components/fab/FAB.svelte';
 import SearchBar from '$lib/components/input/SearchBar.svelte';
 import ActivityRing from '$lib/components/activity/ActivityRing.svelte';
+import Accordion from '$lib/components/accordion/Accordion.svelte';
+import AccordionItem from '$lib/components/accordion/AccordionItem.svelte';
+import Chip from '$lib/components/chip/Chip.svelte';
+import EmptyState from '$lib/components/emptystate/EmptyState.svelte';
 
 import {
 	AlertType,
@@ -86,10 +96,12 @@ import {
 	InputSize
 } from './enum/enum.js';
 import { toast } from './components/toast/toast.svelte.js';
+import { snackbar } from './components/snackbar/snackbar.svelte.js';
 import { createRefreshContext, useRefresh } from './utils/refresh.svelte.js';
 
 export { AlertType, AlertVariant, TextSize, MenuSize, DockSize, BadgeColor, InputSize };
 export { toast };
+export { snackbar };
 export { createRefreshContext, useRefresh };
 export {
 	AlertBox,
@@ -120,11 +132,16 @@ export {
 	AvatarGroup,
 	AvatarPicker,
 	ToastContainer,
+	SnackbarContainer,
 	AppShell,
 	Menu,
 	LoadingIndicator,
 	LongPressContainer,
 	FAB,
 	SearchBar,
-	ActivityRing
+	ActivityRing,
+	Accordion,
+	AccordionItem,
+	Chip,
+	EmptyState
 };

@@ -9,70 +9,70 @@
 version: 2
 updates:
   # npm dependencies (JavaScript/TypeScript)
-  - package-ecosystem: "npm"
-    directory: "/"
-    target-branch: "develop"
+  - package-ecosystem: 'npm'
+    directory: '/'
+    target-branch: 'develop'
     schedule:
-      interval: "daily"
-      time: "09:00"
-      timezone: "Europe/Vienna"
+      interval: 'daily'
+      time: '09:00'
+      timezone: 'Europe/Vienna'
     open-pull-requests-limit: 10
     reviewers:
-      - "thwbh"
+      - 'thwbh'
     assignees:
-      - "thwbh"
+      - 'thwbh'
     labels:
-      - "devops"
+      - 'devops'
     commit-message:
-      prefix: "chore"
-      prefix-development: "chore"
-      include: "scope"
+      prefix: 'chore'
+      prefix-development: 'chore'
+      include: 'scope'
     groups:
       # All minor/patch updates in a single PR (auto-mergeable).
       npm-minor-patch:
         applies-to: version-updates
         patterns:
-          - "*"
+          - '*'
         update-types:
-          - "minor"
-          - "patch"
+          - 'minor'
+          - 'patch'
       # All major updates in a single PR (left open for manual review).
       npm-major:
         applies-to: version-updates
         patterns:
-          - "*"
+          - '*'
         update-types:
-          - "major"
+          - 'major'
       # All security updates in a single PR.
       npm-security:
         applies-to: security-updates
         patterns:
-          - "*"
+          - '*'
     ignore:
       # Cookie parsing in a transitive dep through SvelteKit; validation in place.
-      - dependency-name: "cookie"
-        versions: [">=0.0.0 <0.7.0"]
+      - dependency-name: 'cookie'
+        versions: ['>=0.0.0 <0.7.0']
 
   # GitHub Actions workflows
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    target-branch: "develop"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    target-branch: 'develop'
     schedule:
-      interval: "weekly"
-      time: "10:00"
-      timezone: "Europe/Vienna"
+      interval: 'weekly'
+      time: '10:00'
+      timezone: 'Europe/Vienna'
     open-pull-requests-limit: 10
     reviewers:
-      - "thwbh"
+      - 'thwbh'
     assignees:
-      - "thwbh"
+      - 'thwbh'
     labels:
-      - "devops"
+      - 'devops'
     commit-message:
-      prefix: "chore"
-      include: "scope"
+      prefix: 'chore'
+      include: 'scope'
     groups:
       # All GitHub Actions updates in a single PR.
       github-actions:
         patterns:
-          - "*"
+          - '*'

@@ -1,16 +1,16 @@
 name: 'Test'
-on: 
+on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main", "develop" ]
+    branches: ['main', 'develop']
 env:
   CARGO_TERM_COLOR: always
 jobs:
   svelte-test:
     name: 'Run vitest'
     runs-on: ubuntu-latest
-  
+
     permissions:
       # Required to checkout the code
       contents: read
@@ -18,29 +18,29 @@ jobs:
       pull-requests: write
 
     steps:
-    - uses: actions/checkout@v4
-    - name: 'Install Node'
-      uses: actions/setup-node@v4
-      with:
-        node-version: '24.x'
-        cache: 'npm'
-    # Restore the node_modules the lint job built (same lockfile key). Falls
-    # back to npm ci only on a cache miss.
-    - name: 'Cache node_modules'
-      id: node-modules
-      uses: actions/cache@v4
-      with:
-        path: node_modules
-        key: ${{ runner.os }}-node22-modules-${{ hashFiles('package-lock.json') }}
-    - name: 'Install Deps'
-      if: steps.node-modules.outputs.cache-hit != 'true'
-      run: npm ci
-    - name: 'Test'
-      run: npm run test
-    - name: 'Upload Svelte coverage to Codecov'
-      uses: codecov/codecov-action@v5
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        files: ./coverage/coverage-final.json
-        flags: svelte
-        name: svelte-coverage
+      - uses: actions/checkout@v6
+      - name: 'Install Node'
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24.x'
+          cache: 'npm'
+      # Restore the node_modules the lint job built (same lockfile key). Falls
+      # back to npm ci only on a cache miss.
+      - name: 'Cache node_modules'
+        id: node-modules
+        uses: actions/cache@v5
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node22-modules-${{ hashFiles('package-lock.json') }}
+      - name: 'Install Deps'
+        if: steps.node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+      - name: 'Test'
+        run: npm run test
+      - name: 'Upload Svelte coverage to Codecov'
+        uses: codecov/codecov-action@v7
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/coverage-final.json
+          flags: svelte
+          name: svelte-coverage
