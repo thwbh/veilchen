@@ -75,6 +75,10 @@ import LongPressContainer from '$lib/components/gesture/LongPressContainer.svelt
 import FAB from '$lib/components/fab/FAB.svelte';
 import SearchBar from '$lib/components/input/SearchBar.svelte';
 import ActivityRing from '$lib/components/activity/ActivityRing.svelte';
+import Accordion from '$lib/components/accordion/Accordion.svelte';
+import AccordionItem from '$lib/components/accordion/AccordionItem.svelte';
+import Chip from '$lib/components/chip/Chip.svelte';
+import EmptyState from '$lib/components/emptystate/EmptyState.svelte';
 
 import {
 	AlertType,
@@ -126,5 +130,9 @@ export {
 	LongPressContainer,
 	FAB,
 	SearchBar,
-	ActivityRing
+	ActivityRing,
+	Accordion,
+	AccordionItem,
+	Chip,
+	EmptyState
 };

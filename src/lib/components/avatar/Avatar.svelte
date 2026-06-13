@@ -28,6 +28,8 @@
 		class?: string;
 		/** Click handler */
 		onclick?: (event: MouseEvent) => void;
+		/** Custom content snippet (alternative to placeholderContent) */
+		children?: Snippet;
 	}
 
 	let {
@@ -38,6 +40,7 @@
 		status = null,
 		placeholder = undefined,
 		placeholderContent = undefined,
+		children = undefined,
 		ring = false,
 		ringColor = 'ring-primary',
 		class: className = '',
@@ -93,6 +96,10 @@
 	>
 		{#if hasImage}
 			<img {src} {alt} onerror={handleImageError} />
+		{:else if children}
+			<div class="flex h-full w-full items-center justify-center">
+				{@render children()}
+			</div>
 		{:else if placeholderContent}
 			<div class="flex h-full w-full items-center justify-center">
 				{@render placeholderContent()}

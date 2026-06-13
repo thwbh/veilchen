@@ -2,6 +2,7 @@
 	import Avatar from '$lib/components/avatar/Avatar.svelte';
 	import AvatarGroup from '$lib/components/avatar/AvatarGroup.svelte';
 	import AvatarPicker from '$lib/components/avatar/AvatarPicker.svelte';
+	import { createRawSnippet } from 'svelte';
 
 	import { Style, Avatar as DicebearAvatar } from '@dicebear/core';
 	import lorelei from '@dicebear/styles/lorelei.json' with { type: 'json' };
