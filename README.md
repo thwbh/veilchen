@@ -118,7 +118,7 @@ Then activate the theme by adding `data-theme="veilchen"` to your `<html>` tag i
 
 ## Components
 
-veilchen provides 13 components organized by category:
+veilchen provides 14 components organized by category:
 
 ### Input Components
 
@@ -133,7 +133,6 @@ veilchen provides 13 components organized by category:
 
 - **AlertBox** - Alert messages with different types (info, error, warning, success)
 - **ModalDialog** - Customizable modal dialog
-- **Snackbar** - Transient notification with optional action button (undo pattern)
 
 ### Layout Components
 
