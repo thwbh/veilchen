@@ -132,6 +132,11 @@
 					name: 'Toast',
 					path: '/components/toast',
 					description: 'Toast/Snackbar like user notifications'
+				},
+				{
+					name: 'Snackbar',
+					path: '/snackbar',
+					description: 'Transient notification with action button'
 				}
 			]
 		},

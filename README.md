@@ -64,9 +64,9 @@ To use the veilchen theme in your project, add it to your `style.css`:
 @import 'tailwindcss';
 @config '../tailwind.config.js';
 
-@plugin "daisyui";
+@plugin 'daisyui';
 
-@plugin "daisyui/theme" {
+@plugin 'daisyui/theme' {
 	name: veilchen;
 	color-scheme: light;
 
@@ -118,7 +118,7 @@ Then activate the theme by adding `data-theme="veilchen"` to your `<html>` tag i
 
 ## Components
 
-veilchen provides 12 components organized by category:
+veilchen provides 13 components organized by category:
 
 ### Input Components
 
@@ -131,10 +131,9 @@ veilchen provides 12 components organized by category:
 - **ListPicker** - Selectable list with labels and descriptions
 - **OptionCards** - Rich card-based option selector with metrics
 
-### Display Components
-
 - **AlertBox** - Alert messages with different types (info, error, warning, success)
 - **ModalDialog** - Customizable modal dialog
+- **Snackbar** - Transient notification with optional action button (undo pattern)
 
 ### Layout Components
 
@@ -599,6 +598,66 @@ Multi-step wizard with progress indicator and navigation controls.
 </Stepper>
 ```
 
+### Snackbar
+
+Transient notification surface with optional action button, designed for the "undo" pattern.
+
+**Props:**
+
+- `position` - Vertical position ('top' or 'bottom', default: 'bottom')
+- `align` - Horizontal alignment ('start', 'center', or 'end', default: 'center')
+- `class` - Optional CSS class
+- `swipeThreshold` - Minimum swipe distance to dismiss (default: 100)
+
+**Store Methods:**
+
+- `add(message, options)` - Show a snackbar
+- `show(message, actionLabel, onAction, duration)` - Convenience method
+- `dismiss(id, reason)` - Manually dismiss a snackbar
+- `clear()` - Clear all snackbars
+
+**Options:**
+
+- `actionLabel` - Label for action button
+- `onAction` - Callback when action button is clicked
+- `onDismiss` - Callback when snackbar is dismissed with reason ('timeout', 'action', 'manual')
+- `duration` - Auto-dismiss timeout in ms (default: 5000)
+- `dismissible` - Show close button (default: true)
+
+#### Example: Undo Pattern
+
+```svelte
+<script lang="ts">
+	import { SnackbarContainer, snackbar } from '@thwbh/veilchen';
+	import { SnackbarDismissReason } from '@thwbh/veilchen';
+
+	let items = ['Item 1', 'Item 2', 'Item 3'];
+	let deletedItems: string[] = [];
+
+	function deleteItems() {
+		deletedItems = [...items];
+		items = [];
+
+		snackbar.add('3 items deleted', {
+			actionLabel: 'Undo',
+			onAction: () => {
+				items = [...deletedItems];
+				deletedItems = [];
+			},
+			onDismiss: (reason: SnackbarDismissReason) => {
+				if (reason === 'timeout') {
+					console.log('Items permanently deleted');
+				}
+			},
+			duration: 5000
+		});
+	}
+</script>
+
+<button on:click={deleteItems}>Delete Items</button>
+<SnackbarContainer />
+```
+
 ### ModalDialog
 
 Customizable modal dialog with confirm/cancel actions.
@@ -637,6 +696,10 @@ Customizable modal dialog with confirm/cancel actions.
 	{/snippet}
 </ModalDialog>
 ```
+
+### Notification Components
+
+- **Snackbar** - Transient notification with optional action button (undo pattern)
 
 ### Chart Components
 
