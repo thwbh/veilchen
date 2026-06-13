@@ -36,7 +36,8 @@ export function createRefreshContext() {
  * Registers a refresh handler for the current page.
  * Call this in your page component to enable pull-to-refresh for that page.
  *
- * @param handler - Async function to call when refresh is triggered
+ * @param handler - Async function to call when refresh is triggered.
+ *                 For best performance, use a stable function reference to avoid unnecessary re-registrations.
  * @returns The refresh context with isRefreshing state
  */
 export function useRefresh(handler: () => void | Promise<void>) {
@@ -48,7 +49,10 @@ export function useRefresh(handler: () => void | Promise<void>) {
 
 	// Register handler
 	$effect(() => {
-		context.handler = handler;
+		// Only update handler if it has actually changed to avoid render-phase loops
+		if (context.handler !== handler) {
+			context.handler = handler;
+		}
 
 		// Cleanup on unmount
 		return () => {
