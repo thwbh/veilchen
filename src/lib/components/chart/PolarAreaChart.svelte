@@ -1,49 +1,56 @@
 <script lang="ts">
-	import {
-		Chart,
-		PolarAreaController,
-		RadialLinearScale,
-		ArcElement,
-		Title,
-		Tooltip,
-		Legend
-	} from 'chart.js';
-	import type { ChartProps } from '$lib/chart/props.js';
+  import {
+    ArcElement,
+    Chart,
+    Legend,
+    PolarAreaController,
+    RadialLinearScale,
+    Title,
+    Tooltip,
+  } from "chart.js";
+  import type { ChartProps } from "$lib/chart/props.js";
 
-	// Register only the components needed for polar area charts
-	Chart.register(PolarAreaController, RadialLinearScale, ArcElement, Title, Tooltip, Legend);
+  // Register only the components needed for polar area charts
+  Chart.register(
+    PolarAreaController,
+    RadialLinearScale,
+    ArcElement,
+    Title,
+    Tooltip,
+    Legend,
+  );
 
-	/**
-	 * A polar area chart component powered by Chart.js.
-	 * Automatically updates when data or options change.
-	 * Uses tree-shakeable imports for optimal bundle size.
-	 */
-	const { data, options, ...rest }: ChartProps<'polarArea'> = $props();
+  /**
+   * A polar area chart component powered by Chart.js.
+   * Automatically updates when data or options change.
+   * Uses tree-shakeable imports for optimal bundle size.
+   */
+  const { data, options, ...rest }: ChartProps<"polarArea"> = $props();
 
-	let canvasElem: HTMLCanvasElement;
-	let chart: Chart;
+  let canvasElem: HTMLCanvasElement;
+  let chart: Chart;
 
-	// Initialize chart on mount
-	$effect(() => {
-		chart = new Chart(canvasElem, {
-			type: 'polarArea',
-			data,
-			options
-		});
+  // Initialize chart on mount
+  $effect(() => {
+    chart = new Chart(canvasElem, {
+      type: "polarArea",
+      data,
+      options,
+    });
 
-		// Cleanup on unmount
-		return () => {
-			chart.destroy();
-		};
-	});
+    // Cleanup on unmount
+    return () => {
+      chart.destroy();
+    };
+  });
 
-	// Update chart when data changes
-	$effect(() => {
-		if (chart) {
-			chart.data = data;
-			chart.update();
-		}
-	});
+  // Update chart when data changes
+  $effect(() => {
+    if (chart) {
+      chart.data = data;
+      chart.update();
+    }
+  });
 </script>
 
 <canvas bind:this={canvasElem} {...rest}></canvas>
