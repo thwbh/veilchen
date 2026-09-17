@@ -32,7 +32,8 @@ src/lib/
 - **ValidatedInput** - Input with HTML5 validation
 - **NumberStepper** - Numeric input with +/- buttons
 - **NumberWheel / InlineNumberWheel** - Scroll-wheel number input
-- **SearchBar** - Search input with debounce, clear button, and slot for result suffix
+- **SearchBar** - Search input with debounce, clear button, and slot for result
+  suffix
 
 ### List (3)
 
@@ -88,13 +89,13 @@ src/lib/
 
 ```typescript
 interface Props {
-	/** JSDoc for each prop */
-	prop1?: string;
-	children?: Snippet;
-	class?: string; // Mapped to className internally
+  /** JSDoc for each prop */
+  prop1?: string;
+  children?: Snippet;
+  class?: string; // Mapped to className internally
 }
 
-let { prop1, children, class: className = '', ...props } = $props();
+let { prop1, children, class: className = "", ...props } = $props();
 ```
 
 ### Two-Way Binding
@@ -120,12 +121,12 @@ Components use generics for type safety:
 ## Commands
 
 ```bash
-npm run dev          # Start dev server
-npm run build        # Build library
-npm run check        # Type checking
-npm run test         # Run tests
-npm run lint         # Lint code
-npm run format       # Format code
+deno task dev          # Start dev server
+deno task build        # Build library
+deno task check        # Type checking
+deno task test         # Run tests
+deno task lint         # Lint code (deno fmt --check + eslint)
+deno task format      # Format code
 ```
 
 ## Custom Theme
@@ -138,7 +139,8 @@ Custom DaisyUI theme "veilchen" (violet-inspired):
 
 ## Important Notes
 
-1. **Tailwind Scanning:** Users must add `@source '../node_modules/@thwbh/veilchen'` to their CSS for JIT compilation
+1. **Tailwind Scanning:** Users must add
+   `@source '../node_modules/@thwbh/veilchen'` to their CSS for JIT compilation
 
 2. **Mobile-First:** All components optimized for touch with swipe gestures
 

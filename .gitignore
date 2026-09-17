@@ -1,13 +1,16 @@
 node_modules
 
+# We migrated from npm to deno for dependency resolution.
+# deno.lock is the source of truth; package-lock.json is ignored on
+# purpose so it never comes back via stray `npm install` calls.
+package-lock.json
+
 # Output
-.output
-.vercel
-.netlify
-.wrangler
-/.svelte-kit
 /build
 /dist
+
+# svelte-package scratch dir
+/.svelte-kit
 
 # IDEA
 .idea/

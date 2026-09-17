@@ -1,89 +1,75 @@
 {
-	"name": "@thwbh/veilchen",
-	"version": "0.3.0",
-	"description": "veilchen is a set of reusable Svelte 5 components for mobile apps, styled with DaisyUI.",
-	"keywords": [
-		"svelte"
-	],
-	"homepage": "https://veilchen.tohuwabohu.io/",
-	"license": "MIT",
-	"author": {
-		"name": "Stefan Poindl",
-		"url": "https://tohuwabohu.io/"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/thwbh/veilchen.git"
-	},
-	"sideEffects": [
-		"**/*.css"
-	],
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build && npm run prepack",
-		"preview": "vite preview",
-		"prepare": "husky",
-		"prepack": "svelte-kit sync && svelte-package && publint",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"format": "prettier --write .",
-		"lint": "prettier --check . && eslint .",
-		"test:unit": "vitest",
-		"test": "npm run test:unit -- --run"
-	},
-	"files": [
-		"dist",
-		"!dist/**/*.test.*",
-		"!dist/**/*.spec.*"
-	],
-	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"type": "module",
-	"exports": {
-		".": {
-			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
-		}
-	},
-	"peerDependencies": {
-		"chart.js": "^4.4.8",
-		"daisyui": "^5.0.12",
-		"svelte": "^5.0.0"
-	},
-	"devDependencies": {
-		"@dicebear/core": "^10.0.2",
-		"@dicebear/styles": "^10.1.0",
-		"@eslint/compat": "^2.1.0",
-		"@eslint/js": "^10.0.1",
-		"@sveltejs/adapter-auto": "^7.0.1",
-		"@sveltejs/kit": "^2.61.1",
-		"@sveltejs/package": "^2.0.0",
-		"@sveltejs/vite-plugin-svelte": "^7.1.2",
-		"@tailwindcss/forms": "^0.5.9",
-		"@tailwindcss/typography": "^0.5.15",
-		"@tailwindcss/vite": "^4.0.0",
-		"@testing-library/jest-dom": "^6.6.3",
-		"@testing-library/svelte": "^5.2.4",
-		"eslint": "^10.4.1",
-		"eslint-config-prettier": "^10.0.1",
-		"eslint-plugin-svelte": "^3.0.0",
-		"globals": "^17.6.0",
-		"husky": "^9.1.7",
-		"jsdom": "^29.1.1",
-		"lint-staged": "^17.0.7",
-		"prettier": "^3.4.2",
-		"prettier-plugin-svelte": "^4.1.0",
-		"prettier-plugin-tailwindcss": "^0.8.0",
-		"publint": "^0.3.2",
-		"svelte": "^5.56.1",
-		"svelte-check": "^4.0.0",
-		"tailwindcss": "^4.0.0",
-		"typescript": "^6.0.3",
-		"typescript-eslint": "^8.20.0",
-		"vite": "^8.0.16",
-		"vitest": "^4.1.8"
-	},
-	"lint-staged": {
-		"*.{js,ts,svelte,css,md,json}": "prettier --write"
-	}
+  "name": "@thwbh/veilchen",
+  "version": "0.3.0",
+  "description": "veilchen is a set of reusable Svelte 5 components for mobile apps, styled with DaisyUI.",
+  "keywords": [
+    "svelte"
+  ],
+  "homepage": "https://veilchen.tohuwabohu.io/",
+  "license": "MIT",
+  "author": {
+    "name": "Stefan Poindl",
+    "url": "https://tohuwabohu.io/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thwbh/veilchen.git"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "prepare": "husky",
+    "prepack": "svelte-package && publint"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "svelte": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js"
+    }
+  },
+  "peerDependencies": {
+    "chart.js": "^4.4.8",
+    "daisyui": "^5.0.12",
+    "svelte": "^5.0.0"
+  },
+  "devDependencies": {
+    "@dicebear/core": "^10.0.2",
+    "@dicebear/styles": "^10.1.0",
+    "@eslint/compat": "^2.1.0",
+    "@eslint/js": "^10.0.1",
+    "@sveltejs/package": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@tailwindcss/forms": "^0.5.9",
+    "@tailwindcss/typography": "^0.5.15",
+    "@tailwindcss/vite": "^4.0.0",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/svelte": "^5.2.4",
+    "eslint": "^10.4.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-svelte": "^3.0.0",
+    "globals": "^17.6.0",
+    "husky": "^9.1.7",
+    "jsdom": "^30.0.1",
+    "lint-staged": "^17.0.7",
+    "publint": "^0.3.2",
+    "svelte": "^5.56.1",
+    "svelte-check": "^4.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.20.0",
+    "vite": "^8.0.16",
+    "vitest": "^5.0.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,svelte,css,md,json,html}": "deno fmt"
+  }
 }
