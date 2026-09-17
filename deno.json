@@ -16,7 +16,7 @@
   },
   "unstable": ["fmt-component"],
   "imports": {
-    "chart.js": "npm:chart.js@^4.4.8",
+    "chart.js": "npm:chart.js@^4.5.1",
     "daisyui": "npm:daisyui@^5.7.37",
     "daisyui/theme": "npm:daisyui@^5.7.37/theme"
   },
