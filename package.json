@@ -19,17 +19,8 @@
     "**/*.css"
   ],
   "scripts": {
-    "dev": "vite dev",
-    "build": "svelte-package && publint",
-    "preview": "vite preview",
     "prepare": "husky",
-    "prepack": "svelte-package && publint",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
-    "format": "deno fmt",
-    "lint": "deno fmt --check && eslint .",
-    "test:unit": "vitest",
-    "test": "vitest run"
+    "prepack": "svelte-package && publint"
   },
   "files": [
     "dist",
