@@ -121,12 +121,12 @@ Components use generics for type safety:
 ## Commands
 
 ```bash
-npm run dev          # Start dev server
-npm run build        # Build library
-npm run check        # Type checking
-npm run test         # Run tests
-npm run lint         # Lint code
-npm run format       # Format code
+deno task dev          # Start dev server
+deno task build        # Build library
+deno task check        # Type checking
+deno task test         # Run tests
+deno task lint         # Lint code (deno fmt --check + eslint)
+deno task format      # Format code
 ```
 
 ## Custom Theme
