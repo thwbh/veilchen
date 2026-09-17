@@ -45,7 +45,7 @@ jobs:
           key: ${{ runner.os }}-deno-deps-${{ hashFiles('deno.lock') }}
       - name: "Restore dependencies"
         if: steps.deno-deps.outputs.cache-hit != 'true'
-        run: deno cache --node=auto src/main.ts
+        run: deno install --entrypoint src/main.ts
 
       - name: "Build package"
         run: deno task build
