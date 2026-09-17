@@ -139,15 +139,15 @@
             <pre class="bg-base-300 rounded p-3"><code
 								>&lt;!-- src/routes/(app)/+layout.svelte --&gt;
 &lt;script lang="ts"&gt;
-  import {`{`} page {`}`} from '$app/stores';
-  import {`{`} AppShell {`}`} from '@thwbh/veilchen';
-  import type {`{`} BottomNavItem {`}`} from '@thwbh/veilchen';
+  import {`{`} page } from '$app/stores';
+  import {`{`} AppShell } from '@thwbh/veilchen';
+  import type {`{`} BottomNavItem } from '@thwbh/veilchen';
   // Import your icon components
   import HomeIcon from '$lib/icons/HomeIcon.svelte';
   import SearchIcon from '$lib/icons/SearchIcon.svelte';
   import UserIcon from '$lib/icons/UserIcon.svelte';
 
-  let {`{`} children {`}`} = $props();
+  let {`{`} children } = $props();
 
   const navItems: BottomNavItem[] = [
     {`{`}
@@ -155,19 +155,19 @@
       label: 'Home',
       href: '/',
       icon: HomeIcon
-    {`}`},
+    },
     {`{`}
       id: 'discover',
       label: 'Discover',
       href: '/discover',
       icon: SearchIcon
-    {`}`},
+    },
     {`{`}
       id: 'profile',
       label: 'Profile',
       href: '/profile',
       icon: UserIcon
-    {`}`}
+    }
   ];
 
   // Automatically determine active item from current route
@@ -179,8 +179,8 @@
   );
 &lt;/script&gt;
 
-&lt;AppShell items={`{`}navItems{`}`} {`{`}activeId{`}`}&gt;
-  {`{`}@render children(){`}`}
+&lt;AppShell items={`{`}navItems} {`{`}activeId}&gt;
+  {`{`}@render children()}
 &lt;/AppShell&gt;</code
 							></pre>
           </div>
@@ -216,13 +216,13 @@
         <pre class="bg-base-300 rounded p-3"><code
 						>&lt;!-- src/routes/(app)/+layout.svelte --&gt;
 &lt;script lang="ts"&gt;
-  import {`{`} page {`}`} from '$app/stores';
-  import {`{`} BottomNavigation {`}`} from '@thwbh/veilchen';
-  import type {`{`} BottomNavItem {`}`} from '@thwbh/veilchen';
+  import {`{`} page } from '$app/stores';
+  import {`{`} BottomNavigation } from '@thwbh/veilchen';
+  import type {`{`} BottomNavItem } from '@thwbh/veilchen';
 
   const navItems: BottomNavItem[] = [
-    {`{`} id: 'home', label: 'Home', href: '/' {`}`},
-    {`{`} id: 'discover', label: 'Discover', href: '/discover' {`}`}
+    {`{`} id: 'home', label: 'Home', href: '/' },
+    {`{`} id: 'discover', label: 'Discover', href: '/discover' }
   ];
 
   $: activeId = navItems.find(item =>
@@ -235,7 +235,7 @@
   &lt;main&gt;
     &lt;slot /&gt;
   &lt;/main&gt;
-  &lt;BottomNavigation items={`{`}navItems{`}`} {`{`}activeId{`}`} /&gt;
+  &lt;BottomNavigation items={`{`}navItems} {`{`}activeId} /&gt;
 &lt;/div&gt;
 
 &lt;style&gt;
@@ -243,13 +243,13 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-  {`}`}
+  }
 
   main {`{`}
     flex: 1;
     overflow-y: auto;
     padding-bottom: calc(4rem + env(safe-area-inset-bottom));
-  {`}`}
+  }
 &lt;/style&gt;</code
 					></pre>
       </div>
@@ -359,20 +359,20 @@
     <h3 class="mb-2 font-bold">Loading Indicator Example</h3>
     <pre class="bg-base-300 rounded p-3 text-xs"><code
 				>&lt;script lang="ts"&gt;
-  import {`{`} AppShell {`}`} from '@thwbh/veilchen';
-  import {`{`} navigating {`}`} from '$app/stores';
+  import {`{`} AppShell } from '@thwbh/veilchen';
+  import {`{`} navigating } from '$app/stores';
 
   // Automatically show loading during navigation
   const isLoading = $derived(!!$navigating);
 &lt;/script&gt;
 
 &lt;AppShell
-  items={`{`}navItems{`}`}
-  {`{`}activeId{`}`}
-  loading={`{`}isLoading{`}`}
+  items={`{`}navItems}
+  {`{`}activeId}
+  loading={`{`}isLoading}
   loadingColor="progress-primary"
 &gt;
-  {`{`}@render children(){`}`}
+  {`{`}@render children()}
 &lt;/AppShell&gt;</code
 			></pre>
   </div>
@@ -392,18 +392,18 @@
         <pre class="bg-base-300 rounded p-3 text-xs"><code
 						>&lt;!-- src/routes/(app)/+layout.svelte --&gt;
 &lt;script lang="ts"&gt;
-  import {`{`} AppShell, createRefreshContext {`}`} from '@thwbh/veilchen';
+  import {`{`} AppShell, createRefreshContext } from '@thwbh/veilchen';
 
   const refresh = createRefreshContext();
 &lt;/script&gt;
 
 &lt;AppShell
-  items={`{`}navItems{`}`}
-  {`{`}activeId{`}`}
-  onrefresh={`{`}refresh.handler{`}`}
-  bind:refreshing={`{`}refresh.isRefreshing{`}`}
+  items={`{`}navItems}
+  {`{`}activeId}
+  onrefresh={`{`}refresh.handler}
+  bind:refreshing={`{`}refresh.isRefreshing}
 &gt;
-  {`{`}@render children(){`}`}
+  {`{`}@render children()}
 &lt;/AppShell&gt;</code
 					></pre>
       </div>
@@ -413,23 +413,23 @@
         <pre class="bg-base-300 rounded p-3 text-xs"><code
 						>&lt;!-- src/routes/(app)/home/+page.svelte --&gt;
 &lt;script lang="ts"&gt;
-  import {`{`} useRefresh {`}`} from '@thwbh/veilchen';
+  import {`{`} useRefresh } from '@thwbh/veilchen';
 
   let data = $state([]);
 
   async function refreshData() {`{`}
     const response = await fetch('/api/home-data');
     data = await response.json();
-  {`}`}
+  }
 
   // Register refresh handler for this page
-  const {`{`} isRefreshing {`}`} = useRefresh(refreshData);
+  const {`{`} isRefreshing } = useRefresh(refreshData);
 &lt;/script&gt;
 
 &lt;div&gt;
-  {`{`}#if isRefreshing{`}`}
+  {`{`}#if isRefreshing}
     &lt;p&gt;Refreshing...&lt;/p&gt;
-  {`{`}/if{`}`}
+  {`{`}/if}
 
   &lt;!-- Your page content --&gt;
 &lt;/div&gt;</code

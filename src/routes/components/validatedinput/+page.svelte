@@ -69,7 +69,7 @@
       type="password"
       required
       minlength={8}
-      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{'{'}8,{'}'}"
+      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{'{'}8,}"
     >
       Must be 8+ characters with uppercase, lowercase, and number
     </ValidatedInput>
@@ -200,7 +200,7 @@
       bind:value={phone}
       label="Phone Number"
       type="tel"
-      pattern="[0-9]{'{'}3{'}'}-[0-9]{'{'}3{'}'}-[0-9]{'{'}4{'}'}"
+      pattern="[0-9]{'{'}3}-[0-9]{'{'}3}-[0-9]{'{'}4}"
       placeholder="123-456-7890"
     >
       Format: XXX-XXX-XXXX
@@ -285,7 +285,7 @@
       bind:value={postalCode}
       label="Postal Code"
       type="text"
-      pattern="[0-9]{'{'}5{'}'}"
+      pattern="[0-9]{'{'}5}"
       placeholder="12345"
     >
       Enter a 5-digit postal code

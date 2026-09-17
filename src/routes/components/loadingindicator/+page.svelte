@@ -342,7 +342,7 @@
     <h3 class="mb-2 font-bold">Usage Example</h3>
     <pre class="bg-base-300 rounded p-3 text-xs"><code
 				>&lt;script lang="ts"&gt;
-  import {`{`} LoadingIndicator {`}`} from '@thwbh/veilchen';
+  import {`{`} LoadingIndicator } from '@thwbh/veilchen';
 
   let isLoading = $state(false);
   let isFinished = $state(false);
@@ -353,25 +353,25 @@
     try {`{`}
       await fetch('/api/data');
       isFinished = true;
-    {`}`} finally {`{`}
+    } finally {`{`}
       isLoading = false;
-    {`}`}
-  {`}`}
+    }
+  }
 &lt;/script&gt;
 
 &lt;LoadingIndicator
   variant="spinner"
   size="lg"
-  visible={`{`}isLoading || isFinished{`}`}
-  finished={`{`}isFinished{`}`}
+  visible={`{`}isLoading || isFinished}
+  finished={`{`}isFinished}
   label="Loading data..."
 &gt;
-  {`{`}#snippet finishedContent(){`}`}
+  {`{`}#snippet finishedContent()}
     &lt;div class="flex flex-col items-center gap-2"&gt;
       &lt;span class="text-success text-2xl"&gt;✓&lt;/span&gt;
       &lt;span&gt;Data loaded!&lt;/span&gt;
     &lt;/div&gt;
-  {`{`}/snippet{`}`}
+  {`{`}/snippet}
 &lt;/LoadingIndicator&gt;</code
 			></pre>
   </div>

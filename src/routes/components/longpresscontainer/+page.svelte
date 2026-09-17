@@ -203,17 +203,17 @@
     <h3 class="mb-2 font-bold">Usage Example</h3>
     <pre class="bg-base-300 rounded p-3 text-xs"><code
 				>&lt;script lang="ts"&gt;
-  import {`{`} LongPressContainer {`}`} from '@thwbh/veilchen';
-  import {`{`} toast {`}`} from '@thwbh/veilchen';
+  import {`{`} LongPressContainer } from '@thwbh/veilchen';
+  import {`{`} toast } from '@thwbh/veilchen';
 
   function handleDelete() {`{`}
     toast.success('Item deleted!');
     // Perform delete action
-  {`}`}
+  }
 &lt;/script&gt;
 
 &lt;LongPressContainer
-  onlongpress={`{`}handleDelete{`}`}
+  onlongpress={`{`}handleDelete}
   class="card bg-base-200 p-4"
 &gt;
   &lt;h3&gt;Long press to delete&lt;/h3&gt;
@@ -222,7 +222,7 @@
 &lt;!-- As a button --&gt;
 &lt;LongPressContainer
   as="button"
-  onlongpress={`{`}handleDelete{`}`}
+  onlongpress={`{`}handleDelete}
   class="btn btn-error"
 &gt;
   &lt;span&gt;Hold to Delete&lt;/span&gt;

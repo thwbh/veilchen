@@ -15,5 +15,8 @@
     "exclude": ["dist/", ".svelte-kit/", "node_modules/"]
   },
   "unstable": ["fmt-component"],
+  "imports": {
+    "chart.js": "npm:chart.js@^4.4.8"
+  },
   "nodeModulesDir": "auto"
 }
