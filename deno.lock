@@ -16,7 +16,6 @@
     "npm:daisyui@^5.0.12": "5.7.39",
     "npm:eslint-config-prettier@^10.0.1": "10.1.8_eslint@10.5.0",
     "npm:eslint-plugin-svelte@3": "3.19.0_eslint@10.5.0_svelte@5.56.3",
-    "npm:eslint@*": "10.5.0",
     "npm:eslint@^10.4.1": "10.5.0",
     "npm:globals@^17.6.0": "17.6.0",
     "npm:husky@^9.1.7": "9.1.7",
@@ -29,7 +28,6 @@
     "npm:typescript-eslint@^8.20.0": "8.61.1_eslint@10.5.0_typescript@6.0.3",
     "npm:typescript@^6.0.3": "6.0.3",
     "npm:vite@^8.0.16": "8.0.16",
-    "npm:vitest@*": "4.1.9_jsdom@29.1.1_vite@8.0.16",
     "npm:vitest@^4.1.8": "4.1.9_jsdom@29.1.1_vite@8.0.16"
   },
   "npm": {
