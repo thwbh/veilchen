@@ -1,0 +1,19 @@
+{
+  "tasks": {
+    "dev": "vite dev",
+    "build": "svelte-package && publint",
+    "build:webcomponents": "vite build --config vite.webcomponents.config.ts",
+    "build:all": "deno task build && deno task build:webcomponents",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:unit": "vitest",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "format": "deno fmt",
+    "lint": "deno fmt --check && eslint ."
+  },
+  "fmt": {
+    "exclude": ["dist/", ".svelte-kit/", "node_modules/"]
+  },
+  "unstable": ["fmt-component"],
+  "nodeModulesDir": "auto"
+}
