@@ -1,202 +1,202 @@
-import { render, fireEvent } from '@testing-library/svelte';
-import { expect, test, describe, vi } from 'vitest';
-import ModalDialog from './ModalDialog.svelte';
+import { fireEvent, render } from "@testing-library/svelte";
+import { describe, expect, test, vi } from "vitest";
+import ModalDialog from "./ModalDialog.svelte";
 
-describe('ModalDialog', () => {
-	test('renders dialog element', () => {
-		const { container } = render(ModalDialog);
+describe("ModalDialog", () => {
+  test("renders dialog element", () => {
+    const { container } = render(ModalDialog);
 
-		const dialog = container.querySelector('dialog');
-		expect(dialog).toBeInTheDocument();
-	});
+    const dialog = container.querySelector("dialog");
+    expect(dialog).toBeInTheDocument();
+  });
 
-	test('renders with default title', () => {
-		const { container } = render(ModalDialog);
+  test("renders with default title", () => {
+    const { container } = render(ModalDialog);
 
-		expect(container.textContent).toContain('Please confirm');
-	});
+    expect(container.textContent).toContain("Please confirm");
+  });
 
-	test('renders default confirm and cancel buttons', () => {
-		const { container } = render(ModalDialog);
+  test("renders default confirm and cancel buttons", () => {
+    const { container } = render(ModalDialog);
 
-		const buttons = container.querySelectorAll('button');
-		const buttonTexts = Array.from(buttons).map((btn) => btn.textContent);
+    const buttons = container.querySelectorAll("button");
+    const buttonTexts = Array.from(buttons).map((btn) => btn.textContent);
 
-		expect(buttonTexts).toContain('Confirm');
-		expect(buttonTexts).toContain('Cancel');
-	});
+    expect(buttonTexts).toContain("Confirm");
+    expect(buttonTexts).toContain("Cancel");
+  });
 
-	test('calls onconfirm when confirm button is clicked', async () => {
-		const onconfirm = vi.fn();
-		const { container } = render(ModalDialog, { onconfirm });
+  test("calls onconfirm when confirm button is clicked", async () => {
+    const onconfirm = vi.fn();
+    const { container } = render(ModalDialog, { onconfirm });
 
-		// Mock the dialog close method since jsdom doesn't fully support it
-		const dialog = container.querySelector('dialog') as HTMLDialogElement;
-		dialog.close = vi.fn();
+    // Mock the dialog close method since jsdom doesn't fully support it
+    const dialog = container.querySelector("dialog") as HTMLDialogElement;
+    dialog.close = vi.fn();
 
-		const confirmButton = Array.from(container.querySelectorAll('button')).find(
-			(btn) => btn.textContent === 'Confirm'
-		) as HTMLButtonElement;
-		await fireEvent.click(confirmButton);
+    const confirmButton = Array.from(container.querySelectorAll("button")).find(
+      (btn) => btn.textContent === "Confirm",
+    ) as HTMLButtonElement;
+    await fireEvent.click(confirmButton);
 
-		expect(onconfirm).toHaveBeenCalled();
-	});
+    expect(onconfirm).toHaveBeenCalled();
+  });
 
-	test('calls oncancel when cancel button is clicked', async () => {
-		const oncancel = vi.fn();
-		const { container } = render(ModalDialog, { oncancel });
+  test("calls oncancel when cancel button is clicked", async () => {
+    const oncancel = vi.fn();
+    const { container } = render(ModalDialog, { oncancel });
 
-		// Mock the dialog close method since jsdom doesn't fully support it
-		const dialog = container.querySelector('dialog') as HTMLDialogElement;
-		dialog.close = vi.fn();
+    // Mock the dialog close method since jsdom doesn't fully support it
+    const dialog = container.querySelector("dialog") as HTMLDialogElement;
+    dialog.close = vi.fn();
 
-		const cancelButton = Array.from(container.querySelectorAll('button')).find(
-			(btn) => btn.textContent === 'Cancel'
-		) as HTMLButtonElement;
-		await fireEvent.click(cancelButton);
+    const cancelButton = Array.from(container.querySelectorAll("button")).find(
+      (btn) => btn.textContent === "Cancel",
+    ) as HTMLButtonElement;
+    await fireEvent.click(cancelButton);
 
-		expect(oncancel).toHaveBeenCalled();
-	});
+    expect(oncancel).toHaveBeenCalled();
+  });
 
-	test('dialog closes when onconfirm returns nothing', async () => {
-		const onconfirm = vi.fn();
-		const { container } = render(ModalDialog, { onconfirm });
+  test("dialog closes when onconfirm returns nothing", async () => {
+    const onconfirm = vi.fn();
+    const { container } = render(ModalDialog, { onconfirm });
 
-		const dialog = container.querySelector('dialog') as HTMLDialogElement;
-		dialog.close = vi.fn();
+    const dialog = container.querySelector("dialog") as HTMLDialogElement;
+    dialog.close = vi.fn();
 
-		const confirmButton = Array.from(container.querySelectorAll('button')).find(
-			(btn) => btn.textContent === 'Confirm'
-		) as HTMLButtonElement;
-		await fireEvent.click(confirmButton);
+    const confirmButton = Array.from(container.querySelectorAll("button")).find(
+      (btn) => btn.textContent === "Confirm",
+    ) as HTMLButtonElement;
+    await fireEvent.click(confirmButton);
 
-		expect(onconfirm).toHaveBeenCalled();
-		expect(dialog.close).toHaveBeenCalled();
-	});
+    expect(onconfirm).toHaveBeenCalled();
+    expect(dialog.close).toHaveBeenCalled();
+  });
 
-	test('dialog stays open when onconfirm returns false', async () => {
-		const onconfirm = vi.fn(() => false);
-		const { container } = render(ModalDialog, { onconfirm });
+  test("dialog stays open when onconfirm returns false", async () => {
+    const onconfirm = vi.fn(() => false);
+    const { container } = render(ModalDialog, { onconfirm });
 
-		const dialog = container.querySelector('dialog') as HTMLDialogElement;
-		dialog.close = vi.fn();
+    const dialog = container.querySelector("dialog") as HTMLDialogElement;
+    dialog.close = vi.fn();
 
-		const confirmButton = Array.from(container.querySelectorAll('button')).find(
-			(btn) => btn.textContent === 'Confirm'
-		) as HTMLButtonElement;
-		await fireEvent.click(confirmButton);
+    const confirmButton = Array.from(container.querySelectorAll("button")).find(
+      (btn) => btn.textContent === "Confirm",
+    ) as HTMLButtonElement;
+    await fireEvent.click(confirmButton);
 
-		expect(onconfirm).toHaveBeenCalled();
-		expect(dialog.close).not.toHaveBeenCalled();
-	});
+    expect(onconfirm).toHaveBeenCalled();
+    expect(dialog.close).not.toHaveBeenCalled();
+  });
 
-	test('dialog closes when onconfirm returns true', async () => {
-		const onconfirm = vi.fn(() => true);
-		const { container } = render(ModalDialog, { onconfirm });
+  test("dialog closes when onconfirm returns true", async () => {
+    const onconfirm = vi.fn(() => true);
+    const { container } = render(ModalDialog, { onconfirm });
 
-		const dialog = container.querySelector('dialog') as HTMLDialogElement;
-		dialog.close = vi.fn();
+    const dialog = container.querySelector("dialog") as HTMLDialogElement;
+    dialog.close = vi.fn();
 
-		const confirmButton = Array.from(container.querySelectorAll('button')).find(
-			(btn) => btn.textContent === 'Confirm'
-		) as HTMLButtonElement;
-		await fireEvent.click(confirmButton);
+    const confirmButton = Array.from(container.querySelectorAll("button")).find(
+      (btn) => btn.textContent === "Confirm",
+    ) as HTMLButtonElement;
+    await fireEvent.click(confirmButton);
 
-		expect(onconfirm).toHaveBeenCalled();
-		expect(dialog.close).toHaveBeenCalled();
-	});
+    expect(onconfirm).toHaveBeenCalled();
+    expect(dialog.close).toHaveBeenCalled();
+  });
 
-	test('dialog stays open when onconfirm returns Promise<false>', async () => {
-		const onconfirm = vi.fn(() => Promise.resolve(false));
-		const { container } = render(ModalDialog, { onconfirm });
+  test("dialog stays open when onconfirm returns Promise<false>", async () => {
+    const onconfirm = vi.fn(() => Promise.resolve(false));
+    const { container } = render(ModalDialog, { onconfirm });
 
-		const dialog = container.querySelector('dialog') as HTMLDialogElement;
-		dialog.close = vi.fn();
+    const dialog = container.querySelector("dialog") as HTMLDialogElement;
+    dialog.close = vi.fn();
 
-		const confirmButton = Array.from(container.querySelectorAll('button')).find(
-			(btn) => btn.textContent === 'Confirm'
-		) as HTMLButtonElement;
-		await fireEvent.click(confirmButton);
+    const confirmButton = Array.from(container.querySelectorAll("button")).find(
+      (btn) => btn.textContent === "Confirm",
+    ) as HTMLButtonElement;
+    await fireEvent.click(confirmButton);
 
-		expect(onconfirm).toHaveBeenCalled();
-		expect(dialog.close).not.toHaveBeenCalled();
-	});
+    expect(onconfirm).toHaveBeenCalled();
+    expect(dialog.close).not.toHaveBeenCalled();
+  });
 
-	test('dialog closes when onconfirm returns Promise<void>', async () => {
-		const onconfirm = vi.fn(() => Promise.resolve());
-		const { container } = render(ModalDialog, { onconfirm });
+  test("dialog closes when onconfirm returns Promise<void>", async () => {
+    const onconfirm = vi.fn(() => Promise.resolve());
+    const { container } = render(ModalDialog, { onconfirm });
 
-		const dialog = container.querySelector('dialog') as HTMLDialogElement;
-		dialog.close = vi.fn();
+    const dialog = container.querySelector("dialog") as HTMLDialogElement;
+    dialog.close = vi.fn();
 
-		const confirmButton = Array.from(container.querySelectorAll('button')).find(
-			(btn) => btn.textContent === 'Confirm'
-		) as HTMLButtonElement;
-		await fireEvent.click(confirmButton);
+    const confirmButton = Array.from(container.querySelectorAll("button")).find(
+      (btn) => btn.textContent === "Confirm",
+    ) as HTMLButtonElement;
+    await fireEvent.click(confirmButton);
 
-		expect(onconfirm).toHaveBeenCalled();
-		expect(dialog.close).toHaveBeenCalled();
-	});
+    expect(onconfirm).toHaveBeenCalled();
+    expect(dialog.close).toHaveBeenCalled();
+  });
 
-	test('dialog stays open when oncancel returns false', async () => {
-		const oncancel = vi.fn(() => false);
-		const { container } = render(ModalDialog, { oncancel });
+  test("dialog stays open when oncancel returns false", async () => {
+    const oncancel = vi.fn(() => false);
+    const { container } = render(ModalDialog, { oncancel });
 
-		const dialog = container.querySelector('dialog') as HTMLDialogElement;
-		dialog.close = vi.fn();
+    const dialog = container.querySelector("dialog") as HTMLDialogElement;
+    dialog.close = vi.fn();
 
-		const cancelButton = Array.from(container.querySelectorAll('button')).find(
-			(btn) => btn.textContent === 'Cancel'
-		) as HTMLButtonElement;
-		await fireEvent.click(cancelButton);
+    const cancelButton = Array.from(container.querySelectorAll("button")).find(
+      (btn) => btn.textContent === "Cancel",
+    ) as HTMLButtonElement;
+    await fireEvent.click(cancelButton);
 
-		expect(oncancel).toHaveBeenCalled();
-		expect(dialog.close).not.toHaveBeenCalled();
-	});
+    expect(oncancel).toHaveBeenCalled();
+    expect(dialog.close).not.toHaveBeenCalled();
+  });
 
-	test('dialog closes when oncancel returns nothing', async () => {
-		const oncancel = vi.fn();
-		const { container } = render(ModalDialog, { oncancel });
+  test("dialog closes when oncancel returns nothing", async () => {
+    const oncancel = vi.fn();
+    const { container } = render(ModalDialog, { oncancel });
 
-		const dialog = container.querySelector('dialog') as HTMLDialogElement;
-		dialog.close = vi.fn();
+    const dialog = container.querySelector("dialog") as HTMLDialogElement;
+    dialog.close = vi.fn();
 
-		const cancelButton = Array.from(container.querySelectorAll('button')).find(
-			(btn) => btn.textContent === 'Cancel'
-		) as HTMLButtonElement;
-		await fireEvent.click(cancelButton);
+    const cancelButton = Array.from(container.querySelectorAll("button")).find(
+      (btn) => btn.textContent === "Cancel",
+    ) as HTMLButtonElement;
+    await fireEvent.click(cancelButton);
 
-		expect(oncancel).toHaveBeenCalled();
-		expect(dialog.close).toHaveBeenCalled();
-	});
+    expect(oncancel).toHaveBeenCalled();
+    expect(dialog.close).toHaveBeenCalled();
+  });
 
-	test('has modal classes', () => {
-		const { container } = render(ModalDialog);
+  test("has modal classes", () => {
+    const { container } = render(ModalDialog);
 
-		const dialog = container.querySelector('dialog');
-		expect(dialog).toHaveClass('modal');
-		expect(dialog).toHaveClass('modal-bottom');
-		expect(dialog).toHaveClass('sm:modal-middle');
-	});
+    const dialog = container.querySelector("dialog");
+    expect(dialog).toHaveClass("modal");
+    expect(dialog).toHaveClass("modal-bottom");
+    expect(dialog).toHaveClass("sm:modal-middle");
+  });
 
-	test('has modal-box for content area', () => {
-		const { container } = render(ModalDialog);
+  test("has modal-box for content area", () => {
+    const { container } = render(ModalDialog);
 
-		const modalBox = container.querySelector('.modal-box');
-		expect(modalBox).toBeInTheDocument();
-	});
+    const modalBox = container.querySelector(".modal-box");
+    expect(modalBox).toBeInTheDocument();
+  });
 
-	test('binds dialog element reference', () => {
-		let dialogRef: HTMLDialogElement | undefined;
-		render(ModalDialog, {
-			get dialog() {
-				return dialogRef;
-			},
-			set dialog(value) {
-				dialogRef = value;
-			}
-		});
+  test("binds dialog element reference", () => {
+    let dialogRef: HTMLDialogElement | undefined;
+    render(ModalDialog, {
+      get dialog() {
+        return dialogRef;
+      },
+      set dialog(value) {
+        dialogRef = value;
+      },
+    });
 
-		expect(dialogRef).toBeInstanceOf(HTMLDialogElement);
-	});
+    expect(dialogRef).toBeInstanceOf(HTMLDialogElement);
+  });
 });
