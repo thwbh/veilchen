@@ -1,7 +1,7 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:chart.js@^4.4.8": "4.5.1",
+    "npm:chart.js@^4.5.1": "4.5.1",
     "npm:daisyui@^5.7.37": "5.7.39"
   },
   "npm": {
@@ -20,7 +20,7 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:chart.js@^4.4.8",
+      "npm:chart.js@^4.5.1",
       "npm:daisyui@^5.7.37"
     ]
   }
