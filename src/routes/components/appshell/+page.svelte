@@ -7,8 +7,6 @@
 
   let activeId = $state("home");
   let isLoading = $state(false);
-  let isRefreshing = $state(false);
-  let lastRefreshTime = $state<string>("Never");
 
   const demoNavItems: BottomNavItem[] = [
     {
@@ -33,14 +31,6 @@
     setTimeout(() => {
       isLoading = false;
     }, 2000);
-  }
-
-  async function handleRefresh() {
-    isRefreshing = true;
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    lastRefreshTime = new Date().toLocaleTimeString();
-    isRefreshing = false;
   }
 </script>
 

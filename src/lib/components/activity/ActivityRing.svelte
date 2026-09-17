@@ -90,13 +90,13 @@
 
   // Animation state
   // svelte-ignore state_referenced_locally
-  let currentValues = $state(rings.map((r) => 0));
+  let currentValues = $state(rings.map((_r) => 0));
   let animated = $state(false);
   let animationFrame = $state<number | null>(null);
 
   $effect(() => {
     // Reset values when rings prop changes
-    currentValues = rings.map((r) => 0);
+    currentValues = rings.map((_r) => 0);
     animated = false;
     if (animationFrame) {
       cancelAnimationFrame(animationFrame);
@@ -181,7 +181,7 @@
       height={config.diameter}
     >
       {#each rings as ring, index}
-        {@const { offset, ringOffset, color, opacity } = getRingProps(index)}
+        {@const { offset, color, opacity } = getRingProps(index)}
 
         <!-- Track (background) -->
         <circle

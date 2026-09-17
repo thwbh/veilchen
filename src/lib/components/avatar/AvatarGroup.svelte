@@ -6,15 +6,13 @@
    * Useful for showing team members, participants, or collaborators.
    */
   interface Props {
-    /** Maximum number of avatars to display before showing a "+X" counter */
-    max?: number;
     /** Avatar children (should be Avatar components) */
     children: Snippet;
     /** Additional CSS classes */
     class?: string;
   }
 
-  let { max = undefined, children, class: className = "" }: Props = $props();
+  let { children, class: className = "" }: Props = $props();
 </script>
 
 <div

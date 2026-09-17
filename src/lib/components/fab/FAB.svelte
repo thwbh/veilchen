@@ -74,14 +74,6 @@
     lg: "btn-lg",
   };
 
-  // Position classes - use !important to override defaults if needed
-  const positionClasses = {
-    "bottom-right": "bottom-4! right-4!",
-    "bottom-left": "bottom-4! left-4!",
-    "top-right": "top-4! right-4!",
-    "top-left": "top-4! left-4!",
-  };
-
   // Color classes
   function getColorClass(colorName?: string): string {
     if (!colorName) return "";

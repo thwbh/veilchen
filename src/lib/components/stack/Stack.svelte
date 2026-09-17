@@ -44,7 +44,6 @@
   }: Props = $props();
 
   let direction = $state(0);
-  let previousIndex = $state<number | null>(null);
 
   let outFlyParams: FlyParams = $derived({
     x: -500 * direction,
@@ -94,11 +93,9 @@
 
       if (swipeDirection === "left") {
         direction = 1;
-        previousIndex = index;
         index = (index + 1) % size;
       } else {
         direction = -1;
-        previousIndex = index;
         index = (index - 1 + size) % size;
       }
 
@@ -128,13 +125,11 @@
     if (event.key === "ArrowLeft") {
       event.preventDefault();
       direction = -1;
-      previousIndex = index;
       index = (index - 1 + size) % size;
       onchange?.(index);
     } else if (event.key === "ArrowRight") {
       event.preventDefault();
       direction = 1;
-      previousIndex = index;
       index = (index + 1) % size;
       onchange?.(index);
     }
@@ -145,7 +140,6 @@
 
     // Determine direction based on target vs current
     direction = targetIndex > index ? 1 : -1;
-    previousIndex = index;
     index = targetIndex;
     onchange?.(index);
   }

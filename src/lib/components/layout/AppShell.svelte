@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import type { BottomNavItem, NavBarConfig } from "$lib/types/types.js";
-  import { DOCK_HEIGHT_MAP, DockSize } from "$lib/enum/enum.js";
+  import { DockSize } from "$lib/enum/enum.js";
   import BottomNavigation from "$lib/components/navigation/BottomNavigation.svelte";
   import NavBar from "$lib/components/navigation/NavBar.svelte";
   import PullToRefresh from "$lib/components/refresh/PullToRefresh.svelte";
@@ -62,9 +62,6 @@
     refreshIndicator = undefined,
     dockSize = DockSize.MD,
   }: Props = $props();
-
-  // Calculate the bottom padding based on dock size
-  const dockHeight = $derived(DOCK_HEIGHT_MAP[dockSize]);
 </script>
 
 <div class="app-shell {className}">

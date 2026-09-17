@@ -1,7 +1,6 @@
 <script lang="ts">
   import Accordion from "$lib/components/accordion/Accordion.svelte";
   import AccordionItem from "$lib/components/accordion/AccordionItem.svelte";
-  import { createRawSnippet } from "svelte";
 </script>
 
 <div class="flex flex-col gap-6 p-4">

@@ -41,7 +41,6 @@
   let containerElement: HTMLDivElement | undefined = $state();
   let pullDistance = $state(0);
   let startY = 0;
-  let startScrollTop = 0;
   let isPulling = $state(false);
   let isReleasing = $state(false);
 
@@ -87,7 +86,6 @@
     // Only allow pull-to-refresh when at the top of the scroll container
     if (scrollTop <= 0) {
       startY = event.touches[0].clientY;
-      startScrollTop = scrollTop;
       isPulling = false;
     }
   }
@@ -142,7 +140,6 @@
 
   function resetPull() {
     startY = 0;
-    startScrollTop = 0;
     isPulling = false;
     isReleasing = false;
     pullDistance = 0;

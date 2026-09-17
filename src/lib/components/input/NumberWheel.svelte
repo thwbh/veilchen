@@ -31,12 +31,6 @@
   // Each item height in pixels
   const ITEM_HEIGHT = 40;
 
-  function handleSelect(num: number, index: number) {
-    value = num;
-    selectedIndex = index;
-    onchange?.(num);
-  }
-
   function handleTouchStart(e: TouchEvent) {
     if (!wheelElement) return;
     startY = e.touches[0].pageY;

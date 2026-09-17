@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/svelte";
+import { render } from "@testing-library/svelte";
 import { describe, expect, test } from "vitest";
 import { createRawSnippet } from "svelte";
 import AlertBox from "./AlertBox.svelte";

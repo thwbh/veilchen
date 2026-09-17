@@ -1,6 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { snackbar } from "./snackbar.svelte.js";
-import type { SnackbarDismissReason } from "./snackbar.svelte.js";
 
 describe("Snackbar Store", () => {
   beforeEach(() => {
@@ -16,7 +15,7 @@ describe("Snackbar Store", () => {
 
   it("should add snackbar with action", () => {
     const onAction = vi.fn();
-    const id = snackbar.add("Test with action", {
+    snackbar.add("Test with action", {
       actionLabel: "Undo",
       onAction,
     });
@@ -40,22 +39,22 @@ describe("Snackbar Store", () => {
   });
 
   it("should use default duration of 5000ms", () => {
-    const id = snackbar.add("Test");
+    snackbar.add("Test");
     expect(snackbar.all[0].duration).toBe(5000);
   });
 
   it("should use custom duration", () => {
-    const id = snackbar.add("Test", { duration: 3000 });
+    snackbar.add("Test", { duration: 3000 });
     expect(snackbar.all[0].duration).toBe(3000);
   });
 
   it("should be dismissible by default", () => {
-    const id = snackbar.add("Test");
+    snackbar.add("Test");
     expect(snackbar.all[0].dismissible).toBe(true);
   });
 
   it("should support non-dismissible snackbars", () => {
-    const id = snackbar.add("Test", { dismissible: false });
+    snackbar.add("Test", { dismissible: false });
     expect(snackbar.all[0].dismissible).toBe(false);
   });
 
@@ -76,7 +75,7 @@ describe("Snackbar Store", () => {
 
   it("should use show() convenience method", () => {
     const onAction = vi.fn();
-    const id = snackbar.show("Convenience test", "Action", onAction, 3000);
+    snackbar.show("Convenience test", "Action", onAction, 3000);
     expect(snackbar.all[0].message).toBe("Convenience test");
     expect(snackbar.all[0].actionLabel).toBe("Action");
     expect(snackbar.all[0].onAction).toBe(onAction);

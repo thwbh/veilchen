@@ -82,7 +82,7 @@
     >
       {#if step}
         {@const steps = (max - min) / step + 1}
-        {#each { length: steps }, i}
+        {#each { length: steps }, _i}
           <span> | </span>
         {/each}
       {/if}

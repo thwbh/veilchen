@@ -1,4 +1,4 @@
-import { getContext, onDestroy, setContext } from "svelte";
+import { getContext, setContext } from "svelte";
 
 interface RefreshContext {
   handler?: () => void | Promise<void>;

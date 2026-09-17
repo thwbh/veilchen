@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/svelte";
 import NumberStepper from "./NumberStepper.svelte";
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 
 describe("NumberStepper", () => {
   it("renders with label and input", () => {
@@ -75,7 +75,7 @@ describe("NumberStepper", () => {
   });
 
   it("clamps typed value to min on blur", async () => {
-    const { container, getByRole } = render(NumberStepper, {
+    const { getByRole } = render(NumberStepper, {
       label: "Amount",
       value: 50,
       min: 30,
@@ -94,7 +94,7 @@ describe("NumberStepper", () => {
   });
 
   it("clamps typed value to max on blur", async () => {
-    const { container, getByRole } = render(NumberStepper, {
+    const { getByRole } = render(NumberStepper, {
       label: "Amount",
       value: 50,
       min: 30,
@@ -113,7 +113,7 @@ describe("NumberStepper", () => {
   });
 
   it("allows multi-digit entry without premature clamping", async () => {
-    const { container, getByRole } = render(NumberStepper, {
+    const { getByRole } = render(NumberStepper, {
       label: "Amount",
       value: 50,
       min: 30,
@@ -138,7 +138,7 @@ describe("NumberStepper", () => {
   });
 
   it("button increment/decrement still respect min/max", async () => {
-    const { container, getByLabelText, getByRole } = render(NumberStepper, {
+    const { getByLabelText, getByRole } = render(NumberStepper, {
       label: "Amount",
       value: 30,
       min: 30,
@@ -172,7 +172,6 @@ describe("NumberStepper", () => {
   });
 
   it("wheel items should not be clickable in dead space above/below input", async () => {
-    const onChangeSpy = vi.fn();
     const { container } = render(NumberStepper, {
       label: "Weight",
       value: 50,

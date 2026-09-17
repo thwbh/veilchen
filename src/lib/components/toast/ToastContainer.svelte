@@ -1,7 +1,7 @@
 <script lang="ts">
   import { toast } from "./toast.svelte.js";
   import { AlertType } from "$lib/enum/enum.js";
-  import { fade, fly } from "svelte/transition";
+  import { fly } from "svelte/transition";
 
   interface Props {
     /** Position of the toast container (default: top-center for mobile) */

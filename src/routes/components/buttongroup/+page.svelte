@@ -28,24 +28,12 @@
     { key: "lg", value: "Large" },
   ];
 
-  const yesNoOptions = [
-    { key: "yes", value: "Yes" },
-    { key: "no", value: "No" },
-    { key: "maybe", value: "Maybe" },
-  ];
-
   const ratings = [
     { key: 1, value: "⭐" },
     { key: 2, value: "⭐⭐" },
     { key: 3, value: "⭐⭐⭐" },
     { key: 4, value: "⭐⭐⭐⭐" },
     { key: 5, value: "⭐⭐⭐⭐⭐" },
-  ];
-
-  const colors = [
-    { key: "primary", value: "Primary" },
-    { key: "secondary", value: "Secondary" },
-    { key: "accent", value: "Accent" },
   ];
 
   // Mobile detection for demo purposes

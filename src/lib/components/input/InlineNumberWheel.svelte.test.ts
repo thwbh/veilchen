@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/svelte";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
-import { createRawSnippet } from "svelte";
+import { describe, expect, test, vi } from "vitest";
 import InlineNumberWheel from "./InlineNumberWheel.svelte";
 
 describe("InlineNumberWheel", () => {
@@ -32,7 +31,7 @@ describe("InlineNumberWheel", () => {
 
   test("wheel items do not respond to clicks (scroll-only interaction)", async () => {
     const handleChange = vi.fn();
-    const { container } = render(InlineNumberWheel, {
+    render(InlineNumberWheel, {
       props: {
         numbers: [1, 5, 10, 100, 250],
         value: 10,

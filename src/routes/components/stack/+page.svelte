@@ -2,7 +2,6 @@
   import ValidatedInput from "$lib/components/input/ValidatedInput.svelte";
   import Stack from "$lib/components/stack/Stack.svelte";
   import StackCard from "$lib/components/stack/StackCard.svelte";
-  import Page from "../../+page.svelte";
 
   let currentIndex = $state(0);
   const cards = ["Card 1", "Card 2", "Card 3"];

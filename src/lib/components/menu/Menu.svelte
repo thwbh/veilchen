@@ -48,7 +48,7 @@
     }
   }
 
-  function renderMenuItem(item: MenuItem, level: number = 0) {
+  function renderMenuItem(item: MenuItem, _level: number = 0) {
     const hasSubmenu = item.submenu && item.submenu.length > 0;
     const itemClasses = `${item.active ? "active" : ""} ${
       item.disabled ? "disabled" : ""

@@ -62,10 +62,6 @@
     emails = emails.filter((email) => email.id !== id);
   }
 
-  function deleteEmail(id: number) {
-    emails = emails.filter((email) => email.id !== id);
-  }
-
   function markAsRead(id: number) {
     emails = emails.map((
       email,

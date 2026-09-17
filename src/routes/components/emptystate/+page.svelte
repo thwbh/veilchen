@@ -1,6 +1,5 @@
 <script lang="ts">
   import EmptyState from "$lib/components/emptystate/EmptyState.svelte";
-  import { createRawSnippet } from "svelte";
 </script>
 
 <div class="flex flex-col gap-6 p-4">

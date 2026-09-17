@@ -1,6 +1,6 @@
 <script lang="ts">
   import { type Snippet } from "svelte";
-  import { fly, slide } from "svelte/transition";
+  import { fly } from "svelte/transition";
   import { quintOut } from "svelte/easing";
 
   type StepSnippet = Snippet<[number]>;
@@ -87,10 +87,8 @@
 
   let direction: "forward" | "backward" = $state("forward");
   let containerHeight = $state(0);
-  let contentElement: HTMLElement | null = null;
 
   function updateHeight(node: HTMLElement) {
-    contentElement = node;
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
         containerHeight = entry.contentRect.height;

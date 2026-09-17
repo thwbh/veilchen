@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/svelte";
+import { fireEvent, render } from "@testing-library/svelte";
 import { describe, expect, test, vi } from "vitest";
 import { createRawSnippet } from "svelte";
 import { InputSize } from "$lib/enum/enum.js";

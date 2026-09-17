@@ -4,7 +4,6 @@
   import type { MenuItem, MenuTitle } from "$lib/types/types.js";
 
   let clickedItem = $state<string | null>(null);
-  let activeItemId = $state<string>("item1");
 
   function handleItemClick(label: string) {
     clickedItem = label;

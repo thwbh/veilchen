@@ -8,7 +8,7 @@ export const longpress: Action<
   const TIME_MS = 300;
   let timeoutPtr: number;
 
-  const handleTouchStart = (e: TouchEvent) => {
+  const handleTouchStart = (_e: TouchEvent) => {
     // Don't prevent default or stop propagation - let parent components handle swipes
     window.addEventListener("touchmove", handleMoveBeforeLong);
     timeoutPtr = window.setTimeout(() => {
@@ -20,13 +20,13 @@ export const longpress: Action<
     }, TIME_MS);
   };
 
-  const handleMoveBeforeLong = (e: TouchEvent) => {
+  const handleMoveBeforeLong = (_e: TouchEvent) => {
     // Cancel long press if user moves their finger (likely a swipe gesture)
     window.clearTimeout(timeoutPtr);
     window.removeEventListener("touchmove", handleMoveBeforeLong);
   };
 
-  const handleTouchEnd = (e: TouchEvent) => {
+  const handleTouchEnd = (_e: TouchEvent) => {
     // Don't prevent default or stop propagation - let parent components handle swipes
     window.clearTimeout(timeoutPtr);
     window.removeEventListener("touchmove", handleMoveBeforeLong);

@@ -24,17 +24,6 @@
   // Each item height in pixels
   const ITEM_HEIGHT = 32;
 
-  function handleSelect(num: number, index: number) {
-    value = num;
-    selectedIndex = index;
-    onchange?.(num);
-
-    // Scroll to the selected item
-    if (wheelElement) {
-      wheelElement.scrollTop = index * ITEM_HEIGHT;
-    }
-  }
-
   function handleTouchStart(e: TouchEvent) {
     startY = e.touches[0].pageY;
     scrollTop = wheelElement?.scrollTop ?? 0;
@@ -47,13 +36,11 @@
     wheelElement.scrollTop = scrollTop + walk;
   }
 
-  let isScrolling = $state(false);
   let scrollTimeout: ReturnType<typeof setTimeout>;
 
   function handleScroll() {
     if (!wheelElement) return;
 
-    isScrolling = true;
     clearTimeout(scrollTimeout);
 
     // Update the visual selection immediately during scroll
@@ -67,7 +54,6 @@
     // After scrolling stops, snap to the selected item
     scrollTimeout = setTimeout(() => {
       snapToIndex(clampedIndex);
-      isScrolling = false;
     }, 150);
   }
 
