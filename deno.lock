@@ -2,7 +2,7 @@
   "version": "5",
   "specifiers": {
     "npm:chart.js@^4.5.1": "4.5.1",
-    "npm:daisyui@^5.7.40": "5.7.42"
+    "npm:daisyui@^5.7.42": "5.7.43"
   },
   "npm": {
     "@kurkle/color@0.3.4": {
@@ -14,14 +14,14 @@
         "@kurkle/color"
       ]
     },
-    "daisyui@5.7.42": {
-      "integrity": "sha512-1Enls+br/2ZJG+DHUlaVYMq/hQLTP2hyiTKt0kRBywJjoau0kHy1NDF1Oqo95cyVR1STzZK+7vyz1KxQroJU3w=="
+    "daisyui@5.7.43": {
+      "integrity": "sha512-o80D/SaF70gWppzpfk1X01ApWjVeqEEARbySaC0hWzIQymMqStcp28e+5lTWErHIfOk8RqGkD8ozA4v9tI4MZA=="
     }
   },
   "workspace": {
     "dependencies": [
       "npm:chart.js@^4.5.1",
-      "npm:daisyui@^5.7.40"
+      "npm:daisyui@^5.7.42"
     ]
   }
 }
