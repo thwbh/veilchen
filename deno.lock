@@ -2,7 +2,7 @@
   "version": "5",
   "specifiers": {
     "npm:chart.js@^4.5.1": "4.5.1",
-    "npm:daisyui@^5.7.48": "5.7.50"
+    "npm:daisyui@^5.7.50": "5.7.50"
   },
   "npm": {
     "@kurkle/color@0.3.4": {
@@ -21,7 +21,7 @@
   "workspace": {
     "dependencies": [
       "npm:chart.js@^4.5.1",
-      "npm:daisyui@^5.7.48"
+      "npm:daisyui@^5.7.50"
     ]
   }
 }
