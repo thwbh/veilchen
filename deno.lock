@@ -1,15 +1,15 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:chart.js@^4.6.1": "4.6.1",
+    "npm:chart.js@^4.6.2": "4.6.2",
     "npm:daisyui@^5.8.2": "5.8.2"
   },
   "npm": {
-    "@kurkle/color@0.3.4": {
-      "integrity": "sha512-M5UknZPHRu3DEDWoipU6sE8PdkZ6Z/S+v4dD+Ke8IaNlpdSQah50lz1KtcFBa2vsdOnwbbnxJwVM4wty6udA5w=="
+    "@kurkle/color@0.6.6": {
+      "integrity": "sha512-Bd1NjGyoe27ExXRIBu13YymFP6k/wFxpUkX97Z3RlofLFV43nECB2G8vETZzcZzz2Ct2oRzwYElX65lxyi5UNg=="
     },
-    "chart.js@4.6.1": {
-      "integrity": "sha512-hJyniucsFmq//EvXYvJ6c6mahPoI3kaxdjVH8awTaJ/fDNWeSqqqArixMJWkWNN6fcYvPU3HneSANFNYtRi61g==",
+    "chart.js@4.6.2": {
+      "integrity": "sha512-xachB+pPHjp0syJi7llUBA1w3kMYl6NF3o7eVrvjnWCT+IB2zMaF2pX5UYDiwbbfsioFEIRnAjreNOMsGj5TIA==",
       "dependencies": [
         "@kurkle/color"
       ]
@@ -20,7 +20,7 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:chart.js@^4.6.1",
+      "npm:chart.js@^4.6.2",
       "npm:daisyui@^5.8.2"
     ]
   }
